@@ -5,25 +5,24 @@ using System.Collections.Generic;
 public class Vertex : MonoBehaviour
 {
     [SerializeField] public Guid Id { get; private set; }
-    public List<Edge> Edges { get; private set; }
-    private Collider2D coll;
+    public List<Edge> Edges { get; private set; } = new List<Edge>();
+    public Room Room;
     [SerializeField] private float _vertexReach = 5f;
 
-    void Start()
+    void OnEnable()
     {
         Id = Guid.NewGuid();
-        Edges = new List<Edge>();
-        coll = GetComponent<Collider2D>();
         
-        GetSurroundingEdges();
     }
 
-    void GetSurroundingEdges()
+    public void ConfigureVertex()
     {
+        Collider2D s_coll = GetComponent<Collider2D>();
+
         Collider2D[] surrounding_edges = Physics2D.OverlapCircleAll(this.transform.position, _vertexReach);
         foreach (Collider2D c in surrounding_edges)
         {
-            if (c == coll) continue;
+            if (c == s_coll) continue;
 
             if (c.TryGetComponent<Vertex>(out Vertex vertex)) AddEdge(vertex);
         }
