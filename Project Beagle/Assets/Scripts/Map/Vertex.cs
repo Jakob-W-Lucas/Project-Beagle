@@ -4,22 +4,17 @@ using System.Collections.Generic;
 
 public class Vertex : MonoBehaviour
 {
-    [SerializeField] public Guid Id { get; private set; }
+    public int ID;
     public List<Edge> Edges { get; private set; } = new List<Edge>();
     public Room Room;
     [SerializeField] private float _vertexReach = 5f;
-
-    void OnEnable()
-    {
-        Id = Guid.NewGuid();
-        
-    }
 
     public void ConfigureVertex()
     {
         Collider2D s_coll = GetComponent<Collider2D>();
 
         Collider2D[] surrounding_edges = Physics2D.OverlapCircleAll(this.transform.position, _vertexReach);
+
         foreach (Collider2D c in surrounding_edges)
         {
             if (c == s_coll) continue;
@@ -35,8 +30,6 @@ public class Vertex : MonoBehaviour
         if (!Edges.Contains(edge))
         {
             Edges.Add(edge);
-
-            Debug.Log($"Added {end.Id} to edges");
         }
     }
 }
