@@ -17,7 +17,36 @@ public abstract class Room : MonoBehaviour
     private void OnEnable() 
     {
         _bounds = GetComponent<Collider2D>();
+    }
 
+    private void AddStationToLookup(Station station)
+    {
+        Type stationType = station.GetType();
+
+        if (!_lookupStations.ContainsKey(stationType))
+        {
+            _lookupStations[stationType] = new List<Station>();
+        }
+
+        _lookupStations[stationType].Add(station);
+    }
+
+    public void ConfigureRoom()
+    {
+        // Change this to not get the stations as the children of the room
+        Verticies = GetComponentsInChildren<Vertex>();
+
+        foreach (Vertex v in Verticies)
+        {
+            v.Room = this;
+            v.ConfigureVertex();
+        }
+
+        ConfigureStations();
+    }
+
+    public void ConfigureStations()
+    {
         _stations = GetComponentsInChildren<Station>();
 
         if (_stations.Length == 0) return;
@@ -36,29 +65,6 @@ public abstract class Room : MonoBehaviour
         }
 
         _map = new Map(_stationVerticies);
-    }
-
-    private void AddStationToLookup(Station station)
-    {
-        Type stationType = station.GetType();
-
-        if (!_lookupStations.ContainsKey(stationType))
-        {
-            _lookupStations[stationType] = new List<Station>();
-        }
-
-        _lookupStations[stationType].Add(station);
-    }
-
-    public void ConfigureRoom()
-    {
-        Verticies = GetComponentsInChildren<Vertex>();
-
-        foreach (Vertex v in Verticies)
-        {
-            v.Room = this;
-            v.ConfigureVertex();
-        }
     }
 
     void OnDrawGizmos()

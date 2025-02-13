@@ -65,6 +65,8 @@ public class Map
             int u = queue.Dequeue();
             foreach (Edge e in _verticies[u].Edges)
             {
+                if (!_verticies.Contains(e.End)) continue;
+                
                 int v = e.End.ID;
 
                 if (dist[v] == Mathf.Infinity)
