@@ -101,6 +101,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b2adc64a32e8fa48bf7e04f3e36cb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ID: 0
+  Room: {fileID: 0}
+  _vertexReach: 5
 --- !u!61 &2555025100014030901
 BoxCollider2D:
   m_ObjectHideFlags: 0
