@@ -4,7 +4,7 @@ using System;
 
 public class OuterMap : MonoBehaviour
 {
-    private Map _map;
+    public Map Map {get; private set; }
     private Room[] _rooms;
     private Dictionary<Type, List<Room>> _lookupRooms = new Dictionary<Type, List<Room>>();
     private List<Vertex> _roomVertices = new List<Vertex>();
@@ -23,7 +23,7 @@ public class OuterMap : MonoBehaviour
             _roomVertices.AddRange(room.Vertices);
         }
 
-        _map = new Map(_roomVertices.ToArray());
+        Map = new Map(_roomVertices.ToArray());
     }
 
     private void AddRoomToLookup(Room room)

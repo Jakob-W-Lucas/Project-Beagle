@@ -6,8 +6,10 @@ using Unity.VisualScripting;
 public class Vertex : MonoBehaviour
 {
     public Guid ID { get; private set; }
-    public string Name { get; private set; }
+    // Global room ID
+    public int g_ID = -1;
     public int p_ID = -1;
+    public string Name { get; private set; }
     public List<Edge> Edges { get; private set; } = new List<Edge>();
     public Room Room;
     [SerializeField] private float _vertexReach = 5f;

@@ -7,6 +7,7 @@ public class AgentManager : MonoBehaviour
 {
     [SerializeField] private float _delayUpdateTime = 0.5f;
     [SerializeField] private Agent[] _agents;
+    public OuterMap OuterMap;
 
     # region Updates
 
@@ -49,7 +50,7 @@ public class AgentManager : MonoBehaviour
 
     void UpdatePosition(Agent a)
     {
-        if (a.Route.Count == 0) return;
+        if (a.Heading == null) return;
 
         if (NaiveDistanceCheck(a.transform.position, a.Heading.transform.position))
         {
@@ -57,6 +58,15 @@ public class AgentManager : MonoBehaviour
             return; 
         }
         
+        if (a.Route.Count == 0)
+        {
+            a.Heading = null;
+
+            //a.FollowPath(OuterMap.Map.Routes[a.Origin][UnityEngine.Random.Range(0, 1)].Verticies);
+            return;
+        }
+
+        a.Origin = a.Heading;
         a.Heading = a.Route.Dequeue();
     }
 
