@@ -4,7 +4,7 @@ using System;
 
 public class OuterMap : MonoBehaviour
 {
-    public Map Map {get; private set; }
+    public Map Map { get; private set; }
     private Room[] _rooms;
     private Dictionary<Type, List<Room>> _lookupRooms = new Dictionary<Type, List<Room>>();
     private List<Vertex> _roomVertices = new List<Vertex>();

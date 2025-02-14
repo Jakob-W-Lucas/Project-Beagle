@@ -8,12 +8,20 @@ public class AgentManager : MonoBehaviour
     [SerializeField] private float _delayUpdateTime = 0.5f;
     [SerializeField] private Agent[] _agents;
     public OuterMap OuterMap;
+    private Map _map;
 
     # region Updates
 
     private void Start() 
     {
+        _map = OuterMap.Map;
+
         StartCoroutine(DelayUpdate());
+
+        foreach (Agent a in _agents)
+        {
+            a.Origin = _map.GetNearestVertex(a.transform.position);
+        }
     }
 
     private void FixedUpdate() 
@@ -48,25 +56,42 @@ public class AgentManager : MonoBehaviour
 
     # region "Movement"
 
+    private List<Vertex> GetAgentRoute(Agent a, int u)
+    {   
+        Vertex v = _map.GetVertexFromIndex(u);
+        Route fromOrigin = _map.Routes[a.Origin.ID][v.ID];
+
+        if (a.Heading == null) return fromOrigin.Verticies;
+
+        Route fromHeading = _map.Routes[a.Heading.ID][v.ID];
+
+        return fromOrigin.TotalDist < fromHeading.TotalDist ? fromOrigin.Verticies : fromHeading.Verticies;
+    }
+
     void UpdatePosition(Agent a)
     {
-        if (a.Heading == null) return;
-
-        if (NaiveDistanceCheck(a.transform.position, a.Heading.transform.position))
+        if (a.Heading == null) 
         {
-            a.transform.position = Vector2.MoveTowards(a.transform.position, a.Heading.transform.position, a.Speed * Time.fixedDeltaTime);
-            return; 
-        }
-        
-        if (a.Route.Count == 0)
-        {
-            a.Heading = null;
-
-            //a.FollowPath(OuterMap.Map.Routes[a.Origin][UnityEngine.Random.Range(0, 1)].Verticies);
+            if (a.Origin)
+            {
+                a.FollowPath(GetAgentRoute(a, UnityEngine.Random.Range(0, 6)));
+            }
+            
             return;
         }
 
+        if (NaiveDistanceCheck(a.transform.position, a.Heading.transform.position)) {
+            a.transform.position = Vector2.MoveTowards(a.transform.position, a.Heading.transform.position, a.Speed * Time.fixedDeltaTime);
+            return; 
+        }
+
         a.Origin = a.Heading;
+        
+        if (a.Route.Count == 0) {
+            a.Heading = null;
+            return;
+        }
+
         a.Heading = a.Route.Dequeue();
     }
 
@@ -75,8 +100,7 @@ public class AgentManager : MonoBehaviour
         return Math.Abs(a.x - b.x) > 0.01f || Math.Abs(a.y - b.y) > 0.01f;
     }
 
-    bool OptimalDistanceCheck(Vector2 a, Vector2 b)
-    {
+    bool OptimalDistanceCheck(Vector2 a, Vector2 b) {
         // Better check for distance, slower computation
         return Vector2.SqrMagnitude(a - b) > 0.001f;
     }

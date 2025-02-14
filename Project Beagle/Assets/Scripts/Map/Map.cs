@@ -19,9 +19,10 @@ public class Route
 
 public class Map
 {
-    private Dictionary<Guid, Dictionary<Guid, Route>> Routes = new Dictionary<Guid, Dictionary<Guid, Route>>();
+    public Dictionary<Guid, Dictionary<Guid, Route>> Routes { get; private set; } = new Dictionary<Guid, Dictionary<Guid, Route>>();
     private Dictionary<Guid, Vertex> _vertexLookup = new Dictionary<Guid, Vertex>();
     private Vertex[] _vertices;
+    public bool Configured { get; private set; }
 
     public Map(Vertex[] v)
     {
@@ -39,16 +40,41 @@ public class Map
 
         ComputeAllPairsShortestPaths();
 
+        Configured = true;
+
         // Debugging
         Debug.Log(PrintRoutes());
     }
 
     # region Querying
 
+    public Vertex GetVertexFromIndex(int n) => _vertices[n];
+
     public Route RandomDestination(Vertex s)
     {
-        return null;
-        //return Routes[_vertexLookup.][UnityEngine.Random.Range(0, Routes[s].Length)];
+        int i = UnityEngine.Random.Range(0, _vertices.Length);
+        return Routes[s.ID][_vertices[i].ID];
+    }
+
+    public Route SetDestination(Vertex s, int n) => Routes[s.ID][_vertices[n].ID];
+
+    public Vertex GetNearestVertex(Vector2 pos)
+    {
+        Vertex contender = null;
+        float dist = Mathf.Infinity;
+
+        foreach (Vertex v in _vertices)
+        {
+            float d_dist = Vector2.Distance(v.transform.position, pos);
+            if (d_dist > dist) {
+                continue;
+            }
+
+            contender = v;
+            dist = d_dist;
+        }
+
+        return contender;
     }
 
     # endregion

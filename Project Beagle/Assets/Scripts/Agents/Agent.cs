@@ -12,6 +12,9 @@ public class Agent : MonoBehaviour
 
     public void FollowPath(List<Vertex> vertices)
     {
+        Route.Clear();
+        Heading = null;
+
         foreach (Vertex v in vertices)
         {
             Route.Enqueue(v);
