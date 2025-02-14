@@ -37,7 +37,9 @@ public class Map
         _vertexLookup = keyValues;
 
         ComputeAllPairsShortestPaths();
-        Debug.Log(PrintRoutes());
+        
+        // Debugging
+        //Debug.Log(PrintRoutes());
     }
 
     # region Repeated BFS - All pairs shortest paths 

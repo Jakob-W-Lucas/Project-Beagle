@@ -147,13 +147,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GraphBasics_2
+      name: GraphBasics_3
       rect:
         serializedVersion: 2
-        x: 27
-        y: 191
-        width: 3
-        height: 3
+        x: 26
+        y: 190
+        width: 5
+        height: 5
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -162,8 +162,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cfba9bba3b192034daa818b16801d266
-      internalID: -328111296
+      spriteID: 339e0831e6adbc144889ebab6f370bfb
+      internalID: 728722395
       vertices: []
       indices: 
       edges: []
@@ -185,6 +185,7 @@ TextureImporter:
       GraphBasics_0: 6933417298732891069
       GraphBasics_1: 3233033113928648118
       GraphBasics_2: -328111296
+      GraphBasics_3: 728722395
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

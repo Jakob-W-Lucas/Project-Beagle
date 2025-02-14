@@ -82,6 +82,7 @@ public abstract class Room : MonoBehaviour
                 if (edge.Enabled)
                 {
                     Gizmos.DrawLine(s.Vertex.transform.position, edge.End.transform.position);
+                    
                 }
             }
         }

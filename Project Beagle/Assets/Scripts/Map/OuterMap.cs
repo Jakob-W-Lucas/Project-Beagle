@@ -61,6 +61,7 @@ public class OuterMap : MonoBehaviour
                 if (edge.Enabled && !edge.End.GetComponent<Station>())
                 {
                     Gizmos.DrawLine(vertex.transform.position, edge.End.transform.position);
+                    Debug.DrawLine(vertex.transform.position, edge.End.transform.position, Color.red);
                 }
             }
         }
