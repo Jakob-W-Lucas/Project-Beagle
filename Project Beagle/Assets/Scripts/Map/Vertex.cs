@@ -1,23 +1,38 @@
 using UnityEngine;
 using System;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 
 public class Vertex : MonoBehaviour
 {
-    public int ID;
+    public Guid ID { get; private set; }
+    public string Name { get; private set; }
+    public int p_ID = -1;
     public List<Edge> Edges { get; private set; } = new List<Edge>();
     public Room Room;
     [SerializeField] private float _vertexReach = 5f;
 
+    public void SetId()
+    {
+        ID = Guid.NewGuid();
+    }
+
+    public void SetName(int n_vertex, int m_station = -1)
+    {
+        Name = m_station > -1 ? $"R-{Room.name}-S-{m_station}" : $"R-{Room.name}-V-{n_vertex}";
+    }
+
     public void ConfigureVertex()
     {
+        SetId();
+
         Collider2D s_coll = GetComponent<Collider2D>();
 
         Collider2D[] surrounding_edges = Physics2D.OverlapCircleAll(this.transform.position, _vertexReach);
 
         foreach (Collider2D c in surrounding_edges)
         {
-            if (c == s_coll) continue;
+            if (c == s_coll || c.GetComponent<Station>()) continue;
 
             if (c.TryGetComponent<Vertex>(out Vertex vertex)) AddEdge(vertex);
         }

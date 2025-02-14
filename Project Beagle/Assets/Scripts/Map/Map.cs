@@ -20,11 +20,21 @@ public class Route
 public class Map
 {
     public Route[][] Routes { get; private set; }
-    private List<Vertex> _verticies = new List<Vertex>();
-
-    public Map(List<Vertex> vertices)
+    private Dictionary<Guid, Vertex> _vertexLookup = new Dictionary<Guid, Vertex>();
+    private Vertex[] _vertices;
+    public Map(Vertex[] v)
     {
-        _verticies = vertices;
+        _vertices = v;
+
+        Dictionary<Guid, Vertex> keyValues = new Dictionary<Guid, Vertex>();
+
+        for (int i = 0; i < v.Length; i++)
+        {
+            keyValues.Add(v[i].ID, v[i]);
+            v[i].p_ID = i; // Ensure p_ID is set correctly
+        }
+
+        _vertexLookup = keyValues;
 
         ComputeAllPairsShortestPaths();
         Debug.Log(PrintRoutes());
@@ -35,9 +45,9 @@ public class Map
     // Perform BFS for each node and store distances in the matrix
     public void ComputeAllPairsShortestPaths()
     {
-        Route[][] routes = new Route[_verticies.Count][];
+        Route[][] routes = new Route[_vertices.Length][];
         
-        for (int start = 0; start < _verticies.Count; start++)
+        for (int start = 0; start < _vertices.Length; start++)
         {
             routes[start] = BFS(start);
         }
@@ -47,10 +57,10 @@ public class Map
 
     private Route[] BFS(int s)
     {
-        float[] dist = new float[_verticies.Count];
-        int[] pred = new int[_verticies.Count];
+        float[] dist = new float[_vertices.Length];
+        int[] pred = new int[_vertices.Length];
 
-        for (int i = 0; i < _verticies.Count; i++)
+        for (int i = 0; i < _vertices.Length; i++)
         {
             dist[i] = Mathf.Infinity;
             pred[i] = -1;
@@ -63,12 +73,12 @@ public class Map
         while (queue.Count > 0)
         {
             int u = queue.Dequeue();
-            foreach (Edge e in _verticies[u].Edges)
+            foreach (Edge e in _vertices[u].Edges)
             {
-                if (!_verticies.Contains(e.End)) continue;
-                
-                int v = e.End.ID;
+                if (!_vertexLookup.TryGetValue(e.End.ID, out var key)) continue;
 
+                int v = e.End.p_ID;
+                
                 if (dist[v] == Mathf.Infinity)
                 {
                     dist[v] = dist[u] + e.Weight;
@@ -78,8 +88,8 @@ public class Map
             }
         }
 
-        Route[] routes = new Route[_verticies.Count];
-        for (int i = 0; i < _verticies.Count; i++)
+        Route[] routes = new Route[_vertices.Length];
+        for (int i = 0; i < _vertices.Length; i++)
         {
             routes[i] = GetPath(s, i, dist[i], pred);
         }
@@ -89,10 +99,10 @@ public class Map
 
     private Route GetPath(int s, int u, float dist, int[] pred)
     {
-        List<Vertex> path = new List<Vertex> { _verticies[u] };
+        List<Vertex> path = new List<Vertex> { _vertices[u] };
         while (u != s)
         {
-            path.Add(_verticies[pred[u]]);
+            path.Add(_vertices[pred[u]]);
             u = pred[u];
         }   
 
@@ -127,7 +137,7 @@ public class Map
         str.Append($"Total distance: {r.TotalDist} with path: ");
         for (int i = 0; i < r.Verticies.Count; i++)
         {
-            str.Append($"{r.Verticies[i].ID} -> ");
+            str.Append($"{r.Verticies[i].Name} -> ");
         }
         return str;
     }

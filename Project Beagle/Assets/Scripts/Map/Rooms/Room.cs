@@ -1,18 +1,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using Unity.VisualScripting;
+using System.Linq;
 
 [RequireComponent(typeof(Collider2D))]
 public abstract class Room : MonoBehaviour
 {
     // Verticies to enter and exit any room
     private Map _map;
-    public Vertex[] Verticies { get; private set; }
-    private Station[] _stations;
+    [SerializeField] private Vertex[] _vertices;
+    [SerializeField] private Station[] _stations;
+    private List<Vertex> _stationVertices = new List<Vertex>();
     private Dictionary<Type, List<Station>> _lookupStations = new Dictionary<Type, List<Station>>();
-    private List<Vertex> _stationVerticies = new List<Vertex>();
     private Collider2D _bounds;
     public abstract void DebugRoom();
+
+    public Vertex[] Vertices => _vertices;
 
     private void OnEnable() 
     {
@@ -33,13 +37,12 @@ public abstract class Room : MonoBehaviour
 
     public void ConfigureRoom()
     {
-        // Change this to not get the stations as the children of the room
-        Verticies = GetComponentsInChildren<Vertex>();
-
-        foreach (Vertex v in Verticies)
+        for (int i = 0; i < _vertices.Length; i++)
         {
-            v.Room = this;
-            v.ConfigureVertex();
+            _vertices[i].Room = this;
+            _vertices[i].ConfigureVertex();
+
+            _vertices[i].SetName(i);
         }
 
         ConfigureStations();
@@ -47,37 +50,38 @@ public abstract class Room : MonoBehaviour
 
     public void ConfigureStations()
     {
-        _stations = GetComponentsInChildren<Station>();
-
         if (_stations.Length == 0) return;
 
-        foreach (Station station in _stations)
+        for (int i = 0; i < _stations.Length; i++)
         {
-            station.ConfigureStation(this);
-            AddStationToLookup(station);
+            _stations[i].ConfigureStation(this);
+            AddStationToLookup(_stations[i]);
 
-            _stationVerticies.Add(station.Vertex);
+            _stationVertices.Add(_stations[i].Vertex);
+
+            _stations[i].Vertex.SetName(-1, i);
         }
 
-        for (int i = 0; i < _stationVerticies.Count; i++)
-        {
-            _stationVerticies[i].ID = i;
-        }
+        Vertex[] v = new Vertex[_vertices.Length + _stationVertices.Count];
+        _vertices.CopyTo(v, 0);
+        _stationVertices.CopyTo(v, _vertices.Length);
 
-        _map = new Map(_stationVerticies);
+        _map = new Map(v);
     }
 
     void OnDrawGizmos()
     {
         Gizmos.color = Color.blue;
 
-        foreach (Vertex vertex in _stationVerticies)
+        foreach (Station s in _stations)
         {
-            foreach (Edge edge in vertex.Edges)
+            if (s.Vertex == null) continue;
+            
+            foreach (Edge edge in s.Vertex.Edges)
             {
                 if (edge.Enabled)
                 {
-                    Gizmos.DrawLine(vertex.transform.position, edge.End.transform.position);
+                    Gizmos.DrawLine(s.Vertex.transform.position, edge.End.transform.position);
                 }
             }
         }

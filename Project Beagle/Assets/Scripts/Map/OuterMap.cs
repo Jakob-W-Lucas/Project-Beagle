@@ -7,7 +7,7 @@ public class OuterMap : MonoBehaviour
     private Map _map;
     private Room[] _rooms;
     private Dictionary<Type, List<Room>> _lookupRooms = new Dictionary<Type, List<Room>>();
-    private List<Vertex> _roomVerticies = new List<Vertex>();
+    private List<Vertex> _roomVertices = new List<Vertex>();
 
     private void OnEnable() {
         
@@ -20,15 +20,10 @@ public class OuterMap : MonoBehaviour
             room.ConfigureRoom();
             AddRoomToLookup(room);
             
-            _roomVerticies.AddRange(room.Verticies);
+            _roomVertices.AddRange(room.Vertices);
         }
 
-        for (int i = 0; i < _roomVerticies.Count; i++)
-        {
-            _roomVerticies[i].ID = i;
-        }
-
-        _map = new Map(_roomVerticies);
+        _map = new Map(_roomVertices.ToArray());
     }
 
     private void AddRoomToLookup(Room room)
@@ -59,11 +54,11 @@ public class OuterMap : MonoBehaviour
     {
         Gizmos.color = Color.red;
 
-        foreach (Vertex vertex in _roomVerticies)
+        foreach (Vertex vertex in _roomVertices)
         {
             foreach (Edge edge in vertex.Edges)
             {
-                if (edge.Enabled)
+                if (edge.Enabled && !edge.End.GetComponent<Station>())
                 {
                     Gizmos.DrawLine(vertex.transform.position, edge.End.transform.position);
                 }

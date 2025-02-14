@@ -8,6 +8,9 @@ public abstract class Station : MonoBehaviour
     public void ConfigureStation(Room room)
     {
         Vertex = GetComponent<Vertex>();
+        
+        Vertex.Room = room;
+        Vertex.SetId();
 
         if (Vertex == null)
         {
@@ -15,9 +18,10 @@ public abstract class Station : MonoBehaviour
             return;
         }
 
-        foreach (Vertex v in room.Verticies)
+        foreach (Vertex v in room.Vertices)
         {
             Vertex.AddEdge(v);
+            v.AddEdge(Vertex);
         }
     }
 }
