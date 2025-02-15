@@ -19,38 +19,12 @@ public abstract class Room : MonoBehaviour
     # region Initialization
 
     public Vertex[] Vertices => _vertices;
+    public Station[] Stations => _stations;
 
     private void OnEnable() 
     {
         _bounds = GetComponent<Collider2D>();
     }
-
-    # endregion
-
-    # region Utility
-
-    // Get the route from the source to the room vertex with the lowest total distance
-    public Route GetRouteToRoom(Vertex s)
-    {
-        Route contender = null;
-        float dist = Mathf.Infinity;
-
-        foreach (Vertex v in _vertices)
-        {
-            Route p_route = _map.Routes[s.ID][v.ID];
-
-            if (p_route.TotalDist > dist) continue;
-
-            contender = p_route;
-            dist = p_route.TotalDist;
-        }
-
-        return contender;
-    }
-    
-    # endregion
-
-    # region Initialization
 
     private void AddStationToLookup(Station station)
     {
@@ -96,6 +70,41 @@ public abstract class Room : MonoBehaviour
         _stationVertices.CopyTo(v, _vertices.Length);
 
         _map = new Map(v);
+    }
+
+    # endregion
+
+    # region Querying
+
+    // Get the route from the source to the room vertex with the lowest total distance
+    public Route GetRouteToRoom(Vertex s)
+    {
+        Route contender = null;
+        float dist = Mathf.Infinity;
+
+        foreach (Vertex v in _vertices)
+        {
+            Route p_route = _map.Routes[s.ID][v.ID];
+
+            if (p_route.Distance > dist) continue;
+
+            contender = p_route;
+            dist = p_route.Distance;
+        }
+
+        return contender;
+    }
+
+    // Get the routes from a station to each room vertex
+    public Route[] RouteFromStation(Station st) => _map.Routes[st.Vertex.ID].Values.ToArray();
+
+    private List<Station> HasStation<T>() where T : Station {
+        if (_lookupStations.TryGetValue(typeof(T), out var stations))
+        {
+            return stations;
+        }
+
+        return null;
     }
 
     # endregion

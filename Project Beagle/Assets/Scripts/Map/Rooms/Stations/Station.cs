@@ -4,12 +4,14 @@ using UnityEngine;
 public abstract class Station : MonoBehaviour
 {
     public Vertex Vertex { get; private set; }
+    public Room Room => Vertex.Room;
     
     public void ConfigureStation(Room room)
     {
         Vertex = GetComponent<Vertex>();
         
         Vertex.Room = room;
+        Vertex.Station = this;
         Vertex.SetId();
 
         if (Vertex == null)

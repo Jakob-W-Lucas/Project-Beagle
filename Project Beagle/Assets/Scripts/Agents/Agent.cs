@@ -6,9 +6,23 @@ using UnityEngine;
 public class Agent : MonoBehaviour
 {
     public Queue<Vertex> Route { get; private set; } = new Queue<Vertex>();
-    public Vertex Origin;
+    public Station Station;
+    public Vertex Origin { get; private set; }
     public Vertex Heading;
     public float Speed = 0.5f;
+
+    public void UpdateOrigin(Vertex s)
+    {
+        Origin = s;
+        
+        if (s.TryGetComponent<Station>(out var st))
+        {
+            Station = st;
+            return;
+        }
+
+        Station = null;
+    }
 
     public void FollowPath(Route route)
     {

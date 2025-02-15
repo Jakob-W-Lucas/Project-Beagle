@@ -8,12 +8,33 @@ using System.Text;
 public class Route
 {
     public List<Vertex> Vertices;
-    public float TotalDist;
+    public float Distance;
 
-    public Route(List<Vertex> vertices, float totalDist)
+    public Route(List<Vertex> vertices, float distance)
     {
         Vertices = vertices;
-        TotalDist = totalDist;
+        Distance = distance;
+    }
+
+    public Route Join(Route other)
+    {
+        if (other == null || other.Vertices.Count == 0)
+        {
+            return new Route(new List<Vertex>(this.Vertices), this.Distance);
+        }
+
+        List<Vertex> joinedVertices = new List<Vertex>(this.Vertices);
+        if (joinedVertices.Last() == other.Vertices.First())
+        {
+            joinedVertices.AddRange(other.Vertices.Skip(1));
+        }
+        else
+        {
+            joinedVertices.AddRange(other.Vertices);
+        }
+
+        float joinedDistance = this.Distance + other.Distance;
+        return new Route(joinedVertices, joinedDistance);
     }
 }
 
@@ -154,6 +175,8 @@ public class Map
 
     # region Utility
 
+    public bool HasVertex(Vertex n) => _vertexLookup.TryGetValue(n.ID, out var v);
+
     public string PrintRoutes()
     {
         StringBuilder str = new StringBuilder();
@@ -177,7 +200,7 @@ public class Map
     public StringBuilder GetRouteString(Route r)
     {
         StringBuilder str = new StringBuilder();
-        str.Append($"Total distance: {r.TotalDist} with path: ");
+        str.Append($"Total distance: {r.Distance} with path: ");
         for (int i = 0; i < r.Vertices.Count; i++)
         {
             str.Append($"{r.Vertices[i].Name} -> ");

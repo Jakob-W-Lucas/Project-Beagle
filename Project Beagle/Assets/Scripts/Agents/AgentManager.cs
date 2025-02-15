@@ -20,7 +20,7 @@ public class AgentManager : MonoBehaviour
 
         foreach (Agent a in _agents)
         {
-            a.Origin = _map.GetNearestVertex(a.transform.position);
+            a.UpdateOrigin(_map.GetNearestVertex(a.transform.position));
         }
     }
 
@@ -65,14 +65,14 @@ public class AgentManager : MonoBehaviour
 
         Route fromHeading = _map.Routes[a.Heading.ID][v.ID];
 
-        return fromOrigin.TotalDist < fromHeading.TotalDist ? fromOrigin : fromHeading;
+        return fromOrigin.Distance < fromHeading.Distance ? fromOrigin : fromHeading;
     }
 
     private void SetRouteToRoom<T>(Agent a) where T : Room
     {
         if (a.Origin.Room.GetType() == typeof(T)) return;
 
-        a.FollowPath(OuterMap.GetRouteToRoom<T>(a.Origin));
+        a.FollowPath(OuterMap.FromRoomTypeToRoom<T>(a.Origin));
     }
 
     # endregion
@@ -96,7 +96,7 @@ public class AgentManager : MonoBehaviour
             return; 
         }
 
-        a.Origin = a.Heading;
+        a.UpdateOrigin(a.Heading);
         
         if (a.Route.Count == 0) {
             a.Heading = null;

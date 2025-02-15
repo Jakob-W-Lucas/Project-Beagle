@@ -12,6 +12,7 @@ public class Vertex : MonoBehaviour
     public string Name { get; private set; }
     public List<Edge> Edges { get; private set; } = new List<Edge>();
     public Room Room;
+    public Station Station;
     [SerializeField] private float _vertexReach = 5f;
 
     public void SetId()
