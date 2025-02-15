@@ -5,6 +5,8 @@ public abstract class Station : MonoBehaviour
 {
     public Vertex Vertex { get; private set; }
     public Room Room => Vertex.Room;
+
+    public abstract void DebugStation();
     
     public void ConfigureStation(Room room)
     {

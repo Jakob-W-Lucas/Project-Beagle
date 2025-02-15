@@ -85,7 +85,8 @@ public class AgentManager : MonoBehaviour
         {
             if (a.Origin)
             {
-                a.FollowPath(GetAgentRoute(a, UnityEngine.Random.Range(0, 6)));
+                //a.FollowPath(GetAgentRoute(a, UnityEngine.Random.Range(0, 13)));
+                a.FollowPath(OuterMap.TravelToStation<Toilet>(a.Origin));
             }
             
             return;

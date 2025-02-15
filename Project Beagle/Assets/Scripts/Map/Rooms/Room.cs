@@ -113,6 +113,8 @@ public abstract class Room : MonoBehaviour
 
     void OnDrawGizmos()
     {
+        if (_stations == null) return;
+        
         Gizmos.color = Color.blue;
 
         foreach (Station s in _stations)
