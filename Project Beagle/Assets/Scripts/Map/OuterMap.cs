@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using Unity.Mathematics;
 
 public class OuterMap : MonoBehaviour
 {
@@ -8,6 +9,8 @@ public class OuterMap : MonoBehaviour
     private Room[] _rooms;
     private Dictionary<Type, List<Room>> _lookupRooms = new Dictionary<Type, List<Room>>();
     private List<Vertex> _roomVertices = new List<Vertex>();
+
+    # region Initialization
 
     private void OnEnable() {
         
@@ -38,6 +41,31 @@ public class OuterMap : MonoBehaviour
         _lookupRooms[roomType].Add(room);
     }
 
+    # endregion
+
+    # region Utility
+
+    // Get the route from the source to the room of type T with lowest total distance
+    public Route GetRouteToRoom<T>(Vertex s) where T : Room
+    {
+        List<Room> rooms = GetRoomsOfType<T>();
+
+        Route contender = null;
+        float dist = Mathf.Infinity;
+
+        foreach (Room r in rooms)
+        {
+            Route p_route = r.GetRouteToRoom(s);
+
+            if (p_route.TotalDist > dist) continue;
+
+            contender = p_route;
+            dist = p_route.TotalDist;
+        }
+
+        return contender;
+    }
+
     public List<Room> GetRoomsOfType<T>() where T : Room
     {
         Type roomType = typeof(T);
@@ -49,6 +77,10 @@ public class OuterMap : MonoBehaviour
 
         return new List<Room>();
     }
+
+    # endregion
+
+    # region Utility
 
     void OnDrawGizmos()
     {
@@ -66,4 +98,6 @@ public class OuterMap : MonoBehaviour
             }
         }
     }
+
+    # endregion
 }

@@ -54,19 +54,30 @@ public class AgentManager : MonoBehaviour
     
     # endregion
 
-    # region "Movement"
+    # region Path Finding
 
-    private List<Vertex> GetAgentRoute(Agent a, int u)
+    private Route GetAgentRoute(Agent a, int u)
     {   
         Vertex v = _map.GetVertexFromIndex(u);
         Route fromOrigin = _map.Routes[a.Origin.ID][v.ID];
 
-        if (a.Heading == null) return fromOrigin.Verticies;
+        if (a.Heading == null) return fromOrigin;
 
         Route fromHeading = _map.Routes[a.Heading.ID][v.ID];
 
-        return fromOrigin.TotalDist < fromHeading.TotalDist ? fromOrigin.Verticies : fromHeading.Verticies;
+        return fromOrigin.TotalDist < fromHeading.TotalDist ? fromOrigin : fromHeading;
     }
+
+    private void SetRouteToRoom<T>(Agent a) where T : Room
+    {
+        if (a.Origin.Room.GetType() == typeof(T)) return;
+
+        a.FollowPath(OuterMap.GetRouteToRoom<T>(a.Origin));
+    }
+
+    # endregion
+
+    # region "Movement"
 
     void UpdatePosition(Agent a)
     {

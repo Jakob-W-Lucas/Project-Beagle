@@ -7,12 +7,12 @@ using System.Text;
 [System.Serializable]
 public class Route
 {
-    public List<Vertex> Verticies;
+    public List<Vertex> Vertices;
     public float TotalDist;
 
     public Route(List<Vertex> vertices, float totalDist)
     {
-        Verticies = vertices;
+        Vertices = vertices;
         TotalDist = totalDist;
     }
 }
@@ -178,9 +178,9 @@ public class Map
     {
         StringBuilder str = new StringBuilder();
         str.Append($"Total distance: {r.TotalDist} with path: ");
-        for (int i = 0; i < r.Verticies.Count; i++)
+        for (int i = 0; i < r.Vertices.Count; i++)
         {
-            str.Append($"{r.Verticies[i].Name} -> ");
+            str.Append($"{r.Vertices[i].Name} -> ");
         }
         return str;
     }

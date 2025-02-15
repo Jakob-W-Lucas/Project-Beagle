@@ -16,12 +16,41 @@ public abstract class Room : MonoBehaviour
     private Collider2D _bounds;
     public abstract void DebugRoom();
 
+    # region Initialization
+
     public Vertex[] Vertices => _vertices;
 
     private void OnEnable() 
     {
         _bounds = GetComponent<Collider2D>();
     }
+
+    # endregion
+
+    # region Utility
+
+    // Get the route from the source to the room vertex with the lowest total distance
+    public Route GetRouteToRoom(Vertex s)
+    {
+        Route contender = null;
+        float dist = Mathf.Infinity;
+
+        foreach (Vertex v in _vertices)
+        {
+            Route p_route = _map.Routes[s.ID][v.ID];
+
+            if (p_route.TotalDist > dist) continue;
+
+            contender = p_route;
+            dist = p_route.TotalDist;
+        }
+
+        return contender;
+    }
+    
+    # endregion
+
+    # region Initialization
 
     private void AddStationToLookup(Station station)
     {
@@ -69,6 +98,10 @@ public abstract class Room : MonoBehaviour
         _map = new Map(v);
     }
 
+    # endregion
+
+    # region Debugging
+
     void OnDrawGizmos()
     {
         Gizmos.color = Color.blue;
@@ -87,4 +120,6 @@ public abstract class Room : MonoBehaviour
             }
         }
     }
+
+    # endregion
 }

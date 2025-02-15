@@ -10,12 +10,12 @@ public class Agent : MonoBehaviour
     public Vertex Heading;
     public float Speed = 0.5f;
 
-    public void FollowPath(List<Vertex> vertices)
+    public void FollowPath(Route route)
     {
         Route.Clear();
         Heading = null;
 
-        foreach (Vertex v in vertices)
+        foreach (Vertex v in route.Vertices)
         {
             Route.Enqueue(v);
         }
