@@ -26,6 +26,8 @@ public class Agent : MonoBehaviour
 
     public void FollowPath(Route route)
     {
+        if (route == null) return;
+        
         Route.Clear();
         Heading = null;
 

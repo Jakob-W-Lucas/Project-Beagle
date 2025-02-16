@@ -8,9 +8,11 @@ using System.Text;
 [RequireComponent(typeof(Collider2D))]
 public abstract class Room : MonoBehaviour
 {
-    // Verticies to enter and exit any room
+    // Routes from any station to any room vertex
     public Dictionary<Guid, Dictionary<Guid, Route>> Routes { get; private set; } = new Dictionary<Guid, Dictionary<Guid, Route>>();
+    // Verticies to enter and exit any room
     [SerializeField] private Vertex[] _vertices;
+    // Room stations
     [SerializeField] private Station[] _stations;
     private List<Vertex> _stationVertices = new List<Vertex>();
     private Dictionary<Type, List<Station>> _lookupStations = new Dictionary<Type, List<Station>>();
@@ -84,27 +86,8 @@ public abstract class Room : MonoBehaviour
 
     # region Querying
 
-    // Get the route from the source to the room vertex with the lowest total distance
-    // public Route GetRouteToRoom(Vertex s)
-    // {
-    //     Route contender = null;
-    //     float dist = Mathf.Infinity;
-
-    //     foreach (Vertex v in _vertices)
-    //     {
-    //         Route p_route = _map.Routes[s.GuidID][v.GuidID];
-
-    //         if (p_route.Distance > dist) continue;
-
-    //         contender = p_route;
-    //         dist = p_route.Distance;
-    //     }
-
-    //     return contender;
-    // }
-
     // Get the routes from a station to each room vertex
-    //public Route[] RouteFromStation(Station st) => _map.Routes[st.Vertex.GuidID].Values.ToArray();
+    public Route[] RouteFromStation(Station st) => Routes[st.Vertex.GuidID].Values.ToArray();
 
     private List<Station> HasStation<T>() where T : Station {
         if (_lookupStations.TryGetValue(typeof(T), out var stations))

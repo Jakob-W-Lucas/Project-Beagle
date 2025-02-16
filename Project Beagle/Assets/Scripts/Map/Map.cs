@@ -16,6 +16,18 @@ public class Route
         Distance = distance;
     }
 
+    public Route(Vertex s, Vertex u)
+    {
+        Vertices = new List<Vertex>() { s, u };
+        Distance = Vector2.Distance(s.transform.position, u.transform.position);
+    }
+
+    public Route()
+    {
+        Vertices = new List<Vertex>();
+        Distance = Mathf.Infinity;
+    }
+
     public Route Join(Route other)
     {
         if (other == null || other.Vertices.Count == 0)
