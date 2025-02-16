@@ -44,6 +44,8 @@ public abstract class Room : MonoBehaviour
 
     public void ConfigureRoom()
     {
+        RoomEnterRoutes = new Route[_vertices.Length][];
+
         for (int i = 0; i < _vertices.Length; i++)
         {
             _vertices[i].Room = this;
@@ -51,7 +53,10 @@ public abstract class Room : MonoBehaviour
 
             _vertices[i].SetName(i);
 
+            _vertices[i].r_ID = i + _stations.Length;
             _vertices[i].p_ID = i + 1;
+
+            RoomEnterRoutes[i] = new Route[_stations.Length]; 
         }
 
         ConfigureStations();
@@ -59,6 +64,8 @@ public abstract class Room : MonoBehaviour
 
     public void ConfigureStations()
     {
+        RoomExitRoutes = new Route[_stations.Length][];
+
         if (_stations.Length == 0) return;
 
         for (int i = 0; i < _stations.Length; i++)
@@ -69,6 +76,8 @@ public abstract class Room : MonoBehaviour
             _stationVertices.Add(_stations[i].Vertex);
 
             _stations[i].Vertex.SetName(-1, i);
+
+            RoomExitRoutes[_stations[i].Vertex.r_ID] = new Route[_vertices.Length];
         }
 
         SetStationRoutes();
@@ -123,17 +132,14 @@ public abstract class Room : MonoBehaviour
         for (int i = 0; i < _stations.Length; i++)
         {
             List<Vertex> s_vertices = new List<Vertex>() { _stations[i].Vertex };
-            s_vertices.AddRange(_vertices);
+            s_vertices.AddRange( _vertices );
 
-            (Route[] enter, Route[] exit) = BFS(s_vertices);
-
-            RoomExitRoutes[i] = enter;
-            RoomEnterRoutes[i] = exit; 
+            BFS(s_vertices);
         }
     }
 
     // Returns a dictionary, where Guid is the ID of the destination and route is the route from the source input
-    private (Route[], Route[]) BFS(List<Vertex> v)
+    private void BFS(List<Vertex> v)
     {
         float[] dist = new float[v.Count];
         int[] pred = new int[v.Count];
@@ -166,18 +172,16 @@ public abstract class Room : MonoBehaviour
             }
         }
 
-        Route[] enter = new Route[v.Count];
-        Route[] exit = new Route[v.Count];
         for (int i = 0; i < _vertices.Length; i++)
         {
             (Route en, Route ex) = GetPath(0, i + 1, dist[i], pred, v);
-            enter[i] = en;
-            exit[i] = ex;
-        }
 
-        return (enter, exit);
+            RoomEnterRoutes[i][v[0].r_ID] = en;
+            RoomExitRoutes[v[0].r_ID][i] = ex;
+        }
     }
 
+    // Gets path from room to station
     private (Route, Route) GetPath(int s, int u, float dist, int[] pred, List<Vertex> v)
     {
         List<Vertex> path = new List<Vertex> { v[u] };
@@ -187,11 +191,11 @@ public abstract class Room : MonoBehaviour
             u = pred[u];
         } 
 
-        List<Vertex> exitPath = new List<Vertex>( path );
+        List<Vertex> enterPath = new List<Vertex>( path );
 
         path.Reverse();
 
-        return (new Route(path, dist), new Route(exitPath, dist));
+        return (new Route(enterPath, dist), new Route(path, dist));
     }
     
     # endregion
@@ -202,10 +206,10 @@ public abstract class Room : MonoBehaviour
     {
         StringBuilder str = new StringBuilder( prolog );
 
-        for (int i = 0; i < _stations.Length; i++)
+        for (int i = 0; i < routes.Length; i++)
         {
             str.Append($"The routes of vertex {i}: \n");
-            for (int j = 0; j < _vertices.Length; j++)
+            for (int j = 0; j < routes[0].Length; j++)
             {
                 str.Append($"    Towards vertex {j}: " + GetRouteString(routes[i][j]) + "\n");
                 j++;

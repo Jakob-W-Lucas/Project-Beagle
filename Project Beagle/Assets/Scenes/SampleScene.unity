@@ -211,7 +211,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b2adc64a32e8fa48bf7e04f3e36cb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ID: -1
+  g_ID: -1
+  r_ID: -1
   p_ID: -1
   Room: {fileID: 0}
   Station: {fileID: 0}
@@ -507,7 +508,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b2adc64a32e8fa48bf7e04f3e36cb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ID: -1
+  g_ID: -1
+  r_ID: -1
   p_ID: -1
   Room: {fileID: 0}
   Station: {fileID: 0}
@@ -672,7 +674,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b2adc64a32e8fa48bf7e04f3e36cb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ID: -1
+  g_ID: -1
+  r_ID: -1
   p_ID: -1
   Room: {fileID: 0}
   Station: {fileID: 0}
@@ -837,7 +840,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b2adc64a32e8fa48bf7e04f3e36cb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ID: -1
+  g_ID: -1
+  r_ID: -1
   p_ID: -1
   Room: {fileID: 0}
   Station: {fileID: 0}
@@ -1002,7 +1006,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b2adc64a32e8fa48bf7e04f3e36cb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ID: -1
+  g_ID: -1
+  r_ID: -1
   p_ID: -1
   Room: {fileID: 0}
   Station: {fileID: 0}
@@ -2312,7 +2317,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b2adc64a32e8fa48bf7e04f3e36cb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ID: -1
+  g_ID: -1
+  r_ID: -1
   p_ID: -1
   Room: {fileID: 0}
   Station: {fileID: 0}
@@ -2477,7 +2483,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b2adc64a32e8fa48bf7e04f3e36cb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ID: -1
+  g_ID: -1
+  r_ID: -1
   p_ID: -1
   Room: {fileID: 0}
   Station: {fileID: 0}
@@ -3038,7 +3045,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b2adc64a32e8fa48bf7e04f3e36cb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ID: -1
+  g_ID: -1
+  r_ID: -1
   p_ID: -1
   Room: {fileID: 0}
   Station: {fileID: 0}
@@ -3334,7 +3342,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b2adc64a32e8fa48bf7e04f3e36cb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ID: -1
+  g_ID: -1
+  r_ID: -1
   p_ID: -1
   Room: {fileID: 0}
   Station: {fileID: 0}
@@ -3499,7 +3508,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b2adc64a32e8fa48bf7e04f3e36cb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ID: -1
+  g_ID: -1
+  r_ID: -1
   p_ID: -1
   Room: {fileID: 0}
   Station: {fileID: 0}
@@ -4617,7 +4627,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b2adc64a32e8fa48bf7e04f3e36cb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ID: -1
+  g_ID: -1
+  r_ID: -1
   p_ID: -1
   Room: {fileID: 0}
   Station: {fileID: 0}
@@ -5729,7 +5740,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b2adc64a32e8fa48bf7e04f3e36cb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ID: -1
+  g_ID: -1
+  r_ID: -1
   p_ID: -1
   Room: {fileID: 0}
   Station: {fileID: 0}
@@ -5894,7 +5906,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b2adc64a32e8fa48bf7e04f3e36cb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ID: -1
+  g_ID: -1
+  r_ID: -1
   p_ID: -1
   Room: {fileID: 0}
   Station: {fileID: 0}
@@ -6318,7 +6331,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b2adc64a32e8fa48bf7e04f3e36cb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ID: -1
+  g_ID: -1
+  r_ID: -1
   p_ID: -1
   Room: {fileID: 0}
   Station: {fileID: 0}
@@ -6649,7 +6663,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b2adc64a32e8fa48bf7e04f3e36cb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ID: -1
+  g_ID: -1
+  r_ID: -1
   p_ID: -1
   Room: {fileID: 0}
   Station: {fileID: 0}
@@ -6990,7 +7005,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b2adc64a32e8fa48bf7e04f3e36cb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ID: -1
+  g_ID: -1
+  r_ID: -1
   p_ID: -1
   Room: {fileID: 0}
   Station: {fileID: 0}
@@ -7417,7 +7433,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b2adc64a32e8fa48bf7e04f3e36cb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ID: -1
+  g_ID: -1
+  r_ID: -1
   p_ID: -1
   Room: {fileID: 0}
   Station: {fileID: 0}
@@ -7852,7 +7869,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b2adc64a32e8fa48bf7e04f3e36cb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ID: -1
+  g_ID: -1
+  r_ID: -1
   p_ID: -1
   Room: {fileID: 0}
   Station: {fileID: 0}
@@ -8017,7 +8035,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b2adc64a32e8fa48bf7e04f3e36cb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ID: -1
+  g_ID: -1
+  r_ID: -1
   p_ID: -1
   Room: {fileID: 0}
   Station: {fileID: 0}
@@ -8552,7 +8571,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b2adc64a32e8fa48bf7e04f3e36cb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ID: -1
+  g_ID: -1
+  r_ID: -1
   p_ID: -1
   Room: {fileID: 0}
   Station: {fileID: 0}
@@ -8845,7 +8865,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b2adc64a32e8fa48bf7e04f3e36cb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ID: -1
+  g_ID: -1
+  r_ID: -1
   p_ID: -1
   Room: {fileID: 0}
   Station: {fileID: 0}
@@ -9051,7 +9072,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b2adc64a32e8fa48bf7e04f3e36cb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ID: -1
+  g_ID: -1
+  r_ID: -1
   p_ID: -1
   Room: {fileID: 0}
   Station: {fileID: 0}
@@ -9293,7 +9315,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b2adc64a32e8fa48bf7e04f3e36cb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ID: -1
+  g_ID: -1
+  r_ID: -1
   p_ID: -1
   Room: {fileID: 0}
   Station: {fileID: 0}
@@ -9672,7 +9695,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b2adc64a32e8fa48bf7e04f3e36cb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ID: -1
+  g_ID: -1
+  r_ID: -1
   p_ID: -1
   Room: {fileID: 0}
   Station: {fileID: 0}
@@ -10045,7 +10069,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b2adc64a32e8fa48bf7e04f3e36cb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ID: -1
+  g_ID: -1
+  r_ID: -1
   p_ID: -1
   Room: {fileID: 0}
   Station: {fileID: 0}
@@ -10281,56 +10306,6 @@ MonoBehaviour:
   _agents:
   - {fileID: 1699166574}
   - {fileID: 1096073775}
-  - {fileID: 1136594849}
-  - {fileID: 652350842}
-  - {fileID: 764321917}
-  - {fileID: 1514865750}
-  - {fileID: 751386148}
-  - {fileID: 1830604644}
-  - {fileID: 404612590}
-  - {fileID: 1026124709}
-  - {fileID: 1611931676}
-  - {fileID: 119430481}
-  - {fileID: 349579493}
-  - {fileID: 509114139}
-  - {fileID: 568905913}
-  - {fileID: 1849670787}
-  - {fileID: 386117870}
-  - {fileID: 1781183668}
-  - {fileID: 1767164309}
-  - {fileID: 111143749}
-  - {fileID: 238972231}
-  - {fileID: 722799873}
-  - {fileID: 1792061062}
-  - {fileID: 1528456828}
-  - {fileID: 18121568}
-  - {fileID: 1494422246}
-  - {fileID: 1710919718}
-  - {fileID: 840767784}
-  - {fileID: 1974844750}
-  - {fileID: 2072574885}
-  - {fileID: 164351871}
-  - {fileID: 2072485130}
-  - {fileID: 702872307}
-  - {fileID: 1733475432}
-  - {fileID: 2015450101}
-  - {fileID: 422146837}
-  - {fileID: 942594766}
-  - {fileID: 1573405836}
-  - {fileID: 209560224}
-  - {fileID: 618703061}
-  - {fileID: 1735413370}
-  - {fileID: 326652809}
-  - {fileID: 1525566333}
-  - {fileID: 538733051}
-  - {fileID: 1210555246}
-  - {fileID: 175662310}
-  - {fileID: 892991020}
-  - {fileID: 1540776108}
-  - {fileID: 1082147749}
-  - {fileID: 1223614996}
-  - {fileID: 2070064231}
-  - {fileID: 1312472810}
   OuterMap: {fileID: 2115744118}
 --- !u!4 &1517596660
 Transform:
@@ -11219,7 +11194,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b2adc64a32e8fa48bf7e04f3e36cb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ID: -1
+  g_ID: -1
+  r_ID: -1
   p_ID: -1
   Room: {fileID: 0}
   Station: {fileID: 0}
@@ -12301,7 +12277,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b2adc64a32e8fa48bf7e04f3e36cb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ID: -1
+  g_ID: -1
+  r_ID: -1
   p_ID: -1
   Room: {fileID: 0}
   Station: {fileID: 0}
@@ -12463,7 +12440,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b2adc64a32e8fa48bf7e04f3e36cb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ID: -1
+  g_ID: -1
+  r_ID: -1
   p_ID: -1
   Room: {fileID: 0}
   Station: {fileID: 0}
@@ -12631,7 +12609,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b2adc64a32e8fa48bf7e04f3e36cb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ID: -1
+  g_ID: -1
+  r_ID: -1
   p_ID: -1
   Room: {fileID: 0}
   Station: {fileID: 0}
@@ -13058,7 +13037,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b2adc64a32e8fa48bf7e04f3e36cb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ID: -1
+  g_ID: -1
+  r_ID: -1
   p_ID: -1
   Room: {fileID: 0}
   Station: {fileID: 0}
@@ -13223,7 +13203,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b2adc64a32e8fa48bf7e04f3e36cb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ID: -1
+  g_ID: -1
+  r_ID: -1
   p_ID: -1
   Room: {fileID: 0}
   Station: {fileID: 0}
@@ -14303,7 +14284,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b2adc64a32e8fa48bf7e04f3e36cb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ID: -1
+  g_ID: -1
+  r_ID: -1
   p_ID: -1
   Room: {fileID: 0}
   Station: {fileID: 0}
@@ -14468,7 +14450,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b2adc64a32e8fa48bf7e04f3e36cb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ID: -1
+  g_ID: -1
+  r_ID: -1
   p_ID: -1
   Room: {fileID: 0}
   Station: {fileID: 0}
@@ -14828,7 +14811,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b2adc64a32e8fa48bf7e04f3e36cb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ID: -1
+  g_ID: -1
+  r_ID: -1
   p_ID: -1
   Room: {fileID: 0}
   Station: {fileID: 0}
@@ -14947,7 +14931,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b2adc64a32e8fa48bf7e04f3e36cb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ID: -1
+  g_ID: -1
+  r_ID: -1
   p_ID: -1
   Room: {fileID: 0}
   Station: {fileID: 0}
@@ -15196,7 +15181,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b2adc64a32e8fa48bf7e04f3e36cb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ID: -1
+  g_ID: -1
+  r_ID: -1
   p_ID: -1
   Room: {fileID: 0}
   Station: {fileID: 0}
@@ -15213,7 +15199,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b2adc64a32e8fa48bf7e04f3e36cb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ID: -1
+  g_ID: -1
+  r_ID: -1
   p_ID: -1
   Room: {fileID: 0}
   Station: {fileID: 0}
@@ -15650,7 +15637,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b2adc64a32e8fa48bf7e04f3e36cb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ID: -1
+  g_ID: -1
+  r_ID: -1
   p_ID: -1
   Room: {fileID: 0}
   Station: {fileID: 0}

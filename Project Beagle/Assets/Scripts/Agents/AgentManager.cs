@@ -20,7 +20,7 @@ public class AgentManager : MonoBehaviour
         
         foreach (Agent a in _agents)
         {
-            a.UpdateOrigin(_map.GetNearestVertex(a.transform.position));
+            //a.UpdateOrigin(_map.GetNearestVertex(a.transform.position));
         }
     }
 
@@ -28,9 +28,9 @@ public class AgentManager : MonoBehaviour
     {
         foreach (Agent a in _agents)
         {
-            if (!a.isActiveAndEnabled || !OuterMap.Map.Configured) continue;
+            //if (!a.isActiveAndEnabled || !OuterMap.Map.Configured) continue;
 
-            UpdatePosition(a);
+            //UpdatePosition(a);
         }
     }
 
