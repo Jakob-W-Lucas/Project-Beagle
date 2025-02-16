@@ -5,21 +5,16 @@ using Unity.VisualScripting;
 
 public class Vertex : MonoBehaviour
 {
-    public Guid GuidID { get; private set; }
     // Global room ID
-    public int ID = -1;
+    public int g_ID = -1;
     // ID used for room vertices and stations
-    public int p_ID;
+    public int r_ID = -1;
+    public int p_ID = -1;
     public string Name { get; private set; }
     public List<Edge> Edges { get; private set; } = new List<Edge>();
     public Room Room;
     public Station Station;
     [SerializeField] private float _vertexReach = 5f;
-
-    public void SetId()
-    {
-        GuidID = Guid.NewGuid();
-    }
 
     public void SetName(int n_vertex, int m_station = -1)
     {
@@ -28,8 +23,6 @@ public class Vertex : MonoBehaviour
 
     public void ConfigureVertex()
     {
-        SetId();
-
         Collider2D s_coll = GetComponent<Collider2D>();
 
         Collider2D[] surrounding_edges = Physics2D.OverlapCircleAll(this.transform.position, _vertexReach);

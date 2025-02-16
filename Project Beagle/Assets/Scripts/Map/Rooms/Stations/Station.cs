@@ -8,14 +8,14 @@ public abstract class Station : MonoBehaviour
 
     public abstract void DebugStation();
     
-    public void ConfigureStation(Room room)
+    public void ConfigureStation(Room room, int ID)
     {
         Vertex = GetComponent<Vertex>();
+        Vertex.r_ID = ID;
         Vertex.p_ID = 0;
         
         Vertex.Room = room;
         Vertex.Station = this;
-        Vertex.SetId();
 
         if (Vertex == null)
         {

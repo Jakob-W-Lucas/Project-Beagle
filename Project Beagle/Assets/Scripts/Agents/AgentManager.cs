@@ -61,11 +61,11 @@ public class AgentManager : MonoBehaviour
     private Route GetAgentRoute(Agent a, int u)
     {   
         Vertex v = _map.GetVertexFromIndex(u);
-        Route fromOrigin = _map.Routes[a.Origin.GuidID][v.GuidID];
+        Route fromOrigin = _map.Routes[a.Origin.g_ID][v.g_ID];
 
         if (a.Heading == null) return fromOrigin;
 
-        Route fromHeading = _map.Routes[a.Heading.GuidID][v.GuidID];
+        Route fromHeading = _map.Routes[a.Heading.g_ID][v.g_ID];
 
         return fromOrigin.Distance < fromHeading.Distance ? fromOrigin : fromHeading;
     }
@@ -81,7 +81,7 @@ public class AgentManager : MonoBehaviour
             if (a.Origin)
             {
                 //a.FollowPath(GetAgentRoute(a, UnityEngine.Random.Range(0, 13)));
-                a.FollowPath(OuterMap.TravelToStation<Toilet>(a.Origin));
+                //a.FollowPath(OuterMap.TravelToStation<Toilet>(a.Origin));
             }
             
             return;
