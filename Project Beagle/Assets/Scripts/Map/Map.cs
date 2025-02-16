@@ -53,8 +53,7 @@ public class Map
 
         for (int i = 0; i < v.Length; i++)
         {
-            keyValues.Add(v[i].ID, v[i]);
-            v[i].p_ID = i; 
+            keyValues.Add(v[i].GuidID, v[i]);
         }
 
         _vertexLookup = keyValues;
@@ -74,10 +73,10 @@ public class Map
     public Route RandomDestination(Vertex s)
     {
         int i = UnityEngine.Random.Range(0, _vertices.Length);
-        return Routes[s.ID][_vertices[i].ID];
+        return Routes[s.GuidID][_vertices[i].GuidID];
     }
 
-    public Route SetDestination(Vertex s, int n) => Routes[s.ID][_vertices[n].ID];
+    public Route SetDestination(Vertex s, int n) => Routes[s.GuidID][_vertices[n].GuidID];
 
     public Vertex GetNearestVertex(Vector2 pos)
     {
@@ -109,13 +108,13 @@ public class Map
         
         foreach (Vertex v in _vertices)
         {
-            routes.Add(v.ID, BFS(_vertexLookup[v.ID]));
+            routes.Add(v.GuidID, BFS(v.ID));
         }
 
         Routes = routes;
     }
 
-    private Dictionary<Guid, Route> BFS(Vertex s)
+    private Dictionary<Guid, Route> BFS(int s)
     {
         float[] dist = new float[_vertices.Length];
         int[] pred = new int[_vertices.Length];
@@ -127,17 +126,17 @@ public class Map
         }
 
         Queue<int> queue = new Queue<int>();
-        queue.Enqueue(s.p_ID);
-        dist[s.p_ID] = 0;
+        queue.Enqueue(s);
+        dist[s] = 0;
 
         while (queue.Count > 0)
         {
             int u = queue.Dequeue();
             foreach (Edge e in _vertices[u].Edges)
             {
-                if (!_vertexLookup.TryGetValue(e.End.ID, out var key)) continue;
+                if (!HasVertex(e.End)) continue;
 
-                int v = e.End.p_ID;
+                int v = e.End.ID;
                 
                 if (dist[v] == Mathf.Infinity)
                 {
@@ -151,7 +150,7 @@ public class Map
         Dictionary<Guid, Route> routes = new Dictionary<Guid, Route>();
         for (int i = 0; i < _vertices.Length; i++)
         {
-            routes.Add(_vertices[i].ID, GetPath(s.p_ID, i, dist[i], pred));
+            routes.Add(_vertices[i].GuidID, GetPath(s, i, dist[i], pred));
         }
 
         return routes;
@@ -175,7 +174,7 @@ public class Map
 
     # region Utility
 
-    public bool HasVertex(Vertex n) => _vertexLookup.TryGetValue(n.ID, out var v);
+    public bool HasVertex(Vertex n) => _vertexLookup.ContainsKey(n.GuidID);
 
     public string PrintRoutes()
     {
@@ -188,7 +187,7 @@ public class Map
             str.Append($"The routes of vertex {i}: \n");
             foreach (Vertex v2 in _vertices)
             {
-                str.Append($"    Towards vertex {j}: " + GetRouteString(Routes[v1.ID][v2.ID]) + "\n");
+                str.Append($"    Towards vertex {j}: " + GetRouteString(Routes[v1.GuidID][v2.GuidID]) + "\n");
                 j++;
             }
             i++;

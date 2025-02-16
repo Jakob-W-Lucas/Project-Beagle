@@ -11,6 +11,7 @@ public abstract class Station : MonoBehaviour
     public void ConfigureStation(Room room)
     {
         Vertex = GetComponent<Vertex>();
+        Vertex.p_ID = 0;
         
         Vertex.Room = room;
         Vertex.Station = this;

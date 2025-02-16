@@ -20,12 +20,19 @@ public class OuterMap : MonoBehaviour
 
         if (_rooms.Length == 0) return;
 
+        int n = 0;
         foreach (Room room in _rooms)
         {   
             room.ConfigureRoom();
             AddToLookup(room);
             
-            _roomVertices.AddRange(room.Vertices);
+            foreach (Vertex v in room.Vertices)
+            {
+                v.ID = n;
+                n++;
+                
+                _roomVertices.Add(v);
+            }
         }
 
         Map = new Map(_roomVertices.ToArray());
@@ -64,158 +71,162 @@ public class OuterMap : MonoBehaviour
 
     # region Querying
 
-    public Route TravelToRoom<T>(Vertex s, Room u_room = null) where T : Room
-    {
-        List<Room> rooms = u_room ? new List<Room>() { u_room } : _lookupRooms[typeof(T)];
+    // public Route TravelToRoom<T>(Vertex s, Room u_room = null) where T : Room
+    // {
+    //     List<Room> rooms = u_room ? new List<Room>() { u_room } : _lookupRooms[typeof(T)];
 
-        Route contender = null;
-        float d = Mathf.Infinity;
+    //     Route contender = null;
+    //     float d = Mathf.Infinity;
 
-        bool lookup = Map.HasVertex(s);
+    //     bool lookup = Map.HasVertex(s);
 
-        foreach (Room r in rooms)
-        {
-            Route p_route = lookup ? r.GetRouteToRoom(s) : StationToRoom(s.Station, r);
+    //     foreach (Room r in rooms)
+    //     {
+    //         Route p_route = lookup ? r.GetRouteToRoom(s) : StationToRoom(s.Station, r);
 
-            if (p_route == null || p_route.Distance > d) continue;
+    //         if (p_route == null || p_route.Distance > d) continue;
 
-            contender = p_route;
-            d = p_route.Distance;
-        }
+    //         contender = p_route;
+    //         d = p_route.Distance;
+    //     }
 
-        return contender;
-    }
+    //     return contender;
+    // }
 
-    public Route TravelToStation<S>(Vertex s, Station u_st = null) where S : Station
-    {
-        List<Station> stations = u_st ? new List<Station>() { u_st } : _lookupStations[typeof(S)];
+    // public Route TravelToStation<S>(Vertex s, Station u_st = null) where S : Station
+    // {
+    //     List<Station> stations = u_st ? new List<Station>() { u_st } : _lookupStations[typeof(S)];
 
-        Route contender = null;
-        float d = Mathf.Infinity;
+    //     Route contender = null;
+    //     float d = Mathf.Infinity;
 
-        bool lookup = Map.HasVertex(s);
+    //     bool lookup = Map.HasVertex(s);
 
-        foreach (Station st in stations)
-        {
-            Route p_route = lookup ? RoomToStation(s, st) : StationToStation(s.Station, st);
+    //     foreach (Station st in stations)
+    //     {
+    //         Route p_route = lookup ? RoomToStation(s, st) : StationToStation(s.Station, st);
 
-            if (p_route == null || p_route.Distance > d) continue;
+    //         if (p_route == null || p_route.Distance > d) continue;
 
-            contender = p_route;
-            d = p_route.Distance;
-        }
+    //         contender = p_route;
+    //         d = p_route.Distance;
+    //     }
 
-        return contender;
-    }
-
-    public Route TravelToVertex()
-    {
-        return null;
-    }
-
+    //     return contender;
+    // }
 
     // Get the route from the source to the room of type T with lowest total distance
-    public Route FromRoomTypeToRoom<T>(Vertex s) where T : Room
-    {
-        List<Room> rooms = GetRoomsOfType<T>();
+    // public Route FromRoomTypeToRoom<T>(Vertex s) where T : Room
+    // {
+    //     List<Room> rooms = GetRoomsOfType<T>();
 
-        Route contender = null;
-        float dist = Mathf.Infinity;
+    //     Route contender = null;
+    //     float dist = Mathf.Infinity;
 
-        foreach (Room r in rooms)
-        {
-            Route p_route = r.GetRouteToRoom(s);
+    //     foreach (Room r in rooms)
+    //     {
+    //         Route p_route = r.GetRouteToRoom(s);
 
-            if (p_route.Distance > dist) continue;
+    //         if (p_route.Distance > dist) continue;
 
-            contender = p_route;
-            dist = p_route.Distance;
-        }
+    //         contender = p_route;
+    //         dist = p_route.Distance;
+    //     }
 
-        return contender;
-    }
+    //     return contender;
+    // }
 
     // The shortest route between a station and a station
-    private Route StationToStation(Station s_st, Station u_st)
-    {
-        // Get the route from the start station to each room vertex
-        Route[] startRoutes = s_st.Room.RouteFromStation(s_st);
+    // private Route StationToStation(Station s_st, Station u_st)
+    // {
+    //     // Get the route from the start station to each room vertex
+    //     Route[] startRoutes = s_st.Room.RouteFromStation(s_st);
 
-        Route s_contender = null;
-        Route u_contender = null;
-        float d = Mathf.Infinity;
+    //     Route s_contender = null;
+    //     Route u_contender = null;
+    //     float d = Mathf.Infinity;
 
-        foreach (Route startRoute in startRoutes)
-        {
-            // Get the route from the room vertex to the target station
-            Route endRoute = RoomToStation(startRoute.Vertices.Last(), u_st);
+    //     foreach (Route startRoute in startRoutes)
+    //     {
+    //         // Get the route from the room vertex to the target station
+    //         Route endRoute = RoomToStation(startRoute.Vertices.Last(), u_st);
 
-            if (endRoute == null || startRoute == null) continue;
+    //         if (endRoute == null || startRoute == null) continue;
 
-            float totalDistance = startRoute.Distance + endRoute.Distance;
+    //         float totalDistance = startRoute.Distance + endRoute.Distance;
 
-            if (totalDistance < d)
-            {
-                s_contender = startRoute;
-                u_contender = endRoute;
-                d = totalDistance;
-            }
-        }
+    //         if (totalDistance < d)
+    //         {
+    //             s_contender = startRoute;
+    //             u_contender = endRoute;
+    //             d = totalDistance;
+    //         }
+    //     }
 
-        return s_contender.Join(u_contender);
-    }
+    //     return s_contender.Join(u_contender);
+    // }
 
-    private Route StationToRoom(Station s, Room r)
-    {
-        Route contender = null;
-        float d = Mathf.Infinity;
+    // private Route StationToRoom(Station s, Room r)
+    // {
+    //     Route contender = null;
+    //     float d = Mathf.Infinity;
 
-        foreach (Vertex v in r.Vertices)
-        {
-            Route p_route = RoomToStation(v, s);
+    //     foreach (Vertex v in r.Vertices)
+    //     {
+    //         Route p_route = RoomToStation(v, s);
 
-            if (p_route == null || p_route.Distance > d) continue;
+    //         if (p_route == null || p_route.Distance > d) continue;
 
-            contender = p_route;
-            d = p_route.Distance;
-        }
+    //         contender = p_route;
+    //         d = p_route.Distance;
+    //     }
 
-        contender.Vertices.Reverse();
-        return contender;
-    }
+    //     contender.Vertices.Reverse();
+    //     return contender;
+    // }
 
     // The shortest route between a room and a station
-    private Route RoomToStation(Vertex s, Station st)
-    {
-        // Get the route from the room vertex to the station in another room
-        Route[] routes = st.Room.RouteFromStation(st);
+    // private Route RoomToStation(Vertex s, Station st)
+    // {
+    //     // Get the route from the room vertex to the station in another room
+    //     Route[] routes = st.Room.RouteFromStation(st);
 
-        if (routes == null) return new Route(new List<Vertex>(), Mathf.Infinity);
+        
+    //     for (int i = 0; i < routes.Length; i++)
+    //     {
+    //         Debug.Log($"Route {i} has vertices:\n");
+    //         foreach (Vertex v in routes[i].Vertices)
+    //         {
+    //             Debug.Log($"        {v.Name},\n");
+    //         }
+    //     }
 
-        Route s_contender = null;
-        Route u_contender = null;
-        float d = Mathf.Infinity;
+    //     if (routes == null) return new Route(new List<Vertex>(), Mathf.Infinity);
 
-        foreach (Route route in routes)
-        {
-            // Retrieves the route from the start to a room vertex
-            Route p_route = Map.Routes[s.ID][route.Vertices.Last().ID];
+    //     Route s_contender = null;
+    //     Route u_contender = null;
+    //     float d = Mathf.Infinity;
 
-            if (p_route == null) continue;
+    //     foreach (Route route in routes)
+    //     {
+    //         // Retrieves the route from the start to a room vertex
+    //         Route p_route = Map.Routes[s.GuidID][route.Vertices.Last().GuidID];
 
-            float totalDistance = p_route.Distance + route.Distance;
+    //         if (p_route == null) continue;
 
-            if (totalDistance < d)
-            {
-                s_contender = route;
-                u_contender = p_route;
-                d = totalDistance;
-            }
-        }
+    //         float totalDistance = p_route.Distance + route.Distance;
 
-        s_contender.Vertices.Reverse();
-        return u_contender.Join(s_contender);
-    }
+    //         if (totalDistance < d)
+    //         {
+    //             s_contender = route;
+    //             u_contender = p_route;
+    //             d = totalDistance;
+    //         }
+    //     }
+
+    //     s_contender.Vertices.Reverse();
+    //     return u_contender.Join(s_contender);
+    // }
 
     public List<Room> GetRoomsOfType<T>() where T : Room
     {

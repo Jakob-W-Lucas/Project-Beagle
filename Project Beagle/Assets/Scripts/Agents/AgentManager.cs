@@ -28,6 +28,8 @@ public class AgentManager : MonoBehaviour
     {
         foreach (Agent a in _agents)
         {
+            if (!a.isActiveAndEnabled) continue;
+
             UpdatePosition(a);
         }
     }
@@ -59,20 +61,13 @@ public class AgentManager : MonoBehaviour
     private Route GetAgentRoute(Agent a, int u)
     {   
         Vertex v = _map.GetVertexFromIndex(u);
-        Route fromOrigin = _map.Routes[a.Origin.ID][v.ID];
+        Route fromOrigin = _map.Routes[a.Origin.GuidID][v.GuidID];
 
         if (a.Heading == null) return fromOrigin;
 
-        Route fromHeading = _map.Routes[a.Heading.ID][v.ID];
+        Route fromHeading = _map.Routes[a.Heading.GuidID][v.GuidID];
 
         return fromOrigin.Distance < fromHeading.Distance ? fromOrigin : fromHeading;
-    }
-
-    private void SetRouteToRoom<T>(Agent a) where T : Room
-    {
-        if (a.Origin.Room.GetType() == typeof(T)) return;
-
-        a.FollowPath(OuterMap.FromRoomTypeToRoom<T>(a.Origin));
     }
 
     # endregion
@@ -85,8 +80,8 @@ public class AgentManager : MonoBehaviour
         {
             if (a.Origin)
             {
-                //a.FollowPath(GetAgentRoute(a, UnityEngine.Random.Range(0, 13)));
-                a.FollowPath(OuterMap.TravelToStation<Toilet>(a.Origin));
+                a.FollowPath(GetAgentRoute(a, UnityEngine.Random.Range(0, 13)));
+                //a.FollowPath(OuterMap.TravelToStation<Toilet>(a.Origin));
             }
             
             return;

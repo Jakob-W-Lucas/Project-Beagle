@@ -5,10 +5,11 @@ using Unity.VisualScripting;
 
 public class Vertex : MonoBehaviour
 {
-    public Guid ID { get; private set; }
+    public Guid GuidID { get; private set; }
     // Global room ID
-    public int g_ID = -1;
-    public int p_ID = -1;
+    public int ID = -1;
+    // ID used for room vertices and stations
+    public int p_ID;
     public string Name { get; private set; }
     public List<Edge> Edges { get; private set; } = new List<Edge>();
     public Room Room;
@@ -17,7 +18,7 @@ public class Vertex : MonoBehaviour
 
     public void SetId()
     {
-        ID = Guid.NewGuid();
+        GuidID = Guid.NewGuid();
     }
 
     public void SetName(int n_vertex, int m_station = -1)

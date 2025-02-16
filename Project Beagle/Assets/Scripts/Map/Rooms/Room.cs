@@ -3,12 +3,13 @@ using UnityEngine;
 using System;
 using Unity.VisualScripting;
 using System.Linq;
+using System.Text;
 
 [RequireComponent(typeof(Collider2D))]
 public abstract class Room : MonoBehaviour
 {
     // Verticies to enter and exit any room
-    private Map _map;
+    public Dictionary<Guid, Dictionary<Guid, Route>> Routes { get; private set; } = new Dictionary<Guid, Dictionary<Guid, Route>>();
     [SerializeField] private Vertex[] _vertices;
     [SerializeField] private Station[] _stations;
     private List<Vertex> _stationVertices = new List<Vertex>();
@@ -46,6 +47,8 @@ public abstract class Room : MonoBehaviour
             _vertices[i].ConfigureVertex();
 
             _vertices[i].SetName(i);
+
+            _vertices[i].p_ID = i + 1;
         }
 
         ConfigureStations();
@@ -63,13 +66,18 @@ public abstract class Room : MonoBehaviour
             _stationVertices.Add(_stations[i].Vertex);
 
             _stations[i].Vertex.SetName(-1, i);
+
+            List<Vertex> s_vertices = new List<Vertex>() { _stations[i].Vertex };
+            s_vertices.AddRange(_vertices);
+
+            Routes.Add(_stations[i].Vertex.GuidID, BFS(s_vertices));
         }
+
+        PrintRoutes();
 
         Vertex[] v = new Vertex[_vertices.Length + _stationVertices.Count];
         _vertices.CopyTo(v, 0);
         _stationVertices.CopyTo(v, _vertices.Length);
-
-        _map = new Map(v);
     }
 
     # endregion
@@ -77,26 +85,26 @@ public abstract class Room : MonoBehaviour
     # region Querying
 
     // Get the route from the source to the room vertex with the lowest total distance
-    public Route GetRouteToRoom(Vertex s)
-    {
-        Route contender = null;
-        float dist = Mathf.Infinity;
+    // public Route GetRouteToRoom(Vertex s)
+    // {
+    //     Route contender = null;
+    //     float dist = Mathf.Infinity;
 
-        foreach (Vertex v in _vertices)
-        {
-            Route p_route = _map.Routes[s.ID][v.ID];
+    //     foreach (Vertex v in _vertices)
+    //     {
+    //         Route p_route = _map.Routes[s.GuidID][v.GuidID];
 
-            if (p_route.Distance > dist) continue;
+    //         if (p_route.Distance > dist) continue;
 
-            contender = p_route;
-            dist = p_route.Distance;
-        }
+    //         contender = p_route;
+    //         dist = p_route.Distance;
+    //     }
 
-        return contender;
-    }
+    //     return contender;
+    // }
 
     // Get the routes from a station to each room vertex
-    public Route[] RouteFromStation(Station st) => _map.Routes[st.Vertex.ID].Values.ToArray();
+    //public Route[] RouteFromStation(Station st) => _map.Routes[st.Vertex.GuidID].Values.ToArray();
 
     private List<Station> HasStation<T>() where T : Station {
         if (_lookupStations.TryGetValue(typeof(T), out var stations))
@@ -114,7 +122,7 @@ public abstract class Room : MonoBehaviour
     void OnDrawGizmos()
     {
         if (_stations == null) return;
-        
+
         Gizmos.color = Color.blue;
 
         foreach (Station s in _stations)
@@ -126,10 +134,105 @@ public abstract class Room : MonoBehaviour
                 if (edge.Enabled)
                 {
                     Gizmos.DrawLine(s.Vertex.transform.position, edge.End.transform.position);
-                    
                 }
             }
         }
+    }
+
+    # endregion
+
+    # region BFS
+
+    // Returns a dictionary, where Guid is the ID of the destination and route is the route from the source input
+    private Dictionary<Guid, Route> BFS(List<Vertex> v)
+    {
+        float[] dist = new float[v.Count];
+        int[] pred = new int[v.Count];
+
+        for (int i = 0; i < v.Count; i++)
+        {
+            dist[i] = Mathf.Infinity;
+            pred[i] = -1;
+        }
+
+        Queue<int> queue = new Queue<int>();
+        queue.Enqueue(0);
+        dist[0] = 0;
+
+        while (queue.Count > 0)
+        {
+            int u = queue.Dequeue();
+            foreach (Edge e in v[u].Edges)
+            {
+                if (!_vertices.Contains(e.End)) continue;
+
+                int n = e.End.p_ID;
+                
+                if (dist[n] == Mathf.Infinity)
+                {
+                    dist[n] = dist[u] + e.Weight;
+                    pred[n] = u;
+                    queue.Enqueue(n);
+                }
+            }
+        }
+
+        Dictionary<Guid, Route> routes = new Dictionary<Guid, Route>();
+        for (int i = 0; i < _vertices.Length; i++)
+        {
+            routes.Add(_vertices[i].GuidID, GetPath(0, i + 1, dist[i], pred, v));
+        }
+
+        return routes;
+    }
+
+    private Route GetPath(int s, int u, float dist, int[] pred, List<Vertex> v)
+    {
+        List<Vertex> path = new List<Vertex> { v[u] };
+        while (u != s)
+        {
+            path.Add(v[pred[u]]);
+            u = pred[u];
+        } 
+
+        path.Reverse();
+
+        return new Route(path, dist);
+    }
+    
+    # endregion
+
+    # region Utility
+
+    public void PrintRoutes()
+    {
+        StringBuilder str = new StringBuilder();
+
+        int i = 0;
+        int j = 0;
+        foreach (Vertex v1 in _stationVertices)
+        {
+            str.Append($"The routes of vertex {i}: \n");
+            foreach (Vertex v2 in _vertices)
+            {
+                str.Append($"    Towards vertex {j}: " + GetRouteString(Routes[v1.GuidID][v2.GuidID]) + "\n");
+                j++;
+            }
+            i++;
+        }
+
+        Debug.Log(str.ToString());
+    }
+
+    public StringBuilder GetRouteString(Route r)
+    {
+        StringBuilder str = new StringBuilder();
+        str.Append($"Total distance: {r.Distance} with path: ");
+        for (int i = 0; i < r.Vertices.Count; i++)
+        {
+            str.Append($"{r.Vertices[i].Name} -> ");
+        }
+        return str;
     }
 
     # endregion
