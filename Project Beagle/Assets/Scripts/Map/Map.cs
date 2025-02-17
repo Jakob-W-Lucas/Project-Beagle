@@ -7,7 +7,9 @@ using System.Text;
 [System.Serializable]
 public class Route : IComparable<Route>
 {
+    // Path to travel 
     public List<Vertex> Vertices;
+    // Total distance of the route
     public float Distance;
 
     public Route(List<Vertex> vertices, float distance)
@@ -22,12 +24,14 @@ public class Route : IComparable<Route>
         Distance = Vector2.Distance(s.transform.position, u.transform.position);
     }
 
+    // Default route
     public Route()
     {
         Vertices = new List<Vertex>();
         Distance = Mathf.Infinity;
     }
 
+    // Join the paths and distances of two routes
     public Route Join(Route other)
     {
         if (other == null || other.Vertices.Count == 0)
@@ -59,8 +63,14 @@ public class Route : IComparable<Route>
     }
 }
 
+/*
+
+Map class for pathfinding
+
+*/
 public class Map
 {
+    // Routes source -> destination
     public Route[][] Routes;
     private Vertex[] _vertices;
     public bool Configured { get; private set; }
@@ -78,15 +88,8 @@ public class Map
     }
 
     # region Querying
-
-    public Vertex GetVertexFromIndex(int n) => _vertices[n];
-
-    public Route RandomDestination(Vertex s)
-    {
-        int i = UnityEngine.Random.Range(0, _vertices.Length);
-        return Routes[s.g_ID][UnityEngine.Random.Range(0, _vertices.Length)];
-    }
-
+    
+    // Gets the closest vertex to some point that exists within the graph
     public Vertex GetNearestVertex(Vector2 pos)
     {
         Vertex contender = null;

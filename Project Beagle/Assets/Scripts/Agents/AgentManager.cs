@@ -58,6 +58,7 @@ public class AgentManager : MonoBehaviour
 
     # region Path Finding
 
+    // Get the best route from the origin or the heading
     private Route GetAgentRoute(Agent a)
     {   
         int rand = UnityEngine.Random.Range(0, 15);
@@ -71,6 +72,7 @@ public class AgentManager : MonoBehaviour
         return fromOrigin.Distance < fromHeading.Distance ? fromOrigin : fromHeading;
     }
 
+    // TESTING
     private Route RandomRoute(Vertex s, int rand)
     {
         if (rand == 0)
@@ -137,10 +139,12 @@ public class AgentManager : MonoBehaviour
 
     # region "Movement"
 
+    // Move an agent towards its next target position
     void UpdatePosition(Agent a)
-    {
+    {   
         if (a.Heading == null) 
-        {
+        {   
+            // TEST
             if (a.Origin)
             {
                 a.FollowPath(GetAgentRoute(a));
@@ -148,7 +152,7 @@ public class AgentManager : MonoBehaviour
             
             return;
         }
-
+        
         if (NaiveDistanceCheck(a.transform.position, a.Heading.transform.position)) {
             a.transform.position = Vector2.MoveTowards(a.transform.position, a.Heading.transform.position, a.Speed * Time.fixedDeltaTime);
             return; 

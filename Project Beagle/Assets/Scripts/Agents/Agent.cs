@@ -11,6 +11,7 @@ public class Agent : MonoBehaviour
     public Vertex Heading;
     public float Speed = 0.5f;
 
+    // Set the origin of the agent (current vertex)
     public void UpdateOrigin(Vertex s)
     {
         Origin = s;
@@ -24,6 +25,7 @@ public class Agent : MonoBehaviour
         Station = null;
     }
 
+    // Creates an agent path to follow
     public void FollowPath(Route route)
     {
         if (route == null) return;
@@ -31,11 +33,13 @@ public class Agent : MonoBehaviour
         Route.Clear();
         Heading = null;
 
+        // Queue all of the vertices to travel 
         foreach (Vertex v in route.Vertices)
         {
             Route.Enqueue(v);
         }
 
+        // Begin the pathfinding
         Heading = Route.Dequeue();
     }
 }

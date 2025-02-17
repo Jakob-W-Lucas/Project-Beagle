@@ -71,8 +71,7 @@ public class OuterMap : MonoBehaviour
 
     # region Querying
 
-    private Route CompareRoutes(Route route, Route other) => route.CompareTo(other) == 1 ? route : other;
-
+    // Returns the path from any vertex to any station
     public Route TravelToStation<T>(Vertex s, Station u_st = null) where T : Station
     {
         if (u_st && s.Room == u_st.Room) return null;
@@ -98,6 +97,7 @@ public class OuterMap : MonoBehaviour
         return contender;
     }
 
+    // Returns the path from any vertex to any room
     public Route TravelToRoom<T>(Vertex s, Room u_room = null) where T : Room
     {
         if (s.Room == u_room) return null;
@@ -121,10 +121,12 @@ public class OuterMap : MonoBehaviour
         return contender;
     }
 
+    // Get the route between a room vertex to another room vertex
     private Route RoomToRoom(Vertex s, Room room)
     {
         Route contender = new Route();
 
+        // For every vertex in the destination room, check source -> room Vertex
         foreach (Vertex r_V2 in room.Vertices)
         {
             Route roomRoute = Map.Routes[s.g_ID][r_V2.g_ID];
@@ -137,6 +139,7 @@ public class OuterMap : MonoBehaviour
         return contender;
     }
 
+    // Get the route between a room vertex and a station vertex
     private Route RoomToStation(Vertex s, Vertex u)
     {
         Route roomRoute = null;
@@ -144,11 +147,15 @@ public class OuterMap : MonoBehaviour
 
         float dist = Mathf.Infinity;
 
+        // Compare the route from the destination station to the source room
         foreach (Route r_S2 in u.Room.RoomExitRoutes[u.r_ID])
         {
+            // Node to enter the destination room
             Vertex entrance = r_S2.Vertices.Last();
 
+            // Route from source -> entrance
             Route p_roomRoute = Map.Routes[s.g_ID][entrance.g_ID];
+            // Route from entrance -> station (u)
             Route p_enterRoute = u.Room.RoomEnterRoutes[entrance.r_ID - u.Room.Stations.Length][u.r_ID];
 
             float totalDist = p_roomRoute.Distance + r_S2.Distance;
@@ -164,6 +171,7 @@ public class OuterMap : MonoBehaviour
         return roomRoute.Join(enterRoute);
     }
 
+    // Get the route between a station vertex and a room vertex
     private Route StationToRoom(Vertex s, Room room)
     {
         Route exitRoute = null;
@@ -171,12 +179,14 @@ public class OuterMap : MonoBehaviour
 
         float dist = Mathf.Infinity;
 
+        // Compare the routes out of the current room from the current station with the destination room vertices
         foreach (Route r_S1 in s.Room.RoomExitRoutes[s.r_ID])
         {
             foreach (Vertex r_V2 in room.Vertices)
             {
+                // Vertex to exit the room from the current station
                 Vertex exit = r_S1.Vertices.Last();
-
+                // Route from the exit to the destination room vertex
                 Route p_roomRoute = Map.Routes[exit.g_ID][r_V2.g_ID];
 
                 float totalDist = r_S1.Distance + p_roomRoute.Distance;
@@ -193,39 +203,45 @@ public class OuterMap : MonoBehaviour
         return exitRoute.Join(roomRoute);
     }
 
+    // Get the route between a station vertex and a station vertex
     private Route StationToStation(Vertex s, Vertex u)
     {
-        Route enterRoute = null;
-        Route roomRoute = null;
         Route exitRoute = null;
+        Route roomRoute = null;
+        Route enterRoute = null;
 
         float dist = Mathf.Infinity;
 
+        // Compare the current station exit routes to the destination station entry routes
         foreach (Route r_S1 in s.Room.RoomExitRoutes[s.r_ID])
         {
             foreach (Route r_S2 in u.Room.RoomExitRoutes[u.r_ID])
             {
+                // Exit and entry vertices
                 Vertex exit = r_S1.Vertices.Last();
                 Vertex entrance = r_S2.Vertices.Last();
 
+                // Route between the exit and the entry vertices
                 Route p_roomRoute = Map.Routes[exit.g_ID][entrance.g_ID];
-                Route p_exitRoute = u.Room.RoomEnterRoutes[entrance.r_ID - u.Room.Stations.Length][u.r_ID];
+                // The route from the entrance vertex to the destination station
+                Route p_enterRoute = u.Room.RoomEnterRoutes[entrance.r_ID - u.Room.Stations.Length][u.r_ID];
 
                 float totalDist = r_S1.Distance + p_roomRoute.Distance + r_S2.Distance;
 
                 if (totalDist < dist)
                 {
-                    enterRoute = r_S1;
+                    exitRoute = r_S1;
                     roomRoute = p_roomRoute;
-                    exitRoute = p_exitRoute;
+                    enterRoute = p_enterRoute;
                     dist = totalDist;
                 }
             }
         }
 
-        return enterRoute.Join(roomRoute).Join(exitRoute);
+        return exitRoute.Join(roomRoute).Join(enterRoute);
     }
 
+    // Get the list of rooms with type <T>
     public List<Room> GetRoomsOfType<T>() where T : Room
     {
         Type roomType = typeof(T);
@@ -241,6 +257,8 @@ public class OuterMap : MonoBehaviour
     # endregion
 
     # region Utility
+
+    private Route CompareRoutes(Route route, Route other) => route.CompareTo(other) == 1 ? route : other;
 
     void OnDrawGizmos()
     {

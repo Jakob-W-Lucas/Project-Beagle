@@ -9,14 +9,17 @@ public class Vertex : MonoBehaviour
     public int g_ID = -1;
     // ID used for room vertices and stations
     public int r_ID = -1;
+    // Pseudo ID used for in room pathfinding
     public int p_ID = -1;
     public List<Edge> Edges { get; private set; } = new List<Edge>();
     public Room Room;
     public Station Station;
+    // Distance a vertex will look for edges
     [SerializeField] private float _vertexReach = 5f;
 
     public string Name => Station ? $"R-{Room.name}-S-{r_ID}" : $"R-{Room.name}-V-{r_ID}";
 
+    // Get all the surrounding vertices and add them to the current edges
     public void ConfigureVertex()
     {
         Collider2D s_coll = GetComponent<Collider2D>();
@@ -31,6 +34,7 @@ public class Vertex : MonoBehaviour
         }
     }
 
+    // Creates only the forward going edge to a destination
     public void AddEdge(Vertex end)
     {
         Edge edge = new Edge(this, end);
@@ -45,7 +49,6 @@ public class Vertex : MonoBehaviour
 [System.Serializable]
 public class Edge
 {
-    [SerializeField] public Guid Id { get; private set; }
     [SerializeField] private bool _enabled;
     [SerializeField] private Vertex _start;
     [SerializeField] private Vertex _end;
@@ -55,7 +58,6 @@ public class Edge
     {
         _enabled = enabled;
 
-        Id = Guid.NewGuid();
         _start = start;
         _end = end;
 
@@ -76,7 +78,7 @@ public class Edge
         }
         return false;
     }
-
+    
     public override int GetHashCode()
     {
         // Ensure the hash code is the same for both directions of the edge
