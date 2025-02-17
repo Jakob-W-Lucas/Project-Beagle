@@ -10,16 +10,12 @@ public class Vertex : MonoBehaviour
     // ID used for room vertices and stations
     public int r_ID = -1;
     public int p_ID = -1;
-    public string Name { get; private set; }
     public List<Edge> Edges { get; private set; } = new List<Edge>();
     public Room Room;
     public Station Station;
     [SerializeField] private float _vertexReach = 5f;
 
-    public void SetName(int n_vertex, int m_station = -1)
-    {
-        Name = m_station > -1 ? $"R-{Room.name}-S-{m_station}" : $"R-{Room.name}-V-{n_vertex}";
-    }
+    public string Name => Station ? $"R-{Room.name}-S-{r_ID}" : $"R-{Room.name}-V-{r_ID}";
 
     public void ConfigureVertex()
     {

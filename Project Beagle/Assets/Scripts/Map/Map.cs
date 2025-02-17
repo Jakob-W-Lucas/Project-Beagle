@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 
 [System.Serializable]
-public class Route
+public class Route : IComparable<Route>
 {
     public List<Vertex> Vertices;
     public float Distance;
@@ -47,6 +47,15 @@ public class Route
 
         float joinedDistance = this.Distance + other.Distance;
         return new Route(joinedVertices, joinedDistance);
+    }
+
+    public int CompareTo(Route other)
+    {
+        if (other == null) return 1;
+
+        if (Distance == other.Distance) return 0;
+        
+        return Distance < other.Distance ? 1 : -1;
     }
 }
 
