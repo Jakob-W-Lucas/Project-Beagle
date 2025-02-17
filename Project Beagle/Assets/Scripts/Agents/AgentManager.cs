@@ -58,16 +58,79 @@ public class AgentManager : MonoBehaviour
 
     # region Path Finding
 
-    private Route GetAgentRoute(Agent a, int u)
+    private Route GetAgentRoute(Agent a)
     {   
-        Vertex v = _map.GetVertexFromIndex(u);
-        Route fromOrigin = _map.Routes[a.Origin.g_ID][v.g_ID];
+        int rand = UnityEngine.Random.Range(0, 15);
+
+        Route fromOrigin = RandomRoute(a.Origin, rand);
 
         if (a.Heading == null) return fromOrigin;
 
-        Route fromHeading = _map.Routes[a.Heading.g_ID][v.g_ID];
+        Route fromHeading = RandomRoute(a.Heading, rand);
 
         return fromOrigin.Distance < fromHeading.Distance ? fromOrigin : fromHeading;
+    }
+
+    private Route RandomRoute(Vertex s, int rand)
+    {
+        if (rand == 0)
+        {
+            return OuterMap.TravelToStation<Cage>(s);
+        }
+        if (rand == 1)
+        {
+            return OuterMap.TravelToStation<Desk>(s);
+        }
+        if (rand == 2)
+        {
+            return OuterMap.TravelToStation<Bed>(s);
+        }
+        if (rand == 3)
+        {
+            return OuterMap.TravelToStation<ChartTable>(s);
+        }
+        if (rand == 4)
+        {
+            return OuterMap.TravelToStation<Basin>(s);
+        }
+        if (rand == 5)
+        {
+            return OuterMap.TravelToStation<Toilet>(s);
+        }
+        if (rand == 6)
+        {
+            return OuterMap.TravelToStation<Cannon>(s);
+        }
+        if (rand == 7)
+        {
+            return OuterMap.TravelToStation<Hammock>(s);
+        }
+        if (rand == 8)
+        {
+            return OuterMap.TravelToStation<Table>(s);
+        }
+        if (rand == 9)
+        {
+            return OuterMap.TravelToRoom<Brig>(s);
+        }
+        if (rand == 10)
+        {
+            return OuterMap.TravelToRoom<Dock>(s);
+        }
+        if (rand == 11)
+        {
+            return OuterMap.TravelToRoom<CaptainsQuaters>(s);
+        }
+        if (rand == 12)
+        {
+            return OuterMap.TravelToRoom<GunDeck>(s);
+        }
+        if (rand == 13)
+        {
+            return OuterMap.TravelToRoom<Forecastle>(s);
+        }
+
+        return OuterMap.TravelToRoom<Galley>(s);
     }
 
     # endregion
@@ -80,8 +143,7 @@ public class AgentManager : MonoBehaviour
         {
             if (a.Origin)
             {
-                //a.FollowPath(GetAgentRoute(a, UnityEngine.Random.Range(0, 13)));
-                a.FollowPath(OuterMap.TravelToStation<Toilet>(a.Origin));
+                a.FollowPath(GetAgentRoute(a));
             }
             
             return;

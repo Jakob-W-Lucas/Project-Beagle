@@ -123,16 +123,17 @@ public class OuterMap : MonoBehaviour
 
     private Route RoomToRoom(Vertex s, Room room)
     {
-        Route contender = null;
+        Route contender = new Route();
 
         foreach (Vertex r_V2 in room.Vertices)
-            {
-                Route roomRoute = Map.Routes[s.g_ID][r_V2.g_ID];
+        {
+            Route roomRoute = Map.Routes[s.g_ID][r_V2.g_ID];
 
-                float totalDist = roomRoute.Distance;
+            float totalDist = roomRoute.Distance;
 
-                contender = CompareRoutes(contender, roomRoute);
-            }
+            contender = CompareRoutes(contender, roomRoute);
+        }
+
         return contender;
     }
 
@@ -178,7 +179,7 @@ public class OuterMap : MonoBehaviour
 
                 Route p_roomRoute = Map.Routes[exit.g_ID][r_V2.g_ID];
 
-                float totalDist = r_S1.Distance + roomRoute.Distance;
+                float totalDist = r_S1.Distance + p_roomRoute.Distance;
 
                 if (totalDist < dist)
                 {
@@ -202,7 +203,7 @@ public class OuterMap : MonoBehaviour
 
         foreach (Route r_S1 in s.Room.RoomExitRoutes[s.r_ID])
         {
-            foreach (Route r_S2 in u.Room.RoomExitRoutes[u.r_ID - u.Room.Stations.Length])
+            foreach (Route r_S2 in u.Room.RoomExitRoutes[u.r_ID])
             {
                 Vertex exit = r_S1.Vertices.Last();
                 Vertex entrance = r_S2.Vertices.Last();
@@ -210,7 +211,7 @@ public class OuterMap : MonoBehaviour
                 Route p_roomRoute = Map.Routes[exit.g_ID][entrance.g_ID];
                 Route p_exitRoute = u.Room.RoomEnterRoutes[entrance.r_ID - u.Room.Stations.Length][u.r_ID];
 
-                float totalDist = r_S1.Distance + roomRoute.Distance + r_S2.Distance;
+                float totalDist = r_S1.Distance + p_roomRoute.Distance + r_S2.Distance;
 
                 if (totalDist < dist)
                 {
