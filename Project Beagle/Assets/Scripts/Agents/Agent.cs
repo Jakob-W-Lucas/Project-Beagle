@@ -6,9 +6,13 @@ using UnityEngine;
 
 public class Agent : MonoBehaviour
 {
+    // Current route for the agent to follow
     public Queue<Vertex> Route { get; private set; } = new Queue<Vertex>();
+    // Current station of the agent (station of origin or station of destination vertex, if travelling)
     public Station Station;
+    // Most recently occupied vertex of the agent
     public Vertex Origin { get; private set; }
+    // Current vertex agent is travelling to
     public Vertex Heading;
     public float Speed = 0.5f;
 
@@ -20,6 +24,7 @@ public class Agent : MonoBehaviour
         Origin = s;
     }
 
+    // Vacate current station (if it exists) and occupy the new station
     private void OccupyStation(Station st)
     {
         if (st != Station)
@@ -31,6 +36,7 @@ public class Agent : MonoBehaviour
         }
     }
 
+    // Vacate the current station
     private void VacateStation()
     {
         if (Station)

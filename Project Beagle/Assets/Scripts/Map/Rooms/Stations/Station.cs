@@ -13,13 +13,16 @@ public abstract class Station : MonoBehaviour
     public Vertex Vertex { get; private set; }
     // Room the station belongs to
     public Room Room => Vertex.Room;
+    // All agents currently occupying or heading to occupy the station
     private List<Agent> _agents;
+    // Capacity of the station
     [SerializeField] private int _capacity;
 
     public abstract void DebugStation();
 
-    public virtual bool Avaliable => _capacity != _agents.Count;
+    public virtual bool Avaliable => _capacity == -1 || _capacity != _agents.Count;
 
+    // Add an agent to the room to have the agent 'occupy' the station
     public virtual bool Occupy(Agent a)
     {
         if (_capacity == _agents.Count || _agents.Contains(a)) return false;
@@ -29,6 +32,7 @@ public abstract class Station : MonoBehaviour
         return true;
     }
 
+    // Remove an agent from the agents list to ensure it 'leaves' the room
     public virtual bool Vacate(Agent a)
     {
         if (!_agents.Contains(a)) return false;

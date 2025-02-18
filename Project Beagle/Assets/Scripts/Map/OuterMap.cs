@@ -86,6 +86,7 @@ public class OuterMap : MonoBehaviour
 
         foreach (Station st in stations)
         {
+            // Ensure that the station to travel to is avaliable before getting a route
             if (!st.Avaliable) continue;
             
             if (s_station) {

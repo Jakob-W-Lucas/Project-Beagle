@@ -61,12 +61,14 @@ public class AgentManager : MonoBehaviour
     // Get the best route from the origin or the heading
     private Route GetAgentRoute(Agent a)
     {   
+        // TEST
         int rand = UnityEngine.Random.Range(0, 15);
 
         Route fromOrigin = RandomRoute(a.Origin, rand);
 
         if (a.Heading == null) return fromOrigin;
 
+        // Ensures that the best route is found when already travelling
         Route fromHeading = RandomRoute(a.Heading, rand);
 
         return fromOrigin.Distance < fromHeading.Distance ? fromOrigin : fromHeading;
@@ -153,6 +155,7 @@ public class AgentManager : MonoBehaviour
             return;
         }
         
+        // Continue to move towards the heading vertex if distance is greater than 0.01 in either cardinal direction
         if (NaiveDistanceCheck(a.transform.position, a.Heading.transform.position)) {
             a.transform.position = Vector2.MoveTowards(a.transform.position, a.Heading.transform.position, a.Speed * Time.fixedDeltaTime);
             return; 
@@ -160,11 +163,13 @@ public class AgentManager : MonoBehaviour
 
         a.UpdateOrigin(a.Heading);
         
+        // If there are no more vertices to travel to we can stop updating the position
         if (a.Route.Count == 0) {
             a.Heading = null;
             return;
         }
 
+        // Get the next vertex to travel to along the route
         a.Heading = a.Route.Dequeue();
     }
 
