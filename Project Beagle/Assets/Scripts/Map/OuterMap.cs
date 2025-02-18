@@ -86,6 +86,8 @@ public class OuterMap : MonoBehaviour
 
         foreach (Station st in stations)
         {
+            if (!st.Avaliable) continue;
+            
             if (s_station) {
                 contender = CompareRoutes(contender, StationToStation(s, st.Vertex)); 
                 continue;
@@ -124,6 +126,8 @@ public class OuterMap : MonoBehaviour
     // Get the route between a room vertex to another room vertex
     private Route RoomToRoom(Vertex s, Room room)
     {
+        if (s.Room == room) return new Route(s, s);
+
         Route contender = new Route();
 
         // For every vertex in the destination room, check source -> room Vertex
@@ -206,6 +210,8 @@ public class OuterMap : MonoBehaviour
     // Get the route between a station vertex and a station vertex
     private Route StationToStation(Vertex s, Vertex u)
     {
+        if (s.Room == u.Room) return new Route(s, u);
+
         Route exitRoute = null;
         Route roomRoute = null;
         Route enterRoute = null;

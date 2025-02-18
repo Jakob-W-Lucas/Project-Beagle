@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -14,21 +15,35 @@ public class Agent : MonoBehaviour
     // Set the origin of the agent (current vertex)
     public void UpdateOrigin(Vertex s)
     {
-        Origin = s;
-        
-        if (s.TryGetComponent<Station>(out var st))
-        {
-            Station = st;
-            return;
-        }
+        if (Origin == s) return;
 
-        Station = null;
+        Origin = s;
+    }
+
+    private void OccupyStation(Station st)
+    {
+        if (st != Station)
+        {
+            if (Station) Station.Vacate(this);
+            
+            st.Occupy(this);
+            Station = st;
+        }
+    }
+
+    private void VacateStation()
+    {
+        if (Station)
+        {
+            Station.Vacate(this);
+            Station = null;
+        }
     }
 
     // Creates an agent path to follow
     public void FollowPath(Route route)
     {
-        if (route == null) return;
+        if (route == null || route.Vertices.Count == 0) return;
         
         Route.Clear();
         Heading = null;
@@ -41,5 +56,15 @@ public class Agent : MonoBehaviour
 
         // Begin the pathfinding
         Heading = Route.Dequeue();
+
+        // Ensure the destination station is changed prior to travelling
+        Station st = route.Vertices.Last().Station;
+        if (st)
+        {
+            OccupyStation(st);
+            return;
+        }
+
+        VacateStation();
     }
 }
