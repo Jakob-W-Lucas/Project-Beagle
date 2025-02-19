@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 007fcac4dffc18347b1ce1d0da5aaae2, type: 3}
   m_Name: IdelConsideration
   m_EditorClassIdentifier: 
-  value: 1
+  value: 0.2

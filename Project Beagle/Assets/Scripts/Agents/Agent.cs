@@ -84,12 +84,4 @@ public class Agent : MonoBehaviour
 
         VacateStation();
     }
-
-
-
-    public void UpdateContent()
-    {
-        // Used to update the content of what the brain should know
-        Brain?.context.SetData("health", CurrentHealth / 100);
-    }
 }

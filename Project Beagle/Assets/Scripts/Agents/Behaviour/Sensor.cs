@@ -10,11 +10,17 @@ public class Sensor : MonoBehaviour
     [SerializeField] private float _detectionRadius;
     [SerializeField] private List<string> targetTags = new();
     [SerializeField] private LayerMask _obstructionMask;
-    public List<Transform> _detectedObjects = new(10);
+    private List<Transform> _alldetectedTransforms = new List<Transform>();
+    public Dictionary<string, List<Transform>> _detectedObjects = new Dictionary<string, List<Transform>>();
 
     private void Start() 
     {
         UpdatePerception();
+
+        foreach (string tag in targetTags)
+        {
+            _detectedObjects.Add(tag, new List<Transform>(10));
+        }
     }
 
     public void UpdatePerception()
@@ -33,10 +39,11 @@ public class Sensor : MonoBehaviour
         foreach (Collider2D c in colliders){
             
             // If the collider is already in the detected list, move on
-            if (_detectedObjects.Contains(c.transform)) continue;
+            if (_alldetectedTransforms.Contains(c.transform)) continue;
 
             // If a collider is not being obstructed, process it (add to list)
-            ProcessTrigger(c, transform => { if (!IsObstructed(c)) _detectedObjects.Add(transform); });
+            ProcessTrigger(c, transform => { if (!IsObstructed(c)) _detectedObjects[c.tag].Add(transform); });
+            _alldetectedTransforms.Add(c.transform);
         }
     }
 
@@ -49,7 +56,7 @@ public class Sensor : MonoBehaviour
         foreach (string t in targetTags) {
             if (other.CompareTag(t)) {
 
-                if (_detectedObjects.Count == 10)
+                if (_detectedObjects[t].Count == 10)
                 {
                     ReplaceFurthestTag(t, other.transform);
                     return;
@@ -94,7 +101,7 @@ public class Sensor : MonoBehaviour
         Vector2 currentPosition = transform.position;
 
         // Compare the distances of each target to find the closest one
-        foreach (Transform potentialTarget in _detectedObjects) {
+        foreach (Transform potentialTarget in _detectedObjects[tag]) {
             if (potentialTarget.CompareTag(tag)) {
                 Vector2 directionToTarget = (Vector2)potentialTarget.position - currentPosition;
                 float dSqrToTarget = directionToTarget.sqrMagnitude;
@@ -118,7 +125,7 @@ public class Sensor : MonoBehaviour
         Vector2 currentPosition = transform.position;
 
         // Compare the distances of each target to find the closest one
-        foreach (Transform potentialTarget in _detectedObjects) {
+        foreach (Transform potentialTarget in _detectedObjects[tag]) {
             if (potentialTarget.CompareTag(tag)) {
                 Vector2 directionToTarget = (Vector2)potentialTarget.position - currentPosition;
                 float dSqrToTarget = directionToTarget.sqrMagnitude;
@@ -138,7 +145,7 @@ public class Sensor : MonoBehaviour
             return;
         }
 
-        _detectedObjects.Remove(furthestTarget);
-        _detectedObjects.Add(newTransform);
+        _detectedObjects[tag].Remove(furthestTarget);
+        _detectedObjects[tag].Add(newTransform);
     }
 }

@@ -47,7 +47,6 @@ public class AgentManager : MonoBehaviour
 
                 // Update the sensor and content, then get a new action
                 a.Sensor?.UpdatePerception();
-                a.UpdateContent();
                 a.CurrentAction = a.Brain.ChooseAction();
             }
             
