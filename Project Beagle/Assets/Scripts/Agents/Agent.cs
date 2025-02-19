@@ -1,11 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Agent : MonoBehaviour
 {
+    [Header("Brain")]
+    public AIAction CurrentAction;
+    public Sensor Sensor { get; private set; }
+    public Brain Brain { get; private set; }
+    public float CurrentHealth;
+
     // Current route for the agent to follow
     public Queue<Vertex> Route { get; private set; } = new Queue<Vertex>();
     // Current station of the agent (station of origin or station of destination vertex, if travelling)
@@ -72,5 +77,13 @@ public class Agent : MonoBehaviour
         }
 
         VacateStation();
+    }
+
+
+
+    public void UpdateContent()
+    {
+        // Used to update the content of what the brain should know
+        Brain?.context.SetData("health", CurrentHealth / 100);
     }
 }

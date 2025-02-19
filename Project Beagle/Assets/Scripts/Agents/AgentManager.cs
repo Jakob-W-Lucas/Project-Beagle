@@ -45,9 +45,9 @@ public class AgentManager : MonoBehaviour
                 if (!a.enabled /*|| a.Brain == null || a.Sensor == null*/) continue;
 
                 // Update the sensor and content, then get a new action
-                //a.Sensor?.UpdatePerception();
-                //a.UpdateContent();
-                //a.CurrentAction = a.Brain.ChooseAction();
+                a.Sensor?.UpdatePerception();
+                a.UpdateContent();
+                a.CurrentAction = a.Brain.ChooseAction();
             }
             
             yield return new WaitForSeconds(_delayUpdateTime);
