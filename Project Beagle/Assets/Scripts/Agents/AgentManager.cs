@@ -61,80 +61,7 @@ public class AgentManager : MonoBehaviour
     // Get the best route from the origin or the heading
     private Route GetAgentRoute(Agent a)
     {   
-        // TEST
-        int rand = UnityEngine.Random.Range(0, 15);
-
-        Route fromOrigin = RandomRoute(a.Origin, rand);
-
-        if (a.Heading == null) return fromOrigin;
-
-        // Ensures that the best route is found when already travelling
-        Route fromHeading = RandomRoute(a.Heading, rand);
-
-        return fromOrigin.Distance < fromHeading.Distance ? fromOrigin : fromHeading;
-    }
-
-    // TESTING
-    private Route RandomRoute(Vertex s, int rand)
-    {
-        if (rand == 0)
-        {
-            return OuterMap.TravelToStation<Cage>(s);
-        }
-        if (rand == 1)
-        {
-            return OuterMap.TravelToStation<Desk>(s);
-        }
-        if (rand == 2)
-        {
-            return OuterMap.TravelToStation<Bed>(s);
-        }
-        if (rand == 3)
-        {
-            return OuterMap.TravelToStation<ChartTable>(s);
-        }
-        if (rand == 4)
-        {
-            return OuterMap.TravelToStation<Basin>(s);
-        }
-        if (rand == 5)
-        {
-            return OuterMap.TravelToStation<Toilet>(s);
-        }
-        if (rand == 6)
-        {
-            return OuterMap.TravelToStation<Cannon>(s);
-        }
-        if (rand == 7)
-        {
-            return OuterMap.TravelToStation<Hammock>(s);
-        }
-        if (rand == 8)
-        {
-            return OuterMap.TravelToStation<Table>(s);
-        }
-        if (rand == 9)
-        {
-            return OuterMap.TravelToRoom<Brig>(s);
-        }
-        if (rand == 10)
-        {
-            return OuterMap.TravelToRoom<Dock>(s);
-        }
-        if (rand == 11)
-        {
-            return OuterMap.TravelToRoom<CaptainsQuaters>(s);
-        }
-        if (rand == 12)
-        {
-            return OuterMap.TravelToRoom<GunDeck>(s);
-        }
-        if (rand == 13)
-        {
-            return OuterMap.TravelToRoom<Forecastle>(s);
-        }
-
-        return OuterMap.TravelToRoom<Galley>(s);
+        return null;
     }
 
     # endregion
@@ -144,16 +71,7 @@ public class AgentManager : MonoBehaviour
     // Move an agent towards its next target position
     void UpdatePosition(Agent a)
     {   
-        if (a.Heading == null) 
-        {   
-            // TEST
-            if (a.Origin)
-            {
-                a.FollowPath(GetAgentRoute(a));
-            }
-            
-            return;
-        }
+        if (a.Heading == null) return;
         
         // Continue to move towards the heading vertex if distance is greater than 0.01 in either cardinal direction
         if (NaiveDistanceCheck(a.transform.position, a.Heading.transform.position)) {
