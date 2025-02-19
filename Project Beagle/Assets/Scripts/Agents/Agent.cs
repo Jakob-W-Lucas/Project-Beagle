@@ -21,6 +21,12 @@ public class Agent : MonoBehaviour
     public Vertex Heading;
     public float Speed = 0.5f;
 
+    private void Awake() 
+    {
+        Brain = GetComponent<Brain>();
+        Sensor = GetComponent<Sensor>();
+    }
+
     // Set the origin of the agent (current vertex)
     public void UpdateOrigin(Vertex s)
     {

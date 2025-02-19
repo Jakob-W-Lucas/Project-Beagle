@@ -31,6 +31,7 @@ public class Brain : MonoBehaviour
             }
         }
 
+        Debug.Log($"Best action is currently: {bestAction.name}");
         return bestAction;
     }
 }

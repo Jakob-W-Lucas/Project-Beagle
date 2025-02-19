@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Context : MonoBehaviour
+public class Context
 {
     public Brain brain;
     public Sensor sensor;

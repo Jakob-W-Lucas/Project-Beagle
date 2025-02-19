@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Data.Common;
 using UnityEngine;
 
 public class AgentManager : MonoBehaviour
@@ -42,7 +43,7 @@ public class AgentManager : MonoBehaviour
             foreach (Agent a in _agents)
             {
                 if (a == null) continue;
-                if (!a.enabled /*|| a.Brain == null || a.Sensor == null*/) continue;
+                if (!a.enabled || a.Brain == null || a.Sensor == null) continue;
 
                 // Update the sensor and content, then get a new action
                 a.Sensor?.UpdatePerception();
