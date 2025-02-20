@@ -11,10 +11,7 @@ public class RoomDatabase : ScriptableObject
     {
         for (int i = 0; i < roomTypes.Length; i++)
         {
-            if (lookup.TryGetValue(roomTypes[i].Name, out var none))
-            {
-                continue;
-            }
+            if (lookup.TryGetValue(roomTypes[i].Name, out var none)) continue;
 
             lookup.Add(roomTypes[i].Name, roomTypes[i]);
         }

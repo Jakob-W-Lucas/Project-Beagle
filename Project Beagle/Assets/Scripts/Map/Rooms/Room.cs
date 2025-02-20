@@ -51,7 +51,7 @@ public class Room : MonoBehaviour
             Debug.LogWarning("Room does not have a type");
             return;
         }
-        
+
         RoomEnterRoutes = new Route[_vertices.Length][];
 
         for (int i = 0; i < _vertices.Length; i++)
@@ -65,6 +65,13 @@ public class Room : MonoBehaviour
             _vertices[i].p_ID = i + 1;
 
             RoomEnterRoutes[i] = new Route[_stations.Length]; 
+
+            for (int j = 0; j < _vertices.Length; j++)
+            {
+                if (i == j) continue;
+
+                _vertices[i].AddEdge(_vertices[j]);
+            }
         }
 
         ConfigureStations();
@@ -158,7 +165,7 @@ public class Room : MonoBehaviour
 
                 int n = e.End.p_ID;
                 
-                if (dist[n] == Mathf.Infinity)
+                if (dist[n] > dist[u] + e.Weight)
                 {
                     dist[n] = dist[u] + e.Weight;
                     pred[n] = u;

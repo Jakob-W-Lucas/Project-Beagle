@@ -120,7 +120,7 @@ public class Map
         
         for (int i = 0; i < _vertices.Length; i++)
         {
-            routes[i] = BFS(_vertices[i].g_ID);
+            routes[i] = BFS(i);
         }
 
         Routes = routes;
@@ -146,11 +146,11 @@ public class Map
             int u = queue.Dequeue();
             foreach (Edge e in _vertices[u].Edges)
             {
-                if (e.End.g_ID == -1) continue;
+                if (e.End.Station) continue;
 
                 int v = e.End.g_ID;
                 
-                if (dist[v] == Mathf.Infinity)
+                if (dist[v] > dist[u] + e.Weight)
                 {
                     dist[v] = dist[u] + e.Weight;
                     pred[v] = u;
@@ -196,9 +196,7 @@ public class Map
             for (int j = 0; j < _vertices.Length; j++)
             {
                 str.Append($"    Towards vertex {j}: " + GetRouteString(Routes[i][j]) + "\n");
-                j++;
             }
-            i++;
         }
 
         Debug.Log(str.ToString());

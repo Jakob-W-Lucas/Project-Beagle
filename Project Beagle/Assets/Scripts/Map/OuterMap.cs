@@ -23,6 +23,8 @@ public class OuterMap : MonoBehaviour
         int n = 0;
         foreach (Room room in _rooms)
         {   
+            if (!room.isActiveAndEnabled) continue;
+            
             room.ConfigureRoom();
             AddToLookup(room);
             
@@ -101,7 +103,7 @@ public class OuterMap : MonoBehaviour
     // Returns the path from any vertex to any room
     public Route TravelToRoom(Vertex s, RoomType T, Room u_room = null)
     {
-        if (s.Room == u_room) return null;
+        if ((u_room && s.Room == u_room) || !s) return null;
 
         bool s_station = s.g_ID == -1;
 

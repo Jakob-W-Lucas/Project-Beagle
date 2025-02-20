@@ -212,10 +212,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   g_ID: -1
-  r_ID: -1
-  p_ID: -1
-  Room: {fileID: 0}
-  Station: {fileID: 0}
+  r_ID: 2
+  p_ID: 0
+  Room: {fileID: 729592850}
+  Station: {fileID: 12785084}
   _vertexReach: 5
 --- !u!212 &12785083
 SpriteRenderer:
@@ -379,10 +379,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   g_ID: -1
-  r_ID: -1
-  p_ID: -1
-  Room: {fileID: 0}
-  Station: {fileID: 0}
+  r_ID: 3
+  p_ID: 0
+  Room: {fileID: 7069182322344623139}
+  Station: {fileID: 18717931}
   _vertexReach: 5
 --- !u!212 &18717930
 SpriteRenderer:
@@ -546,10 +546,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   g_ID: -1
-  r_ID: -1
-  p_ID: -1
-  Room: {fileID: 0}
-  Station: {fileID: 0}
+  r_ID: 4
+  p_ID: 0
+  Room: {fileID: 1207289120}
+  Station: {fileID: 44724378}
   _vertexReach: 5
 --- !u!212 &44724377
 SpriteRenderer:
@@ -713,10 +713,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   g_ID: -1
-  r_ID: -1
-  p_ID: -1
-  Room: {fileID: 0}
-  Station: {fileID: 0}
+  r_ID: 3
+  p_ID: 0
+  Room: {fileID: 1207289120}
+  Station: {fileID: 90267854}
   _vertexReach: 5
 --- !u!212 &90267853
 SpriteRenderer:
@@ -880,10 +880,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   g_ID: -1
-  r_ID: -1
-  p_ID: -1
-  Room: {fileID: 0}
-  Station: {fileID: 0}
+  r_ID: 4
+  p_ID: 0
+  Room: {fileID: 7069182322344623139}
+  Station: {fileID: 91009758}
   _vertexReach: 5
 --- !u!212 &91009757
 SpriteRenderer:
@@ -1276,10 +1276,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   g_ID: -1
-  r_ID: -1
-  p_ID: -1
-  Room: {fileID: 0}
-  Station: {fileID: 0}
+  r_ID: 6
+  p_ID: 0
+  Room: {fileID: 1165512798}
+  Station: {fileID: 327407053}
   _vertexReach: 5
 --- !u!212 &327407056
 SpriteRenderer:
@@ -1443,10 +1443,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   g_ID: -1
-  r_ID: -1
-  p_ID: -1
-  Room: {fileID: 0}
-  Station: {fileID: 0}
+  r_ID: 3
+  p_ID: 0
+  Room: {fileID: 1406592039}
+  Station: {fileID: 345956100}
   _vertexReach: 5
 --- !u!212 &345956103
 SpriteRenderer:
@@ -1612,10 +1612,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   g_ID: -1
-  r_ID: -1
-  p_ID: -1
-  Room: {fileID: 0}
-  Station: {fileID: 0}
+  r_ID: 5
+  p_ID: 0
+  Room: {fileID: 729592850}
+  Station: {fileID: 408992497}
   _vertexReach: 5
 --- !u!212 &408992496
 SpriteRenderer:
@@ -1779,10 +1779,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   g_ID: -1
-  r_ID: -1
-  p_ID: -1
-  Room: {fileID: 0}
-  Station: {fileID: 0}
+  r_ID: 8
+  p_ID: 0
+  Room: {fileID: 1207289120}
+  Station: {fileID: 492478428}
   _vertexReach: 5
 --- !u!212 &492478427
 SpriteRenderer:
@@ -1946,10 +1946,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   g_ID: -1
-  r_ID: -1
-  p_ID: -1
-  Room: {fileID: 0}
-  Station: {fileID: 0}
+  r_ID: 1
+  p_ID: 0
+  Room: {fileID: 729592850}
+  Station: {fileID: 493447326}
   _vertexReach: 5
 --- !u!212 &493447325
 SpriteRenderer:
@@ -2250,10 +2250,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   g_ID: -1
-  r_ID: -1
-  p_ID: -1
-  Room: {fileID: 0}
-  Station: {fileID: 0}
+  r_ID: 1
+  p_ID: 0
+  Room: {fileID: 663585542}
+  Station: {fileID: 529276388}
   _vertexReach: 5
 --- !u!114 &529276388
 MonoBehaviour:
@@ -2757,10 +2757,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   g_ID: -1
-  r_ID: -1
-  p_ID: -1
-  Room: {fileID: 0}
-  Station: {fileID: 0}
+  r_ID: 1
+  p_ID: 0
+  Room: {fileID: 1207289120}
+  Station: {fileID: 670834281}
   _vertexReach: 5
 --- !u!212 &670834280
 SpriteRenderer:
@@ -2990,7 +2990,7 @@ Transform:
   m_GameObject: {fileID: 721168452}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.798, y: 1.125, z: -0.09164972}
+  m_LocalPosition: {x: -8.78, y: 1.91, z: -0.09164972}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3229,10 +3229,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   g_ID: -1
-  r_ID: -1
-  p_ID: -1
-  Room: {fileID: 0}
-  Station: {fileID: 0}
+  r_ID: 0
+  p_ID: 0
+  Room: {fileID: 663585542}
+  Station: {fileID: 819358495}
   _vertexReach: 5
 --- !u!114 &819358495
 MonoBehaviour:
@@ -3550,10 +3550,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   g_ID: -1
-  r_ID: -1
-  p_ID: -1
-  Room: {fileID: 0}
-  Station: {fileID: 0}
+  r_ID: 1
+  p_ID: 0
+  Room: {fileID: 1406592039}
+  Station: {fileID: 883554967}
   _vertexReach: 5
 --- !u!212 &883554966
 SpriteRenderer:
@@ -3717,10 +3717,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   g_ID: -1
-  r_ID: -1
-  p_ID: -1
-  Room: {fileID: 0}
-  Station: {fileID: 0}
+  r_ID: 1
+  p_ID: 0
+  Room: {fileID: 7069182322344623139}
+  Station: {fileID: 886707742}
   _vertexReach: 5
 --- !u!212 &886707741
 SpriteRenderer:
@@ -3882,10 +3882,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   g_ID: -1
-  r_ID: -1
-  p_ID: -1
-  Room: {fileID: 0}
-  Station: {fileID: 0}
+  r_ID: 7
+  p_ID: 0
+  Room: {fileID: 729592850}
+  Station: {fileID: 945963693}
   _vertexReach: 5
 --- !u!212 &945963696
 SpriteRenderer:
@@ -4083,10 +4083,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   g_ID: -1
-  r_ID: -1
-  p_ID: -1
-  Room: {fileID: 0}
-  Station: {fileID: 0}
+  r_ID: 9
+  p_ID: 0
+  Room: {fileID: 1207289120}
+  Station: {fileID: 1033237566}
   _vertexReach: 5
 --- !u!212 &1033237565
 SpriteRenderer:
@@ -4427,10 +4427,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   g_ID: -1
-  r_ID: -1
-  p_ID: -1
-  Room: {fileID: 0}
-  Station: {fileID: 0}
+  r_ID: 2
+  p_ID: 0
+  Room: {fileID: 7069182322344623139}
+  Station: {fileID: 1079119674}
   _vertexReach: 5
 --- !u!212 &1079119673
 SpriteRenderer:
@@ -4594,10 +4594,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   g_ID: -1
-  r_ID: -1
-  p_ID: -1
-  Room: {fileID: 0}
-  Station: {fileID: 0}
+  r_ID: 5
+  p_ID: 0
+  Room: {fileID: 1165512798}
+  Station: {fileID: 1108119775}
   _vertexReach: 5
 --- !u!212 &1108119774
 SpriteRenderer:
@@ -4901,10 +4901,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   g_ID: -1
-  r_ID: -1
-  p_ID: -1
-  Room: {fileID: 0}
-  Station: {fileID: 0}
+  r_ID: 5
+  p_ID: 0
+  Room: {fileID: 7069182322344623139}
+  Station: {fileID: 1171666256}
   _vertexReach: 5
 --- !u!212 &1171666255
 SpriteRenderer:
@@ -5068,10 +5068,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   g_ID: -1
-  r_ID: -1
-  p_ID: -1
-  Room: {fileID: 0}
-  Station: {fileID: 0}
+  r_ID: 1
+  p_ID: 0
+  Room: {fileID: 1165512798}
+  Station: {fileID: 1201501583}
   _vertexReach: 5
 --- !u!212 &1201501582
 SpriteRenderer:
@@ -5214,7 +5214,7 @@ Transform:
   m_GameObject: {fileID: 1207289116}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.72, y: -0.64, z: -0.07096062}
+  m_LocalPosition: {x: -0.72, y: -0.75, z: -0.07096062}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5344,10 +5344,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   g_ID: -1
-  r_ID: -1
-  p_ID: -1
-  Room: {fileID: 0}
-  Station: {fileID: 0}
+  r_ID: 5
+  p_ID: 0
+  Room: {fileID: 1207289120}
+  Station: {fileID: 1271396898}
   _vertexReach: 5
 --- !u!212 &1271396897
 SpriteRenderer:
@@ -5509,10 +5509,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   g_ID: -1
-  r_ID: -1
-  p_ID: -1
-  Room: {fileID: 0}
-  Station: {fileID: 0}
+  r_ID: 6
+  p_ID: 0
+  Room: {fileID: 7069182322344623139}
+  Station: {fileID: 1319233022}
   _vertexReach: 5
 --- !u!212 &1319233025
 SpriteRenderer:
@@ -5716,10 +5716,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   g_ID: -1
-  r_ID: -1
-  p_ID: -1
-  Room: {fileID: 0}
-  Station: {fileID: 0}
+  r_ID: 2
+  p_ID: 0
+  Room: {fileID: 1406592039}
+  Station: {fileID: 1354431327}
   _vertexReach: 5
 --- !u!212 &1354431326
 SpriteRenderer:
@@ -5960,10 +5960,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   g_ID: -1
-  r_ID: -1
-  p_ID: -1
-  Room: {fileID: 0}
-  Station: {fileID: 0}
+  r_ID: 3
+  p_ID: 0
+  Room: {fileID: 663585542}
+  Station: {fileID: 1384313813}
   _vertexReach: 5
 --- !u!114 &1384313813
 MonoBehaviour:
@@ -6127,10 +6127,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   g_ID: -1
-  r_ID: -1
-  p_ID: -1
-  Room: {fileID: 0}
-  Station: {fileID: 0}
+  r_ID: 2
+  p_ID: 0
+  Room: {fileID: 1207289120}
+  Station: {fileID: 1402929437}
   _vertexReach: 5
 --- !u!212 &1402929436
 SpriteRenderer:
@@ -6509,10 +6509,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   g_ID: -1
-  r_ID: -1
-  p_ID: -1
-  Room: {fileID: 0}
-  Station: {fileID: 0}
+  r_ID: 4
+  p_ID: 0
+  Room: {fileID: 729592850}
+  Station: {fileID: 1450352943}
   _vertexReach: 5
 --- !u!212 &1450352942
 SpriteRenderer:
@@ -6786,10 +6786,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   g_ID: -1
-  r_ID: -1
-  p_ID: -1
-  Room: {fileID: 0}
-  Station: {fileID: 0}
+  r_ID: 6
+  p_ID: 0
+  Room: {fileID: 1207289120}
+  Station: {fileID: 1499588921}
   _vertexReach: 5
 --- !u!212 &1499588920
 SpriteRenderer:
@@ -7112,10 +7112,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   g_ID: -1
-  r_ID: -1
-  p_ID: -1
-  Room: {fileID: 0}
-  Station: {fileID: 0}
+  r_ID: 2
+  p_ID: 0
+  Room: {fileID: 663585542}
+  Station: {fileID: 1581150634}
   _vertexReach: 5
 --- !u!114 &1581150634
 MonoBehaviour:
@@ -7318,10 +7318,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   g_ID: -1
-  r_ID: -1
-  p_ID: -1
-  Room: {fileID: 0}
-  Station: {fileID: 0}
+  r_ID: 2
+  p_ID: 0
+  Room: {fileID: 1165512798}
+  Station: {fileID: 1639035691}
   _vertexReach: 5
 --- !u!212 &1639035690
 SpriteRenderer:
@@ -7708,7 +7708,7 @@ MonoBehaviour:
   actions:
   - {fileID: 11400000, guid: 79a34f674380f9c42a622cd25ac46a19, type: 2}
   - {fileID: 11400000, guid: 34aa83b8717391e488d0d3792a216521, type: 2}
-  - {fileID: 11400000, guid: 698a70d7e05bbcc4bb0575a1dd13fbba, type: 2}
+  - {fileID: 11400000, guid: 83115dced269f044ab73fb502e583e75, type: 2}
 --- !u!114 &1699166576
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7792,6 +7792,8 @@ MonoBehaviour:
   m_Graph: {fileID: 4342619363467918153, guid: 2c9b63dd3da5112408bc88e5038a526c, type: 2}
   m_BlackboardVariableOverridesList:
   - rid: 3284953070623785220
+  - rid: 3284953070623785524
+  - rid: 3284953070623785540
   m_IsInitialised: 0
   m_IsStarted: 0
   references:
@@ -7805,6 +7807,22 @@ MonoBehaviour:
           m_Value1: 0
         Name: Self
         m_Value: {fileID: 1699166570}
+    - rid: 3284953070623785524
+      type: {class: 'BlackboardVariable`1[[OuterMap, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 10593916198656273842
+          m_Value1: 2538851355633432576
+        Name: Map
+        m_Value: {fileID: 2115744118}
+    - rid: 3284953070623785540
+      type: {class: 'BlackboardVariable`1[[RoomDatabase, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 12657728705760878381
+          m_Value1: 7608506640987574116
+        Name: Rooms
+        m_Value: {fileID: 11400000, guid: 208efd689baf938458ee6a4acec2cc75, type: 2}
 --- !u!1 &1802256746
 GameObject:
   m_ObjectHideFlags: 0
@@ -7899,10 +7917,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   g_ID: -1
-  r_ID: -1
-  p_ID: -1
-  Room: {fileID: 0}
-  Station: {fileID: 0}
+  r_ID: 4
+  p_ID: 0
+  Room: {fileID: 1165512798}
+  Station: {fileID: 1802256751}
   _vertexReach: 5
 --- !u!212 &1802256750
 SpriteRenderer:
@@ -8064,10 +8082,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   g_ID: -1
-  r_ID: -1
-  p_ID: -1
-  Room: {fileID: 0}
-  Station: {fileID: 0}
+  r_ID: 10
+  p_ID: 0
+  Room: {fileID: 1207289120}
+  Station: {fileID: 1810422094}
   _vertexReach: 5
 --- !u!212 &1810422097
 SpriteRenderer:
@@ -8233,10 +8251,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   g_ID: -1
-  r_ID: -1
-  p_ID: -1
-  Room: {fileID: 0}
-  Station: {fileID: 0}
+  r_ID: 3
+  p_ID: 0
+  Room: {fileID: 1165512798}
+  Station: {fileID: 1813067490}
   _vertexReach: 5
 --- !u!212 &1813067489
 SpriteRenderer:
@@ -8400,10 +8418,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   g_ID: -1
-  r_ID: -1
-  p_ID: -1
-  Room: {fileID: 0}
-  Station: {fileID: 0}
+  r_ID: 7
+  p_ID: 0
+  Room: {fileID: 1207289120}
+  Station: {fileID: 1953391690}
   _vertexReach: 5
 --- !u!212 &1953391689
 SpriteRenderer:
@@ -8567,10 +8585,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   g_ID: -1
-  r_ID: -1
-  p_ID: -1
-  Room: {fileID: 0}
-  Station: {fileID: 0}
+  r_ID: 6
+  p_ID: 0
+  Room: {fileID: 729592850}
+  Station: {fileID: 1957758001}
   _vertexReach: 5
 --- !u!212 &1957758000
 SpriteRenderer:
@@ -9029,10 +9047,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   g_ID: -1
-  r_ID: -1
-  p_ID: -1
-  Room: {fileID: 0}
-  Station: {fileID: 0}
+  r_ID: 3
+  p_ID: 0
+  Room: {fileID: 729592850}
+  Station: {fileID: 2091904623}
   _vertexReach: 5
 --- !u!212 &2091904622
 SpriteRenderer:
@@ -9196,10 +9214,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   g_ID: -1
-  r_ID: -1
-  p_ID: -1
-  Room: {fileID: 0}
-  Station: {fileID: 0}
+  r_ID: 4
+  p_ID: 0
+  Room: {fileID: 1406592039}
+  Station: {fileID: 2098361358}
   _vertexReach: 5
 --- !u!114 &2098361358
 MonoBehaviour:
@@ -9559,10 +9577,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   g_ID: -1
-  r_ID: -1
-  p_ID: -1
-  Room: {fileID: 0}
-  Station: {fileID: 0}
+  r_ID: 0
+  p_ID: 0
+  Room: {fileID: 1406592039}
+  Station: {fileID: 6783732557816956395}
   _vertexReach: 5
 --- !u!4 &1475799665913585063
 Transform:
@@ -9679,10 +9697,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   g_ID: -1
-  r_ID: -1
-  p_ID: -1
-  Room: {fileID: 0}
-  Station: {fileID: 0}
+  r_ID: 0
+  p_ID: 0
+  Room: {fileID: 729592850}
+  Station: {fileID: 7652633026338795998}
   _vertexReach: 5
 --- !u!61 &2897017353702150162
 BoxCollider2D:
@@ -9929,10 +9947,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   g_ID: -1
-  r_ID: -1
-  p_ID: -1
-  Room: {fileID: 0}
-  Station: {fileID: 0}
+  r_ID: 0
+  p_ID: 0
+  Room: {fileID: 1165512798}
+  Station: {fileID: 8628297579716275352}
   _vertexReach: 5
 --- !u!114 &4220538287045495016
 MonoBehaviour:
@@ -9947,10 +9965,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   g_ID: -1
-  r_ID: -1
-  p_ID: -1
-  Room: {fileID: 0}
-  Station: {fileID: 0}
+  r_ID: 0
+  p_ID: 0
+  Room: {fileID: 7069182322344623139}
+  Station: {fileID: 8434940998484574244}
   _vertexReach: 5
 --- !u!4 &4562517018301470830
 Transform:
@@ -10390,10 +10408,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   g_ID: -1
-  r_ID: -1
-  p_ID: -1
-  Room: {fileID: 0}
-  Station: {fileID: 0}
+  r_ID: 0
+  p_ID: 0
+  Room: {fileID: 1207289120}
+  Station: {fileID: 8828077833047885504}
   _vertexReach: 5
 --- !u!114 &8828077833047885504
 MonoBehaviour:
