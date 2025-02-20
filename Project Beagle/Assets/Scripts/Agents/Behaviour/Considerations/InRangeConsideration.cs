@@ -1,5 +1,6 @@
 using UnityEditor.Rendering;
 using UnityEngine;
+using UnityUtils;
 
 public class InRangeConsideration : Consideration
 {
@@ -18,11 +19,11 @@ public class InRangeConsideration : Consideration
 
         Transform agentTransform = context.agent.transform;
 
-        bool isInRange = false;//agentTransform.InRangeOf(targetTransform, maxDistance, maxAngle);
+        bool isInRange = agentTransform.InRangeOf(targetTransform, maxDistance, maxAngle);
         if (!isInRange) return 0f;
 
         Vector3 directionToTarget = targetTransform.position - agentTransform.position;
-        float distanceToTarget = 0;//directionToTarget.With(z:0).magnitude;
+        float distanceToTarget = directionToTarget.With(z:0).magnitude;
 
         float normalizedDistance = Mathf.Clamp01(distanceToTarget / maxDistance);
 
