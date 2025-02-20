@@ -2,6 +2,7 @@ using UnityEditor.Rendering;
 using UnityEngine;
 using UnityUtils;
 
+[CreateAssetMenu(menuName = "UtilityAI/Considerations/InRange")]
 public class InRangeConsideration : Consideration
 {
     public float maxDistance = 10f;
@@ -16,14 +17,15 @@ public class InRangeConsideration : Consideration
 
         Transform targetTransform = context.sensor.GetClosestTarget(targetTag);
         if (targetTransform == null) return 0f;
+        
+        Vector2 targetPosition = (Vector2)targetTransform.position;
 
-        Transform agentTransform = context.agent.transform;
+        Vector2 agentTransform = context.agent.transform.position;
 
-        bool isInRange = agentTransform.InRangeOf(targetTransform, maxDistance, maxAngle);
+        bool isInRange = agentTransform.InRangeOf(targetPosition, maxDistance, maxAngle);
         if (!isInRange) return 0f;
 
-        Vector3 directionToTarget = targetTransform.position - agentTransform.position;
-        float distanceToTarget = directionToTarget.With(z:0).magnitude;
+        float distanceToTarget = Vector2.Distance(targetPosition, agentTransform);
 
         float normalizedDistance = Mathf.Clamp01(distanceToTarget / maxDistance);
 

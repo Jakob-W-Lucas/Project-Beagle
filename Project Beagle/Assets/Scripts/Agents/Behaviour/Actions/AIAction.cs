@@ -2,7 +2,6 @@ using UnityEngine;
 
 public abstract class AIAction : ScriptableObject
 {
-    public string targetTag;
     public Consideration consideration;
 
     public virtual void Initialize(Context context)

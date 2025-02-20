@@ -30,6 +30,7 @@ public class Brain : MonoBehaviour
 
         foreach (var action in actions) {
             float utility = action.CalcualteUtility(context);
+            Debug.Log($"The utility of {action.name} is {utility}");
             if (utility > highestUtility) {
                 highestUtility = utility;
                 bestAction = action;

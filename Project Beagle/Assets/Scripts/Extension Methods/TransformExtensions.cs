@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Object = UnityEngine.Object;
@@ -16,6 +16,11 @@ namespace UnityUtils {
         public static bool InRangeOf(this Transform source, Transform target, float maxDistance, float maxAngle = 360f) {
             Vector3 directionToTarget = (target.position - source.position).With(y: 0);
             return directionToTarget.magnitude <= maxDistance && Vector3.Angle(source.forward, directionToTarget) <= maxAngle / 2;
+        }
+
+        public static bool InRangeOf(this Vector2 source, Vector2 target, float maxDistance, float maxAngle = 360f) {
+            Vector2 directionToTarget = target - source;
+            return directionToTarget.magnitude <= maxDistance && Vector2.Angle(Vector2.up, directionToTarget) <= maxAngle / 2;
         }
         
         /// <summary>
