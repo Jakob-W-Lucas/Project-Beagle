@@ -47,7 +47,7 @@ public class AgentManager : MonoBehaviour
 
                 // Update the sensor and content, then get a new action
                 a.Sensor?.UpdatePerception();
-                a.CurrentAction = a.Brain.ChooseAction();
+                a.Brain.ChooseAction();
             }
             
             yield return new WaitForSeconds(_delayUpdateTime);
@@ -83,12 +83,12 @@ public class AgentManager : MonoBehaviour
         
         // If there are no more vertices to travel to we can stop updating the position
         if (a.Route.Count == 0) {
-            a.Heading = null;
+            a.UpdateHeading(null);
             return;
         }
 
         // Get the next vertex to travel to along the route
-        a.Heading = a.Route.Dequeue();
+        a.UpdateHeading(a.Route.Dequeue());
     }
 
     bool NaiveDistanceCheck(Vector2 a, Vector2 b) {

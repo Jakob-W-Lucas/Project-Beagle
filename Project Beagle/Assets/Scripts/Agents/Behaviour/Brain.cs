@@ -1,16 +1,18 @@
 using System.Collections.Generic;
+using Unity.Behavior;
 using UnityEngine;
 
 [RequireComponent(typeof(Sensor))]
 public class Brain : MonoBehaviour
 {
-    private Agent _agent;
+    [SerializeField] private BehaviorGraphAgent _agent;
     [SerializeField] private List<AIAction> actions;
     public Context context;
     private Health _health;
     
     private void Awake() 
     {
+        _agent = GetComponent<BehaviorGraphAgent>();
         _health = GetComponent<Health>();
         context = new Context(this);
         
@@ -21,7 +23,7 @@ public class Brain : MonoBehaviour
     }
 
     // Chooses the best Action for the crew to take 
-    public AIAction ChooseAction() {
+    public void ChooseAction() {
         
         UpdateContent();
 
@@ -38,7 +40,7 @@ public class Brain : MonoBehaviour
         }
 
         Debug.Log($"Best action is currently: {bestAction.name}");
-        return bestAction;
+        _agent.SetVariableValue("Action State", bestAction);
     }
 
     public void UpdateContent() {

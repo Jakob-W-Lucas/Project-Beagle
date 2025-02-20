@@ -1,28 +1,30 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.Behavior;
 using UnityEngine;
 
 [RequireComponent(typeof(Health))]
 public class Agent : MonoBehaviour
 {
-    [Header("Brain")]
-    public AIAction CurrentAction;
+    public BehaviorGraphAgent BGAgent;
+    [Header("Organs")]
     public Sensor Sensor { get; private set; }
     public Brain Brain { get; private set; }
 
     // Current route for the agent to follow
     public Queue<Vertex> Route { get; private set; } = new Queue<Vertex>();
     // Current station of the agent (station of origin or station of destination vertex, if travelling)
-    public Station Station;
+    public Station Station { get; private set; }
     // Most recently occupied vertex of the agent
     public Vertex Origin { get; private set; }
     // Current vertex agent is travelling to
-    public Vertex Heading;
+    public Vertex Heading { get; private set; }
     public float Speed = 0.5f;
 
     private void Awake() 
     {
+        BGAgent = GetComponent<BehaviorGraphAgent>();
         Brain = GetComponent<Brain>();
         Sensor = GetComponent<Sensor>();
     }
@@ -33,6 +35,13 @@ public class Agent : MonoBehaviour
         if (Origin == s) return;
 
         Origin = s;
+    }
+
+    public void UpdateHeading(Vertex u)
+    {
+        if (Heading == u) return;
+
+        Heading = u;
     }
 
     // Vacate current station (if it exists) and occupy the new station

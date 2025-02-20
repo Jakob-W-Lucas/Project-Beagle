@@ -72,13 +72,13 @@ public class OuterMap : MonoBehaviour
     # region Querying
 
     // Returns the path from any vertex to any station
-    public Route TravelToStation<T>(Vertex s, Station u_st = null) where T : Station
+    public Route TravelToStation(Vertex s, Type T, Station u_st = null)
     {
         if (u_st && s.Room == u_st.Room) return null;
 
         bool s_station = s.g_ID == -1;
 
-        List<Station> stations = u_st ? new List<Station>() { u_st } : _lookupStations[typeof(T)];
+        List<Station> stations = u_st ? new List<Station>() { u_st } : _lookupStations[T];
 
         Route contender = new Route();
 
@@ -101,13 +101,13 @@ public class OuterMap : MonoBehaviour
     }
 
     // Returns the path from any vertex to any room
-    public Route TravelToRoom<T>(Vertex s, Room u_room = null) where T : Room
+    public Route TravelToRoom(Vertex s, Type T, Room u_room = null)
     {
         if (s.Room == u_room) return null;
 
         bool s_station = s.g_ID == -1;
 
-        List<Room> rooms = u_room ? new List<Room>() { u_room } : _lookupRooms[typeof(T)];
+        List<Room> rooms = u_room ? new List<Room>() { u_room } : _lookupRooms[T];
 
         Route contender = new Route();
 

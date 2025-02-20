@@ -7,4 +7,6 @@ public class IdleAction : AIAction
     {
         Debug.Log("Idle");
     }
+
+    
 }
