@@ -1,7 +1,7 @@
 using UnityEditor.Playables;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "UtilityAI/Consideration/CurveConsideration")]
+[CreateAssetMenu(menuName = "UtilityAI/Considerations/CurveConsideration")]
 public class CurveConsideration : Consideration
 {
     public AnimationCurve curve;

@@ -15,12 +15,12 @@ public class Sensor : MonoBehaviour
 
     private void Start() 
     {
-        UpdatePerception();
-
         foreach (string tag in targetTags)
         {
             _detectedObjects.Add(tag, new List<Transform>(10));
         }
+
+        UpdatePerception();
     }
 
     public void UpdatePerception()
@@ -32,7 +32,15 @@ public class Sensor : MonoBehaviour
         }
 
         // Reset the detected objects so we don't process them again
-        _detectedObjects.Clear();
+        foreach (string tag in targetTags)
+        {
+            if (_detectedObjects.TryGetValue(tag, out var list))
+            {
+                list.Clear();
+            }
+        }
+
+        _alldetectedTransforms.Clear();
 
         // Get every collider in the detection radius and process the transform
         Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, _detectionRadius);
@@ -42,7 +50,11 @@ public class Sensor : MonoBehaviour
             if (_alldetectedTransforms.Contains(c.transform)) continue;
 
             // If a collider is not being obstructed, process it (add to list)
-            ProcessTrigger(c, transform => { if (!IsObstructed(c)) _detectedObjects[c.tag].Add(transform); });
+            if (_detectedObjects.TryGetValue(c.tag, out var list))
+            {
+                ProcessTrigger(c, transform => { if (!IsObstructed(c)) list.Add(transform); });
+            }
+            
             _alldetectedTransforms.Add(c.transform);
         }
     }

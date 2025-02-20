@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
+[RequireComponent(typeof(Health))]
 public class Agent : MonoBehaviour
 {
     [Header("Brain")]
     public AIAction CurrentAction;
     public Sensor Sensor { get; private set; }
     public Brain Brain { get; private set; }
-    public float CurrentHealth;
 
     // Current route for the agent to follow
     public Queue<Vertex> Route { get; private set; } = new Queue<Vertex>();

@@ -7,11 +7,11 @@ public class Brain : MonoBehaviour
     private Agent _agent;
     [SerializeField] private List<AIAction> actions;
     public Context context;
-    private float _health;
+    private Health _health;
     
     private void Awake() 
     {
-        _agent = GetComponent<Agent>();
+        _health = GetComponent<Health>();
         context = new Context(this);
         
         foreach (var action in actions)
@@ -41,6 +41,6 @@ public class Brain : MonoBehaviour
     }
 
     public void UpdateContent() {
-        context.SetData("health", _agent.CurrentHealth / 100);
+        context.SetData("health", _health.CurrentHealth / 100);
     }
 }
