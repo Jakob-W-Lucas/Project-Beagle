@@ -146,7 +146,7 @@ public class Map
             int u = queue.Dequeue();
             foreach (Edge e in _vertices[u].Edges)
             {
-                if (e.End.Station) continue;
+                if (e.End.g_ID == -1) continue;
 
                 int v = e.End.g_ID;
                 

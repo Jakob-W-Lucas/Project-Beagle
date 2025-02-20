@@ -31,6 +31,7 @@ public class OuterMap : MonoBehaviour
             foreach (Vertex v in room.Vertices)
             {
                 v.g_ID = n;
+                Debug.Log($"add vertex {v.g_ID}");
                 n++;
 
                 _roomVertices.Add(v);

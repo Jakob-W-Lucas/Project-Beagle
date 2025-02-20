@@ -16,7 +16,7 @@ public partial class TravelToRoomAction : Action
 
     protected override Status OnUpdate()
     {
-        if (Agent.Value.Room.Type == Room.Value) return Status.Success;
+        if (Agent.Value.Room && Agent.Value.Room.Type == Room.Value) return Status.Success;
         
         if (Agent.Value.Route.Count == 0 && Agent.Value.Heading == null)
         {

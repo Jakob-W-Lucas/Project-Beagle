@@ -1,4 +1,3 @@
-using UnityEditor.Playables;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "UtilityAI/Considerations/CurveConsideration")]
