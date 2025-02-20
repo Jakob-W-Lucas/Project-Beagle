@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 [RequireComponent(typeof(CircleCollider2D))]
@@ -8,7 +9,7 @@ public class Sensor : MonoBehaviour
 {
     private bool _checking = true;
     [SerializeField] private float _detectionRadius;
-    [SerializeField] private List<string> targetTags = new();
+    [SerializeField] public List<string> targetTags = new();
     [SerializeField] private LayerMask _obstructionMask;
     private List<Transform> _alldetectedTransforms = new List<Transform>();
     public Dictionary<string, List<Transform>> _detectedObjects = new Dictionary<string, List<Transform>>();
@@ -17,10 +18,16 @@ public class Sensor : MonoBehaviour
     {
         foreach (string tag in targetTags)
         {
-            _detectedObjects.Add(tag, new List<Transform>(10));
+            AddTag(tag);
         }
 
         UpdatePerception();
+    }
+
+    public void AddTag(string tag)
+    {
+        if (!targetTags.Contains(tag)) targetTags.Add(tag);
+        _detectedObjects.Add(tag, new List<Transform>(10));
     }
 
     public void UpdatePerception()
