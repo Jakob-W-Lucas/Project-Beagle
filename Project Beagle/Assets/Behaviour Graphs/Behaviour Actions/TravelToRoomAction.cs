@@ -14,16 +14,19 @@ public partial class TravelToRoomAction : Action
 
     protected override Status OnStart()
     {
-        if (!Room.Value) return Status.Failure;
-
         Route originRoute = Map.Value.TravelToRoom(Agent.Value.Origin, Room.GetType());
 
         if (!Agent.Value.Heading) {
+
+            if (originRoute == null) return Status.Failure;
+
             Agent.Value.FollowPath(originRoute);
             return Status.Running;
         }
 
         Route headingRoute = Map.Value.TravelToRoom(Agent.Value.Heading, Room.GetType());
+
+        if (originRoute == null || headingRoute == null) return Status.Failure;
 
         Route bestRoute = originRoute.Distance < headingRoute.Distance ? originRoute : headingRoute;
 
@@ -34,16 +37,23 @@ public partial class TravelToRoomAction : Action
 
     protected override Status OnUpdate()
     {
-        if (Agent.Value.Route.Count > 0) {
-            return Status.Running;
+        if (Agent.Value.Origin == Agent.Value.Heading) {
+            // Get the next vertex to travel to along the route
+            Agent.Value.UpdateHeading(Agent.Value.Route.Dequeue());
         }
 
-        return Status.Success;
+        // If there are no more vertices to travel to we can stop updating the position
+        if (Agent.Value.Route.Count == 0) {
+            Agent.Value.UpdateHeading(null);
+            return Status.Success;
+        }
+        
+        return Status.Running;
     }
 
     protected override void OnEnd()
     {
-        Debug.Log($"Agent {Agent.Value.name} has arrived at {Room.Value.name}");
+        Debug.Log($"Agent {Agent.Value.name} has arrived at {Room.Value}");
     }
 }
 

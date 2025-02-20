@@ -34,11 +34,18 @@ public partial class TravelToStationAction : Action
 
     protected override Status OnUpdate()
     {
-        if (Agent.Value.Route.Count > 0) {
-            return Status.Running;
+        if (Agent.Value.Origin == Agent.Value.Heading) {
+            // Get the next vertex to travel to along the route
+            Agent.Value.UpdateHeading(Agent.Value.Route.Dequeue());
         }
 
-        return Status.Success;
+        // If there are no more vertices to travel to we can stop updating the position
+        if (Agent.Value.Route.Count == 0) {
+            Agent.Value.UpdateHeading(null);
+            return Status.Success;
+        }
+        
+        return Status.Running;
     }
 
     protected override void OnEnd()

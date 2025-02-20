@@ -56,16 +56,6 @@ public class AgentManager : MonoBehaviour
     
     # endregion
 
-    # region Path Finding
-
-    // Get the best route from the origin or the heading
-    private Route GetAgentRoute(Agent a)
-    {   
-        return null;
-    }
-
-    # endregion
-
     # region "Movement"
 
     // Move an agent towards its next target position
@@ -80,15 +70,6 @@ public class AgentManager : MonoBehaviour
         }
 
         a.UpdateOrigin(a.Heading);
-        
-        // If there are no more vertices to travel to we can stop updating the position
-        if (a.Route.Count == 0) {
-            a.UpdateHeading(null);
-            return;
-        }
-
-        // Get the next vertex to travel to along the route
-        a.UpdateHeading(a.Route.Dequeue());
     }
 
     bool NaiveDistanceCheck(Vector2 a, Vector2 b) {
