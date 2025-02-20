@@ -10,11 +10,11 @@ public partial class TravelToRoomAction : Action
 {
     [SerializeReference] public BlackboardVariable<OuterMap> Map;
     [SerializeReference] public BlackboardVariable<Agent> Agent;
-    [SerializeReference] public BlackboardVariable<Room> Room;
+    [SerializeReference] public BlackboardVariable<RoomType> Room;
 
     protected override Status OnStart()
     {
-        Route originRoute = Map.Value.TravelToRoom(Agent.Value.Origin, Room.GetType());
+        Route originRoute = Map.Value.TravelToRoom(Agent.Value.Origin, Room);
 
         if (!Agent.Value.Heading) {
 
@@ -24,7 +24,7 @@ public partial class TravelToRoomAction : Action
             return Status.Running;
         }
 
-        Route headingRoute = Map.Value.TravelToRoom(Agent.Value.Heading, Room.GetType());
+        Route headingRoute = Map.Value.TravelToRoom(Agent.Value.Heading, Room);
 
         if (originRoute == null || headingRoute == null) return Status.Failure;
 
@@ -47,7 +47,7 @@ public partial class TravelToRoomAction : Action
             Agent.Value.UpdateHeading(null);
             return Status.Success;
         }
-        
+
         return Status.Running;
     }
 

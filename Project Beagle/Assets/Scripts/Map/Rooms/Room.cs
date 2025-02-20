@@ -7,8 +7,9 @@ using System.Text;
 using UnityEngine.Rendering.VirtualTexturing;
 
 [RequireComponent(typeof(Collider2D))]
-public abstract class Room : MonoBehaviour
+public class Room : MonoBehaviour
 {
+    public RoomType Type;
     // Routes from any station to any room vertex
     public Route[][] RoomExitRoutes;
     public Route[][] RoomEnterRoutes;
@@ -19,7 +20,6 @@ public abstract class Room : MonoBehaviour
     private List<Vertex> _stationVertices = new List<Vertex>();
     private Dictionary<Type, List<Station>> _lookupStations = new Dictionary<Type, List<Station>>();
     private Collider2D _bounds;
-    public abstract void DebugRoom();
 
     # region Initialization
 
@@ -46,6 +46,12 @@ public abstract class Room : MonoBehaviour
     // Sets up rooms for pathfinding
     public void ConfigureRoom()
     {
+        if (Type == null) 
+        {
+            Debug.LogWarning("Room does not have a type");
+            return;
+        }
+        
         RoomEnterRoutes = new Route[_vertices.Length][];
 
         for (int i = 0; i < _vertices.Length; i++)

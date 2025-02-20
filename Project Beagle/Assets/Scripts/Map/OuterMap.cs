@@ -8,7 +8,7 @@ public class OuterMap : MonoBehaviour
 {
     public Map Map { get; private set; }
     private Room[] _rooms;
-    private Dictionary<Type, List<Room>> _lookupRooms = new Dictionary<Type, List<Room>>();
+    private Dictionary<RoomType, List<Room>> _lookupRooms = new Dictionary<RoomType, List<Room>>();
     private Dictionary<Type, List<Station>> _lookupStations = new Dictionary<Type, List<Station>>();
     private List<Vertex> _roomVertices = new List<Vertex>();
 
@@ -40,14 +40,12 @@ public class OuterMap : MonoBehaviour
 
     private void AddToLookup(Room r)
     {
-        Type t = r.GetType();
-
-        if (!_lookupRooms.ContainsKey(t))
+        if (!_lookupRooms.ContainsKey(r.Type))
         {
-            _lookupRooms[t] = new List<Room>();
+            _lookupRooms[r.Type] = new List<Room>();
         }
 
-        _lookupRooms[t].Add(r);
+        _lookupRooms[r.Type].Add(r);
 
         foreach (Station s in r.Stations)
         {
@@ -101,7 +99,7 @@ public class OuterMap : MonoBehaviour
     }
 
     // Returns the path from any vertex to any room
-    public Route TravelToRoom(Vertex s, Type T, Room u_room = null)
+    public Route TravelToRoom(Vertex s, RoomType T, Room u_room = null)
     {
         if (s.Room == u_room) return null;
 
@@ -249,13 +247,11 @@ public class OuterMap : MonoBehaviour
     }
 
     // Get the list of rooms with type <T>
-    public List<Room> GetRoomsOfType<T>() where T : Room
+    public List<Room> GetRoomsOfType(RoomType T)
     {
-        Type roomType = typeof(T);
-
-        if (_lookupRooms.ContainsKey(roomType))
+        if (_lookupRooms.ContainsKey(T))
         {
-            return _lookupRooms[roomType];
+            return _lookupRooms[T];
         }
 
         return new List<Room>();
