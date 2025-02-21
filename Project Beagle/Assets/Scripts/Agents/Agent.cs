@@ -29,7 +29,7 @@ public class Agent : MonoBehaviour
         BGAgent = GetComponent<BehaviorGraphAgent>();
         Brain = GetComponent<Brain>();
         Sensor = GetComponent<Sensor>();
-        //Pointer = GetComponent<Vertex>();
+        Pointer = GetComponent<Vertex>();
     }
 
     // Set the origin of the agent (current vertex)
@@ -46,6 +46,12 @@ public class Agent : MonoBehaviour
         if (Heading == u) return;
 
         Heading = u;
+    }
+
+    public void SetPointer(Room room, Vector2 position)
+    {
+        Pointer.ConfigureVertex(room, position);
+        Pointer.g_ID = 1;
     }
 
     // Vacate current station (if it exists) and occupy the new station

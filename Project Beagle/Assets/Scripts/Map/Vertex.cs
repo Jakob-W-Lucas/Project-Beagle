@@ -5,6 +5,7 @@ using Unity.VisualScripting;
 
 public class Vertex : MonoBehaviour
 {
+    public Vector2 Position;
     // Global room ID
     public int g_ID = -1;
     // ID used for room vertices and stations
@@ -25,7 +26,24 @@ public class Vertex : MonoBehaviour
         this.r_ID = r_ID;
         this.p_ID = p_ID;
         this.Station = station;
+        this.Position = transform.position;
 
+        GatherSurroundingVertices();
+    }
+
+    public void ConfigureVertex(Room room, Vector2 position)
+    {
+        this.Room = room;
+        this.r_ID = -1;
+        this.p_ID = -1;
+        this.Station = null;
+        this.Position = position;
+
+        GatherSurroundingVertices();
+    }
+
+    private void GatherSurroundingVertices()
+    {
         Collider2D s_coll = GetComponent<Collider2D>();
 
         Collider2D[] surrounding_edges = Physics2D.OverlapCircleAll(this.transform.position, _vertexReach);

@@ -64,8 +64,8 @@ public class AgentManager : MonoBehaviour
         if (a.Heading == null) return;
         
         // Continue to move towards the heading vertex if distance is greater than 0.01 in either cardinal direction
-        if (NaiveDistanceCheck(a.transform.position, a.Heading.transform.position)) {
-            a.transform.position = Vector2.MoveTowards(a.transform.position, a.Heading.transform.position, a.Speed * Time.fixedDeltaTime);
+        if (NaiveDistanceCheck(a.transform.position, a.Heading.Position)) {
+            a.transform.position = Vector2.MoveTowards(a.transform.position, a.Heading.Position, a.Speed * Time.fixedDeltaTime);
             return; 
         }
 

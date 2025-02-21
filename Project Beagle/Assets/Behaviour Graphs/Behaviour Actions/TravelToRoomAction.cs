@@ -61,5 +61,10 @@ public partial class TravelToRoomAction : Action
 
         Agent.Value.FollowPath(bestRoute);
     }
+
+    bool NaiveDistanceCheck(Vector2 a, Vector2 b) {
+        // Naive check for distance, faster computation
+        return Math.Abs(a.x - b.x) > 0.01f || Math.Abs(a.y - b.y) > 0.01f;
+    }
 }
 

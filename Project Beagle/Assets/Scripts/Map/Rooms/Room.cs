@@ -1,10 +1,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
-using Unity.VisualScripting;
 using System.Linq;
 using System.Text;
-using UnityEngine.Rendering.VirtualTexturing;
+using UnityUtils;
 
 [RequireComponent(typeof(Collider2D))]
 public class Room : MonoBehaviour
@@ -203,6 +202,9 @@ public class Room : MonoBehaviour
     # endregion
 
     # region Utility
+
+    // Returns the vertices that are cloest to the position on either side
+    public List<Vertex> NearestWithinRoom(Vector2 pos) => _vertices.ToList().Clone().OrderBy(x => Vector2.Distance(pos, x.transform.position)).ToList();
 
     public void PrintAllRoutes()
     {
