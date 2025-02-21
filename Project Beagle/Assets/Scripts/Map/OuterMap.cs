@@ -6,9 +6,10 @@ using System.Linq;
 
 public class OuterMap : MonoBehaviour
 {
+    public RoomDatabase roomDatabase;
     public Map Map { get; private set; }
     [SerializeField] private Room[] _rooms;
-    private Dictionary<RoomType, List<Room>> _lookupRooms = new Dictionary<RoomType, List<Room>>();
+    private List<Room>[] _lookupRooms;
     private Dictionary<Type, List<Station>> _lookupStations = new Dictionary<Type, List<Station>>();
     private List<Vertex> _roomVertices = new List<Vertex>();
 
@@ -16,6 +17,8 @@ public class OuterMap : MonoBehaviour
 
     private void OnEnable() {
         
+        _lookupRooms = new List<Room>[roomDatabase.roomTypes.Length];
+
         if (_rooms.Length == 0) return;
 
         int n = 0;
@@ -41,12 +44,20 @@ public class OuterMap : MonoBehaviour
 
     private void AddToLookup(Room r)
     {
-        if (!_lookupRooms.ContainsKey(r.Type))
+        int index = roomDatabase.GetRoomIndex(r.Type);
+
+        if (index == -1) 
         {
-            _lookupRooms[r.Type] = new List<Room>();
+            Debug.LogWarning($"The room of type {r.Type}, does not exist in the current database");
+            return;
         }
 
-        _lookupRooms[r.Type].Add(r);
+        if (_lookupRooms[index] == null)
+        {
+            _lookupRooms[index] = new List<Room>();
+        }
+
+        _lookupRooms[index].Add(r);
         Debug.Log($"Added: {r.Type} to room");
 
         foreach (Station s in r.Stations)
@@ -107,7 +118,15 @@ public class OuterMap : MonoBehaviour
 
         bool s_station = s.g_ID == -1;
 
-        List<Room> rooms = u_room ? new List<Room>() { u_room } : _lookupRooms[T];
+        int index = roomDatabase.GetRoomIndex(T);
+
+        if (index == -1)
+        {
+            Debug.LogWarning($"The room of type {T}, does not exist in the current database");
+            return null;
+        }
+
+        List<Room> rooms = u_room ? new List<Room>() { u_room } : _lookupRooms[index];
 
         Route contender = new Route();
 
@@ -246,17 +265,6 @@ public class OuterMap : MonoBehaviour
         }
 
         return exitRoute.Join(roomRoute).Join(enterRoute);
-    }
-
-    // Get the list of rooms with type <T>
-    public List<Room> GetRoomsOfType(RoomType T)
-    {
-        if (_lookupRooms.ContainsKey(T))
-        {
-            return _lookupRooms[T];
-        }
-
-        return new List<Room>();
     }
 
     # endregion
