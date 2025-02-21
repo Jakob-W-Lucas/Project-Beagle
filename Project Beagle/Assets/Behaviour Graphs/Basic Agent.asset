@@ -126,7 +126,7 @@ MonoBehaviour:
           m_Value0: 12657728705760878381
           m_Value1: 7608506640987574116
         Name: Rooms
-        m_Value: {fileID: 0}
+        m_Value: {fileID: 11400000, guid: 208efd689baf938458ee6a4acec2cc75, type: 2}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -169,7 +169,7 @@ MonoBehaviour:
   - rid: 3284953104312434955
   - rid: 3284953104312435020
   - rid: 3284953104312435029
-  m_VersionTimestamp: 638757818630240283
+  m_VersionTimestamp: 638757831634396608
   m_DebugInfo: {fileID: 4175278685329229694}
   m_RuntimeGraph: {fileID: 4342619363467918153}
   AssetID:
@@ -2407,7 +2407,7 @@ MonoBehaviour:
         AuthoringAssetID:
           m_Value0: 2599040145095367468
           m_Value1: 7805452853526969352
-        m_DebugInfo: {fileID: 0}
+        m_DebugInfo: {fileID: 4175278685329229694}
         Root:
           rid: 3284953104312435035
         BlackboardReference:
