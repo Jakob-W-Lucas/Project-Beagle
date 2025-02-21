@@ -31,15 +31,15 @@ public class Vertex : MonoBehaviour
         GatherSurroundingVertices();
     }
 
-    public void ConfigureVertex(Room room, Vector2 position)
+    public void ConfigureVertex(Room room, Vector2 position, Station station = null, bool getSurrounding = false)
     {
         this.Room = room;
         this.r_ID = -1;
         this.p_ID = -1;
-        this.Station = null;
+        this.Station = station;
         this.Position = position;
 
-        GatherSurroundingVertices();
+        if (getSurrounding) GatherSurroundingVertices();
     }
 
     private void GatherSurroundingVertices()
@@ -50,9 +50,12 @@ public class Vertex : MonoBehaviour
 
         foreach (Collider2D c in surrounding_edges)
         {
-            if (c == s_coll || c.GetComponent<Station>()) continue;
+            if (c == s_coll || c.GetComponentInParent<Agent>()) continue;
 
-            if (c.TryGetComponent<Vertex>(out Vertex vertex)) AddEdge(vertex);
+            if (c.TryGetComponent<Vertex>(out Vertex vertex)) 
+            {
+                AddEdge(vertex);
+            }
         }
     }
 

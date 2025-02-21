@@ -7,10 +7,11 @@ using System.Linq;
 public class OuterMap : MonoBehaviour
 {
     public RoomDatabase roomDatabase;
+    public StationDatabase stationDatabase;
     public Map Map { get; private set; }
     [SerializeField] private Room[] _rooms;
     private List<Room>[] _lookupRooms;
-    private Dictionary<Type, List<Station>> _lookupStations = new Dictionary<Type, List<Station>>();
+    private List<Station>[] _lookupStations;
     private List<Vertex> _roomVertices = new List<Vertex>();
 
     # region Initialization
@@ -18,6 +19,7 @@ public class OuterMap : MonoBehaviour
     private void OnEnable() {
         
         _lookupRooms = new List<Room>[roomDatabase.roomTypes.Length];
+        _lookupStations = new List<Station>[stationDatabase.stationTypes.Length];
 
         if (_rooms.Length == 0) return;
 
@@ -44,7 +46,7 @@ public class OuterMap : MonoBehaviour
 
     private void AddToLookup(Room r)
     {
-        int index = roomDatabase.GetRoomIndex(r.Type);
+        int index = roomDatabase.GetIndex(r.Type);
 
         if (index == -1) 
         {
@@ -58,7 +60,6 @@ public class OuterMap : MonoBehaviour
         }
 
         _lookupRooms[index].Add(r);
-        Debug.Log($"Added: {r.Type} to room");
 
         foreach (Station s in r.Stations)
         {
@@ -68,14 +69,20 @@ public class OuterMap : MonoBehaviour
 
     private void AddStationToLookup(Station s)
     {
-        Type t = s.GetType();
+        int index = stationDatabase.GetIndex(s.Type);
 
-        if (!_lookupStations.ContainsKey(t))
+        if (index == -1) 
         {
-            _lookupStations[t] = new List<Station>();
+            Debug.LogWarning($"The room of type {s.Type}, does not exist in the current database");
+            return;
         }
 
-        _lookupStations[t].Add(s);
+        if (_lookupStations[index] == null)
+        {
+            _lookupStations[index] = new List<Station>();
+        }
+
+        _lookupStations[index].Add(s);
     }
 
     # endregion
@@ -83,17 +90,23 @@ public class OuterMap : MonoBehaviour
     # region Querying
 
     // Returns the path from any vertex to any station
-    public Route TravelToStation(Vertex s, Type T, Station u_st = null)
+    public Route TravelToStation(Vertex s, StationType T, Station u_st = null)
     {
-        if (u_st && s.Room == u_st.Room) return null;
+        if ((u_st && s.Station == u_st) || (s.Station && s.Station.Type == T)) return null;
 
         bool s_station = s.g_ID == -1;
 
-        List<Station> stations = u_st ? new List<Station>() { u_st } : _lookupStations[T];
+        int index = stationDatabase.GetIndex(T);
+
+        if (index == -1)
+        {
+            Debug.LogWarning($"The room of type {T}, does not exist in the current database");
+            return null;
+        }
+
+        List<Station> stations = u_st ? new List<Station>() { u_st } : _lookupStations[index];
 
         Route contender = new Route();
-
-        if (stations.Contains(s.Station)) return null;
 
         foreach (Station st in stations)
         {
@@ -118,7 +131,7 @@ public class OuterMap : MonoBehaviour
 
         bool s_station = s.g_ID == -1;
 
-        int index = roomDatabase.GetRoomIndex(T);
+        int index = roomDatabase.GetIndex(T);
 
         if (index == -1)
         {
@@ -166,8 +179,8 @@ public class OuterMap : MonoBehaviour
     // Get the route between a room vertex and a station vertex
     private Route RoomToStation(Vertex s, Vertex u)
     {
-        Route roomRoute = null;
-        Route enterRoute = null;
+        Route roomRoute = new Route();
+        Route enterRoute = new Route();
 
         float dist = Mathf.Infinity;
 
@@ -198,8 +211,8 @@ public class OuterMap : MonoBehaviour
     // Get the route between a station vertex and a room vertex
     private Route StationToRoom(Vertex s, Room room)
     {
-        Route exitRoute = null;
-        Route roomRoute = null;
+        Route exitRoute = new Route();
+        Route roomRoute = new Route();
 
         float dist = Mathf.Infinity;
 

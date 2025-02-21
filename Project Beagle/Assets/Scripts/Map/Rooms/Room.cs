@@ -18,7 +18,7 @@ public class Room : MonoBehaviour
     // Room stations
     [SerializeField] private Station[] _stations;
     private List<Vertex> _stationVertices = new List<Vertex>();
-    private Dictionary<Type, List<Station>> _lookupStations = new Dictionary<Type, List<Station>>();
+    private Dictionary<StationType, List<Station>> _lookupStations = new Dictionary<StationType, List<Station>>();
     public Bounds Bounds { get; private set; }
 
     # region Initialization
@@ -33,14 +33,12 @@ public class Room : MonoBehaviour
 
     private void AddStationToLookup(Station station)
     {
-        Type stationType = station.GetType();
-
-        if (!_lookupStations.ContainsKey(stationType))
+        if (!_lookupStations.ContainsKey(station.Type))
         {
-            _lookupStations[stationType] = new List<Station>();
+            _lookupStations[station.Type] = new List<Station>();
         }
 
-        _lookupStations[stationType].Add(station);
+        _lookupStations[station.Type].Add(station);
     }
 
     // Sets up rooms for pathfinding

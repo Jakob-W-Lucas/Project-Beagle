@@ -7,22 +7,38 @@ using Unity.VisualScripting;
 using System.Linq;
 
 [Serializable, GeneratePropertyBag]
-[NodeDescription(name: "TravelToRoom", story: "[Agent] Travels to [Room]", category: "Action", id: "0828c149b271b9b7e3b6d14ed37cc6aa")]
+[NodeDescription(name: "TravelToRoom", story: "[Agent] Travels to Room [Room]", category: "Action", id: "0828c149b271b9b7e3b6d14ed37cc6aa")]
 public partial class TravelToRoomAction : Action
 {
-    [SerializeReference] public BlackboardVariable<OuterMap> Map;
     [SerializeReference] public BlackboardVariable<Agent> Agent;
     [SerializeReference] public BlackboardVariable<RoomType> Room;
+    [SerializeReference] public BlackboardVariable<OuterMap> Map;
+    protected override Status OnStart()
+    {
+        Route originRoute = Map.Value.TravelToRoom(Agent.Value.Origin, Room);
+
+        if (Agent.Value.Heading == null) {
+
+            if (originRoute == null) return Status.Failure;
+
+            Agent.Value.FollowPath(originRoute);
+            return Status.Running;
+        }
+
+        Route headingRoute = Map.Value.TravelToRoom(Agent.Value.Heading, Room);
+
+        if (originRoute == null || headingRoute == null) return Status.Failure;
+
+        Route bestRoute = originRoute.Distance < headingRoute.Distance ? originRoute : headingRoute;
+
+        Agent.Value.FollowPath(bestRoute);
+
+        return Status.Running;
+    }
 
     protected override Status OnUpdate()
     {
         if (Agent.Value.Room && Agent.Value.Room.Type == Room.Value) return Status.Success;
-        
-        if (Agent.Value.Route.Count == 0 && Agent.Value.Heading == null)
-        {
-            GetRoute();
-            return Status.Running;
-        }
 
         if (Agent.Value.Origin == Agent.Value.Heading) {
 
@@ -39,32 +55,6 @@ public partial class TravelToRoomAction : Action
         }
 
         return Status.Running;
-    }
-
-    void GetRoute()
-    {
-        Route originRoute = Map.Value.TravelToRoom(Agent.Value.Origin, Room);
-
-        if (Agent.Value.Heading == null) {
-
-            if (originRoute == null) return;
-
-            Agent.Value.FollowPath(originRoute);
-            return;
-        }
-
-        Route headingRoute = Map.Value.TravelToRoom(Agent.Value.Heading, Room);
-
-        if (originRoute == null || headingRoute == null) return;
-
-        Route bestRoute = originRoute.Distance < headingRoute.Distance ? originRoute : headingRoute;
-
-        Agent.Value.FollowPath(bestRoute);
-    }
-
-    bool NaiveDistanceCheck(Vector2 a, Vector2 b) {
-        // Naive check for distance, faster computation
-        return Math.Abs(a.x - b.x) > 0.01f || Math.Abs(a.y - b.y) > 0.01f;
     }
 }
 

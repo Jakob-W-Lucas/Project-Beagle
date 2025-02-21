@@ -21,7 +21,7 @@ public class RoomDatabase : ScriptableObject
         }
     }
 
-    public int GetRoomIndex(RoomType t)
+    public int GetIndex(RoomType t)
     {
         if (lookup.TryGetValue(t, out var index))
         {
