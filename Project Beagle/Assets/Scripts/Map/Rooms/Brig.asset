@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b00cc5a85e3924d488815118cf4b4258, type: 3}
   m_Name: Brig
   m_EditorClassIdentifier: 
-  Name: Brig
+  Name: 
   Description: 

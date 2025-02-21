@@ -27,13 +27,15 @@ public partial class TravelToRoomAction : Action
         if (Agent.Value.Origin == Agent.Value.Heading) {
 
             // If there are no more vertices to travel to we can stop updating the position
-            if (Agent.Value.Route.Count == 0) {
+            if (Agent.Value.Route.Count == 0) 
+            {
                 Agent.Value.UpdateHeading(null);
-                return Status.Success;
             }
-
-            // Get the next vertex to travel to along the route
-            Agent.Value.UpdateHeading(Agent.Value.Route.Dequeue());
+            else
+            {
+                // Get the next vertex to travel to along the route
+                Agent.Value.UpdateHeading(Agent.Value.Route.Dequeue());
+            }
         }
 
         return Status.Running;
@@ -43,7 +45,7 @@ public partial class TravelToRoomAction : Action
     {
         Route originRoute = Map.Value.TravelToRoom(Agent.Value.Origin, Room);
 
-        if (!Agent.Value.Heading) {
+        if (Agent.Value.Heading == null) {
 
             if (originRoute == null) return;
 

@@ -18,7 +18,7 @@ public partial class TravelToStationAction : Action
 
         Route originRoute = Map.Value.TravelToStation(Agent.Value.Origin, Station.GetType());
 
-        if (!Agent.Value.Heading) {
+        if (Agent.Value.Heading == null) {
             Agent.Value.FollowPath(originRoute);
             return Status.Running;
         }

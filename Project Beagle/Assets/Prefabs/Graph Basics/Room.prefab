@@ -42,7 +42,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8248444834368406044}
   - component: {fileID: 7911252374768993191}
-  - component: {fileID: 3908114086060368503}
+  - component: {fileID: 9029891262342575515}
   m_Layer: 0
   m_Name: Room
   m_TagString: Untagged
@@ -113,7 +113,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &3908114086060368503
+--- !u!114 &9029891262342575515
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -122,13 +122,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 2874677753193377687}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4480dfaa804d594daba353d6dec93a3, type: 3}
+  m_Script: {fileID: 11500000, guid: f1ac91a3c96368b4198aa0527bf79adf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _vertices:
-  - {fileID: 7755935205212709279}
-  _stations:
-  - {fileID: 2143158765465401026}
+  Type: {fileID: 0}
+  _vertices: []
+  _stations: []
 --- !u!1 &3249527081304387088
 GameObject:
   m_ObjectHideFlags: 0
@@ -227,17 +226,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4464029914512775807, guid: 69ed1ee8a15fd1741955696b7a3aec2e, type: 3}
   m_PrefabInstance: {fileID: 212902887501116061}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &7755935205212709279 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7590535652438889218, guid: 69ed1ee8a15fd1741955696b7a3aec2e, type: 3}
-  m_PrefabInstance: {fileID: 212902887501116061}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b2adc64a32e8fa48bf7e04f3e36cb19, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &2710247870438100598
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -295,17 +283,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c1195f1dcc084ea41af779fe5ae180a3, type: 3}
---- !u!114 &2143158765465401026 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4045001706678565044, guid: c1195f1dcc084ea41af779fe5ae180a3, type: 3}
-  m_PrefabInstance: {fileID: 2710247870438100598}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 424a7fc8a2c141e408cc3de09f37f309, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &5874162912015552018 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8365863054076723300, guid: c1195f1dcc084ea41af779fe5ae180a3, type: 3}

@@ -21,6 +21,7 @@ public class Agent : MonoBehaviour
     public Vertex Origin { get; private set; }
     // Current vertex agent is travelling to
     public Vertex Heading { get; private set; }
+    public Vertex Pointer { get; private set; }
     public float Speed = 0.5f;
 
     private void Awake() 
@@ -28,6 +29,7 @@ public class Agent : MonoBehaviour
         BGAgent = GetComponent<BehaviorGraphAgent>();
         Brain = GetComponent<Brain>();
         Sensor = GetComponent<Sensor>();
+        //Pointer = GetComponent<Vertex>();
     }
 
     // Set the origin of the agent (current vertex)

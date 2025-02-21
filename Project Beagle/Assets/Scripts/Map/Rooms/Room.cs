@@ -19,7 +19,7 @@ public class Room : MonoBehaviour
     [SerializeField] private Station[] _stations;
     private List<Vertex> _stationVertices = new List<Vertex>();
     private Dictionary<Type, List<Station>> _lookupStations = new Dictionary<Type, List<Station>>();
-    private Collider2D _bounds;
+    public Bounds Bounds { get; private set; }
 
     # region Initialization
 
@@ -28,7 +28,7 @@ public class Room : MonoBehaviour
 
     private void OnEnable() 
     {
-        _bounds = GetComponent<Collider2D>();
+        Bounds = GetComponent<Collider2D>().bounds;
     }
 
     private void AddStationToLookup(Station station)
@@ -57,12 +57,11 @@ public class Room : MonoBehaviour
         for (int i = 0; i < _vertices.Length; i++)
         {
             _vertices[i].Room = this;
-            _vertices[i].ConfigureVertex();
-
-            // r_ID ID of the vertex relative to the room
-            _vertices[i].r_ID = i + _stations.Length;
-            // p_ID pseudo ID used for room pathfinding
-            _vertices[i].p_ID = i + 1;
+            _vertices[i].ConfigureVertex(
+                this, 
+                i + _stations.Length,   // r_ID ID of the vertex relative to the room
+                i + 1                   // p_ID pseudo ID used for room pathfinding
+            );
 
             RoomEnterRoutes[i] = new Route[_stations.Length]; 
 

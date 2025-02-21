@@ -16,12 +16,16 @@ public class Vertex : MonoBehaviour
     public Station Station;
     // Distance a vertex will look for edges
     [SerializeField] private float _vertexReach = 5f;
-
     public string Name => Station ? $"R-{Room.name}-S-{r_ID}" : $"R-{Room.name}-V-{r_ID}";
 
     // Get all the surrounding vertices and add them to the current edges
-    public void ConfigureVertex()
+    public void ConfigureVertex(Room room, int r_ID, int p_ID, Station station = null)
     {
+        this.Room = room;
+        this.r_ID = r_ID;
+        this.p_ID = p_ID;
+        this.Station = station;
+
         Collider2D s_coll = GetComponent<Collider2D>();
 
         Collider2D[] surrounding_edges = Physics2D.OverlapCircleAll(this.transform.position, _vertexReach);

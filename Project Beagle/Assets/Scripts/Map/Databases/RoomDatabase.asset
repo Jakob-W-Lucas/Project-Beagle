@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: RoomDatabase
   m_EditorClassIdentifier: 
   roomTypes:
-  - {fileID: 11400000, guid: 5781d212cf290954791ac2066a69f9ac, type: 2}
   - {fileID: 11400000, guid: d79363876b7971743b0ac7dec81d8f6a, type: 2}
+  - {fileID: 11400000, guid: 5781d212cf290954791ac2066a69f9ac, type: 2}
   - {fileID: 11400000, guid: 621588b7e2a549e4d90e838d393bb43a, type: 2}
   - {fileID: 11400000, guid: 7fabb52a8fc2c964fbccb822431cc982, type: 2}
   - {fileID: 11400000, guid: fe1e8aba2e1af16499392794d5fc201f, type: 2}

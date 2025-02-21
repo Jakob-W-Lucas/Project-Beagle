@@ -7,7 +7,7 @@ using System.Linq;
 public class OuterMap : MonoBehaviour
 {
     public Map Map { get; private set; }
-    private Room[] _rooms;
+    [SerializeField] private Room[] _rooms;
     private Dictionary<RoomType, List<Room>> _lookupRooms = new Dictionary<RoomType, List<Room>>();
     private Dictionary<Type, List<Station>> _lookupStations = new Dictionary<Type, List<Station>>();
     private List<Vertex> _roomVertices = new List<Vertex>();
@@ -16,8 +16,6 @@ public class OuterMap : MonoBehaviour
 
     private void OnEnable() {
         
-        _rooms = GetComponentsInChildren<Room>();
-
         if (_rooms.Length == 0) return;
 
         int n = 0;
@@ -49,6 +47,7 @@ public class OuterMap : MonoBehaviour
         }
 
         _lookupRooms[r.Type].Add(r);
+        Debug.Log($"Added: {r.Type} to room");
 
         foreach (Station s in r.Stations)
         {
@@ -104,7 +103,7 @@ public class OuterMap : MonoBehaviour
     // Returns the path from any vertex to any room
     public Route TravelToRoom(Vertex s, RoomType T, Room u_room = null)
     {
-        if ((u_room && s.Room == u_room) || !s) return null;
+        if ((u_room && s.Room == u_room) || s == null) return null;
 
         bool s_station = s.g_ID == -1;
 
@@ -274,7 +273,7 @@ public class OuterMap : MonoBehaviour
         {
             foreach (Edge edge in vertex.Edges)
             {
-                if (edge.Enabled && !edge.End.GetComponent<Station>())
+                if (edge.Enabled && !edge.End.Station)
                 {
                     Gizmos.DrawLine(vertex.transform.position, edge.End.transform.position);
                     Debug.DrawLine(vertex.transform.position, edge.End.transform.position, Color.red);
