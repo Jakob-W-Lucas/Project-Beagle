@@ -13,7 +13,7 @@ public class Agent : MonoBehaviour
     public Brain Brain { get; private set; }
 
     // Current route for the agent to follow
-    public Queue<Vertex> Route { get; private set; } = new Queue<Vertex>();
+    public Queue<Vertex> Route { get; set; } = new Queue<Vertex>();
     public Room Room { get; private set; }
     // Current station of the agent (station of origin or station of destination vertex, if travelling)
     public Station Station { get; private set; }
@@ -22,6 +22,7 @@ public class Agent : MonoBehaviour
     // Current vertex agent is travelling to
     public Vertex Heading { get; private set; }
     public Vertex Pointer { get; private set; }
+    public Agent Target;
     public float Speed = 0.5f;
 
     private void Awake() 

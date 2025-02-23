@@ -8,7 +8,6 @@ using UnityUtils;
 [RequireComponent(typeof(Collider2D))]
 public class Room : MonoBehaviour
 {
-    public int ID;
     public RoomType Type;
     // Routes from any station to any room vertex
     public Route[][] RoomExitRoutes;

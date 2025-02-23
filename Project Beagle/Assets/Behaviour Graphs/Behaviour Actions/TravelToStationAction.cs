@@ -17,7 +17,7 @@ public partial class TravelToStationAction : Action
 
         if (Agent.Value.Heading == null) {
 
-            if (originRoute == null) return Status.Failure;
+            if (originRoute.Distance == Mathf.Infinity) return Status.Failure;
 
             Agent.Value.FollowPath(originRoute);
             return Status.Running;
@@ -25,7 +25,7 @@ public partial class TravelToStationAction : Action
 
         Route headingRoute = Map.Value.TravelToStation(Agent.Value.Heading, Station);
 
-        if (originRoute == null || headingRoute == null) return Status.Failure;
+        if (originRoute.Distance == Mathf.Infinity && headingRoute.Distance == Mathf.Infinity) return Status.Failure;
 
         Route bestRoute = originRoute.Distance < headingRoute.Distance ? originRoute : headingRoute;
 

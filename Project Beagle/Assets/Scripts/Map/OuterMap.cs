@@ -25,9 +25,7 @@ public class OuterMap : MonoBehaviour
 
         int n = 0;
         foreach (Room room in _rooms)
-        {   
-            if (!room.isActiveAndEnabled) continue;
-            
+        {  
             room.ConfigureRoom();
             AddToLookup(room);
             
@@ -96,9 +94,9 @@ public class OuterMap : MonoBehaviour
 
         bool s_station = s.g_ID == -1;
 
-        int index = stationDatabase.GetIndex(T);
+        int index = T ? stationDatabase.GetIndex(T) : -1;
 
-        if (index == -1)
+        if (T && index == -1)
         {
             Debug.LogWarning($"The room of type {T}, does not exist in the current database");
             return null;
@@ -131,9 +129,9 @@ public class OuterMap : MonoBehaviour
 
         bool s_station = s.g_ID == -1;
 
-        int index = roomDatabase.GetIndex(T);
+        int index = T ? roomDatabase.GetIndex(T) : -1;
 
-        if (index == -1)
+        if (T && index == -1)
         {
             Debug.LogWarning($"The room of type {T}, does not exist in the current database");
             return null;

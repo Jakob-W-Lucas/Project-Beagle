@@ -6,5 +6,6 @@ public enum ActionState
 {
     Idle,
     Travel,
+    Follow,
     Attack
 }
