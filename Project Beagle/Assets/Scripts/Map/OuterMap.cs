@@ -87,6 +87,12 @@ public class OuterMap : MonoBehaviour
 
     # region Querying
 
+    public Route Travel(ILocation location)
+    {
+        location.GetType();
+        return null;
+    }
+
     // Returns the path from any vertex to any station
     public Route TravelToStation(Vertex s, StationType T, Station u_st = null)
     {

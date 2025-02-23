@@ -26,6 +26,12 @@ public partial class FollowAgentAction : Action
 
     protected override Status OnUpdate()
     {
+        if (Target.Route.Count == 0) 
+        {
+            Agent.Value.FollowPath(new Route(Agent.Value.Origin, Target.Origin));
+            return Status.Running;
+        }
+
         if (Agent.Value.Origin == Agent.Value.Heading) {
 
             // If there are no more vertices to travel to we can stop updating the position
