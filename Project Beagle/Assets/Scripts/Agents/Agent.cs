@@ -14,7 +14,7 @@ public class Agent : MonoBehaviour
 
     // Current route for the agent to follow
     public Queue<Vertex> Route { get; set; } = new Queue<Vertex>();
-    public Room Room { get; private set; }
+    public Room Room { get; set; }
     // Current station of the agent (station of origin or station of destination vertex, if travelling)
     public Station Station { get; private set; }
     // Most recently occupied vertex of the agent

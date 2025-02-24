@@ -10,13 +10,18 @@ using System.Collections.Generic;
 public partial class TravelToNearestRoomVertexAction : Action
 {
     [SerializeReference] public BlackboardVariable<Agent> Agent;
+    [SerializeReference] public BlackboardVariable<OuterMap> Map;
     Room room;
     List<Vertex> vertices;
 
     protected override Status OnStart()
     {
         room = Agent.Value.Room;
-        vertices = room.NearestWithinRoom(Agent.Value.transform.position);
+
+        vertices = 
+            room == null ? 
+            vertices = new List<Vertex>{ Map.Value.Map.GetNearestVertex(Agent.Value.transform.position) } :
+            vertices = room.NearestWithinRoom(Agent.Value.transform.position);
 
         return Status.Running;
     }

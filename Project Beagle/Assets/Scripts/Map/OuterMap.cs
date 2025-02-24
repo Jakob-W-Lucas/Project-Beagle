@@ -32,10 +32,9 @@ public class OuterMap : MonoBehaviour
             foreach (Vertex v in room.Vertices)
             {
                 v.g_ID = n;
-                Debug.Log($"add vertex {v.g_ID}");
-                n++;
-
                 _roomVertices.Add(v);
+
+                n++;
             }
         }
 
@@ -87,10 +86,29 @@ public class OuterMap : MonoBehaviour
 
     # region Querying
 
-    public Route Travel(ILocation location)
+    public Route TravelToVertex(Vertex s, Vertex u)
     {
-        location.GetType();
-        return null;
+        if (u.Station) {
+            return TravelToStation (
+                s, 
+                null, 
+                u.Station
+            );
+        }
+        
+        Route route = TravelToRoom (
+            s,
+            null,
+            u.Room
+        );
+
+        // Destination is a pointer (does not exist as a room or station)
+        // if (u.g_ID == -1 && u.r_ID == -1)
+        // {
+        //     route.Vertices.Add(u);
+        // }
+
+        return route;
     }
 
     // Returns the path from any vertex to any station

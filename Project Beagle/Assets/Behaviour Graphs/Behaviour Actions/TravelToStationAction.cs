@@ -42,7 +42,7 @@ public partial class TravelToStationAction : Action
             return Status.Success;
         }
 
-        if (Agent.Value.Origin == Agent.Value.Heading) {
+        if (Agent.Value.Heading == Agent.Value.Origin && (Vector2)Agent.Value.transform.position == Agent.Value.Origin.Position) {
 
             // If there are no more vertices to travel to we can stop updating the position
             if (Agent.Value.Route.Count == 0) 

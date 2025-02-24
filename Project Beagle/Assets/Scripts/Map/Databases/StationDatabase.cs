@@ -16,8 +16,6 @@ public class StationDatabase : ScriptableObject
             if (lookup.TryGetValue(stationTypes[i], out var none)) continue;
 
             lookup.Add(stationTypes[i], i);
-
-            Debug.Log($"Database adding {stationTypes[i]}");
         }
     }
 

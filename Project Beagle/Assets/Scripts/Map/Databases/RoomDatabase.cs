@@ -16,8 +16,6 @@ public class RoomDatabase : ScriptableObject
             if (lookup.TryGetValue(roomTypes[i], out var none)) continue;
 
             lookup.Add(roomTypes[i], i);
-
-            Debug.Log($"Database adding {roomTypes[i]}");
         }
     }
 

@@ -5,6 +5,7 @@ using Action = Unity.Behavior.Action;
 using Unity.Properties;
 using System.Linq;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 
 [Serializable, GeneratePropertyBag]
 [NodeDescription(name: "FollowAgent", story: "[Agent] follows Target", category: "Action", id: "f2b14d4f02aa7c8ffdeba446869c9008")]
@@ -21,18 +22,13 @@ public partial class FollowAgentAction : Action
         Target = Agent.Value.Target;
         
         if (Target == null) return Status.Failure;
+        
         return Status.Running;
     }
 
     protected override Status OnUpdate()
     {
-        if (Target.Route.Count == 0) 
-        {
-            Agent.Value.FollowPath(new Route(Agent.Value.Origin, Target.Origin));
-            return Status.Running;
-        }
-
-        if (Agent.Value.Origin == Agent.Value.Heading) {
+        if (Agent.Value.Heading == Agent.Value.Origin && (Vector2)Agent.Value.transform.position == Agent.Value.Origin.Position) {
 
             // If there are no more vertices to travel to we can stop updating the position
             if (Agent.Value.Route.Count == 0) 
@@ -46,55 +42,52 @@ public partial class FollowAgentAction : Action
             }
         }
 
-        if (caught)
+        if (Target.Origin.Position == (Vector2)Agent.Value.transform.position) 
         {
             Agent.Value.Route = new Queue<Vertex>(Target.Route);
             Agent.Value.UpdateHeading(Target.Heading);
-            
+
             return Status.Running;
         }
 
-        if (Target.Origin == Agent.Value.Origin) 
-        {
-            caught = true;
-            return Status.Running;
-        }
-
-        if (Target.Route.Last() != CurrentTargetDestination) ChangeRoutes();
-
+        ChangeRoutes();
+        
         return Status.Running;
     }
 
     void ChangeRoutes()
     {
-        CurrentTargetDestination = Target.Route.Last();
-
-        if (Target.Room == Agent.Value.Room)
+        Vertex current = null;
+        if (Target.Route.Count == 0)
         {
-            Agent.Value.FollowPath(new Route(Agent.Value.Origin, Target.Origin));
+            current = Target.Heading ? Target.Heading : Target.Origin;
+        }
+        else
+        {
+            current = Target.Route.Last();
+        }
+
+        if (Target.Heading == CurrentTargetDestination) return;
+
+        CurrentTargetDestination = Target.Heading;
+        
+        Route originRoute = Map.Value.TravelToVertex(Agent.Value.Origin, CurrentTargetDestination);
+        
+        if (Agent.Value.Heading == null) {
+
+            if (originRoute == null) return;
+
+            Agent.Value.FollowPath(originRoute);
             return;
         }
 
-        if (CurrentTargetDestination.Station) 
-        {
-            Agent.Value.FollowPath(
-                Map.Value.TravelToStation(
-                    Agent.Value.Origin, 
-                    null, 
-                    CurrentTargetDestination.Station
-                )
-            );
+        Route headingRoute = Map.Value.TravelToVertex(Agent.Value.Heading, CurrentTargetDestination);
 
-            return;
-        }
+        if (originRoute == null || headingRoute == null) return;
 
-        Agent.Value.FollowPath(
-            Map.Value.TravelToRoom(
-                Agent.Value.Origin, 
-                null, 
-                CurrentTargetDestination.Room
-            )
-        );
+        Route bestRoute = originRoute.Distance < headingRoute.Distance ? originRoute : headingRoute;
+
+        Agent.Value.FollowPath(bestRoute);
     }
 }
 

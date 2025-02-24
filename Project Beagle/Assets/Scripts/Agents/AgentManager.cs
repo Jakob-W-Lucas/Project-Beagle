@@ -18,11 +18,6 @@ public class AgentManager : MonoBehaviour
         _map = OuterMap.Map;
 
         StartCoroutine(DelayUpdate());
-        
-        foreach (Agent a in _agents)
-        {
-            a.UpdateOrigin(_map.GetNearestVertex(a.transform.position));
-        }
     }
 
     private void FixedUpdate() 
@@ -70,6 +65,8 @@ public class AgentManager : MonoBehaviour
         }
 
         a.UpdateOrigin(a.Heading);
+        
+        a.transform.position = a.Heading.Position;
     }
 
     bool NaiveDistanceCheck(Vector2 a, Vector2 b) {
