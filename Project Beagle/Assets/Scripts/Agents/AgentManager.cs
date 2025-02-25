@@ -65,7 +65,7 @@ public class AgentManager : MonoBehaviour
         }
 
         a.UpdateOrigin(a.Heading);
-        
+
         a.transform.position = a.Heading.Position;
     }
 
