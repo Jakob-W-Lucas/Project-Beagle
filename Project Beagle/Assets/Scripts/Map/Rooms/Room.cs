@@ -21,7 +21,6 @@ public class Room : MonoBehaviour
     public Bounds Bounds { get; private set; }
 
     # region Initialization
-
     public Vertex[] Vertices => _vertices;
     public Station[] Stations => _stations;
 

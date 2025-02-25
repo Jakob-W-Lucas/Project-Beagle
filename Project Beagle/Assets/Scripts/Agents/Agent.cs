@@ -1,9 +1,7 @@
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Unity.Behavior;
 using UnityEngine;
-using UnityUtils;
 
 [RequireComponent(typeof(Health))]
 public class Agent : MonoBehaviour
