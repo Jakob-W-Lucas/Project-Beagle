@@ -27,11 +27,11 @@ public partial class MoveWithinRoomAction : Action
 
         Agent.Value.SetPointer(room, Agent.Value.transform.position.With(x:rand));
 
-        CurrentPointer = Agent.Value.Pointer;
-
         Agent.Value.Route.Clear();
 
         Agent.Value.UpdateHeading(Agent.Value.Pointer);
+
+        CurrentPointer = Agent.Value.Pointer;
 
         return Status.Running;
     }

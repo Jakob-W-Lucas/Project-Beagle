@@ -5526,7 +5526,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BGAgent: {fileID: 0}
   Target: {fileID: 0}
-  Speed: 4
+  Speed: 1
 --- !u!58 &1315457579
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -7993,7 +7993,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BGAgent: {fileID: 0}
   Target: {fileID: 1315457578}
-  Speed: 4
+  Speed: 3
 --- !u!114 &1699166575
 MonoBehaviour:
   m_ObjectHideFlags: 0

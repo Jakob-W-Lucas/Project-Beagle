@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Unity.Behavior;
 using UnityEngine;
+using UnityUtils;
 
 [RequireComponent(typeof(Health))]
 public class Agent : MonoBehaviour
@@ -22,6 +23,7 @@ public class Agent : MonoBehaviour
     // Current vertex agent is travelling to
     public Vertex Heading { get; private set; }
     public Vertex Pointer { get; private set; }
+    public Vertex PositionVertex { get; private set; }
     public Agent Target;
     public float Speed = 0.5f;
 
@@ -31,6 +33,7 @@ public class Agent : MonoBehaviour
         Brain = GetComponent<Brain>();
         Sensor = GetComponent<Sensor>();
         Pointer = GetComponent<Vertex>();
+        PositionVertex = GetComponentInChildren<Vertex>();
     }
 
     // Set the origin of the agent (current vertex)
@@ -103,5 +106,22 @@ public class Agent : MonoBehaviour
         }
 
         VacateStation();
+    }
+
+    public void NextHeading()
+    {
+        if (Heading == Origin && (Vector2)transform.position == Heading.Position) {
+
+            // If there are no more vertices to travel to we can stop updating the position
+            if (Route.Count == 0) 
+            {
+                UpdateHeading(null);
+            }
+            else
+            {
+                // Get the next vertex to travel to along the route
+                UpdateHeading(Route.Dequeue());
+            }
+        }
     }
 }
