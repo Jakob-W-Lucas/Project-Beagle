@@ -15,23 +15,7 @@ public partial class TravelToRoomAction : Action
     [SerializeReference] public BlackboardVariable<OuterMap> Map;
     protected override Status OnStart()
     {
-        Route originRoute = Map.Value.TravelToRoom(Agent.Value.Origin, Room);
-
-        if (Agent.Value.Heading == null) {
-
-            if (originRoute == null) return Status.Failure;
-
-            Agent.Value.FollowPath(originRoute);
-            return Status.Running;
-        }
-
-        Route headingRoute = Map.Value.TravelToRoom(Agent.Value.Heading, Room);
-
-        if (originRoute == null || headingRoute == null) return Status.Failure;
-
-        Route bestRoute = originRoute.Distance < headingRoute.Distance ? originRoute : headingRoute;
-
-        Agent.Value.FollowPath(bestRoute);
+        Agent.Value.FollowPath(Map.Value.Travel(Agent.Value, Room));
 
         return Status.Running;
     }
@@ -40,20 +24,7 @@ public partial class TravelToRoomAction : Action
     {
         if (Agent.Value.Room && Agent.Value.Room.Type == Room.Value) return Status.Success;
 
-        // This doesn't work
-        if (Agent.Value.Heading == Agent.Value.Origin && (Vector2)Agent.Value.transform.position == Agent.Value.Origin.Position) {
-
-            // If there are no more vertices to travel to we can stop updating the position
-            if (Agent.Value.Route.Count == 0) 
-            {
-                Agent.Value.UpdateHeading(null);
-            }
-            else
-            {
-                // Get the next vertex to travel to along the route
-                Agent.Value.UpdateHeading(Agent.Value.Route.Dequeue());
-            }
-        }
+        Agent.Value.NextHeading();
 
         return Status.Running;
     }

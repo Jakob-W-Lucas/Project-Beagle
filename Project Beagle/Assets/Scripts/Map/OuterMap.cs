@@ -86,33 +86,59 @@ public class OuterMap : MonoBehaviour
 
     # region Querying
 
-    public Route TravelToVertex(Vertex s, Vertex u)
+    /// <summary>
+    /// Determines the best route for an agent to travel based on the provided action.
+    /// </summary>
+    /// <param name="a">The agent for which the travel route is being determined.</param>
+    /// <param name="action">A function that takes a vertex and returns a route.</param>
+    /// <returns>The route with the shorter distance between the agent's origin and heading.</returns>
+    
+    public Route Travel(Agent a, StationType T, Station u_st = null)
     {
-        if (u.Station) {
-            return TravelToStation (
-                s, 
-                null, 
-                u.Station
-            );
+        List<Vertex> vertices;
+        if (a.Origin.r_ID == -1 || a.Heading.r_ID == -1)
+        {
+            vertices = GetNearestRoomVertex(a).ToList();
         }
-        
-        Route route = TravelToRoom (
-            s,
-            null,
-            u.Room
-        );
+        else
+        {
+            vertices = new List<Vertex>() { a.Origin };
+            if (a.Heading != null) vertices.Add(a.Heading);
+        }
 
-        // Destination is a pointer (does not exist as a room or station)
-        // if (u.g_ID == -1 && u.r_ID == -1)
-        // {
-        //     route.Vertices.Add(u);
-        // }
+        Route route = new Route();
+        foreach (Vertex v in vertices)
+        {
+            route = CompareRoutes(route, TravelToStation(v, T, u_st));
+        }
+
+        return route;
+    }
+
+    public Route Travel(Agent a, RoomType T, Room u_room = null)
+    {
+        List<Vertex> vertices;
+        if (a.Origin.r_ID == -1 || a.Heading.r_ID == -1)
+        {
+            vertices = GetNearestRoomVertex(a).ToList();
+        }
+        else
+        {
+            vertices = new List<Vertex>() { a.Origin };
+            if (a.Heading != null) vertices.Add(a.Heading);
+        }
+
+        Route route = new Route();
+        foreach (Vertex v in vertices)
+        {
+            route = CompareRoutes(route, TravelToRoom(v, T, u_room));
+        }
 
         return route;
     }
 
     // Returns the path from any vertex to any station
-    public Route TravelToStation(Vertex s, StationType T, Station u_st = null)
+    private Route TravelToStation(Vertex s, StationType T, Station u_st = null)
     {
         if ((u_st && s.Station == u_st) || (s.Station && s.Station.Type == T)) return null;
 
@@ -147,9 +173,9 @@ public class OuterMap : MonoBehaviour
     }
 
     // Returns the path from any vertex to any room
-    public Route TravelToRoom(Vertex s, RoomType T, Room u_room = null)
+    private Route TravelToRoom(Vertex s, RoomType T, Room u_room = null)
     {
-        if ((u_room && s.Room == u_room) || s == null) return null;
+        if (s == null) return null;
 
         bool s_station = s.g_ID == -1;
 
@@ -300,6 +326,31 @@ public class OuterMap : MonoBehaviour
         }
 
         return exitRoute.Join(roomRoute).Join(enterRoute);
+    }
+
+    /// <summary>
+    /// Retrieves the closest room vertices to the left and right of the agent
+    /// </summary>
+    /// <param name="a">The agent for which the travel route is being determined.</param>
+    /// <returns>The cloest vertex to the left and the right of the agent.</returns>
+
+    private Vertex[] GetNearestRoomVertex(Agent a)
+    {
+        List<Vertex> vertices = new List<Vertex>{ Map.GetNearestVertex(a.transform.position) };
+        Vertex[] leftRightVertices = new Vertex[2] { vertices[0], null};
+
+        int direction = vertices[0].Position.x > a.transform.position.x ? 1 : -1;
+        foreach (Vertex v in vertices)
+        {
+            int newDirection = v.Position.x > a.transform.position.x ? 1 : -1;
+            if (newDirection != direction)
+            {
+                leftRightVertices[1] = v;
+                break;
+            }
+        }
+
+        return leftRightVertices;
     }
 
     # endregion
