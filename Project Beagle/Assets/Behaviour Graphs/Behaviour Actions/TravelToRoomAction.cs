@@ -24,7 +24,7 @@ public partial class TravelToRoomAction : Action
     {
         if (Agent.Value.Room && Agent.Value.Room.Type == Room.Value) return Status.Success;
 
-        Agent.Value.NextHeading();
+        Agent.Value.GetNextHeading();
 
         return Status.Running;
     }

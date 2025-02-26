@@ -22,7 +22,7 @@ public partial class TravelToStationAction : Action
     {
         if (Agent.Value.Origin.Station && Agent.Value.Origin.Station.Type == Station.Value) return Status.Success;
 
-        Agent.Value.NextHeading();
+        Agent.Value.GetNextHeading();
 
         return Status.Running;
     }
