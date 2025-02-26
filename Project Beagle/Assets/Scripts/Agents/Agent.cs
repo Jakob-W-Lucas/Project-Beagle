@@ -21,8 +21,9 @@ public class Agent : MonoBehaviour
     // Current vertex agent is travelling to
     public Vertex Heading { get; private set; }
     public Vertex Pointer { get; private set; }
-    public Vertex PositionVertex { get; private set; }
-    public Agent Target;
+
+    public GameObject test;
+    public FollowAgent Follow;
     public float Speed = 0.5f;
 
     private void Awake() 
@@ -31,7 +32,10 @@ public class Agent : MonoBehaviour
         Brain = GetComponent<Brain>();
         Sensor = GetComponent<Sensor>();
         Pointer = GetComponent<Vertex>();
-        PositionVertex = GetComponentInChildren<Vertex>();
+    }
+
+    private void Update() {
+        if (test) test.transform.position = Pointer.Position;
     }
 
     // Set the origin of the agent (current vertex)
@@ -106,7 +110,7 @@ public class Agent : MonoBehaviour
         VacateStation();
     }
 
-    public void NextHeading()
+    public void GetNextHeading()
     {
         if (Heading == Origin && (Vector2)transform.position == Heading.Position) {
 

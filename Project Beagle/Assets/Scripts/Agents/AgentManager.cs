@@ -4,6 +4,14 @@ using System.Collections.Generic;
 using System.Data.Common;
 using UnityEngine;
 
+[System.Serializable]
+public class FollowAgent
+{
+    public Agent Target;
+    public float HardDistance;
+    public float SoftDistance;
+}
+
 public class AgentManager : MonoBehaviour
 {
     [SerializeField] private float _delayUpdateTime = 0.5f;
