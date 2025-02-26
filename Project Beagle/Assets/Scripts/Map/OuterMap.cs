@@ -348,6 +348,13 @@ public class OuterMap : MonoBehaviour
         return leftRightVertices;
     }
 
+    public Route GetRoute(Vertex s, Vertex u) 
+    {
+        if (s.Station || u.Station) return new Route();
+
+        return Map.Routes[s.g_ID][u.g_ID];
+    }
+
     # endregion
 
     # region Utility
