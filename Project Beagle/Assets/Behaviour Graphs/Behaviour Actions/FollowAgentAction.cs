@@ -8,6 +8,22 @@ using UnityUtils;
 using System.Linq;
 using Unity.VisualScripting;
 
+public class Point
+{
+    public Vertex Vertex;
+    public Vector2 Position;
+    public bool IsPointer;
+    public bool IsStation;
+
+    public Point(Vertex v)
+    {
+        Vertex = v;
+        Position = v.Position;
+        IsPointer = v.IsPointer;
+        IsStation = v.IsStation;
+    }
+}
+
 [Serializable, GeneratePropertyBag]
 [NodeDescription(name: "FollowAgent", story: "[Agent] follows Target", category: "Action", id: "f2b14d4f02aa7c8ffdeba446869c9008")]
 public partial class FollowAgentAction : Action
@@ -16,7 +32,7 @@ public partial class FollowAgentAction : Action
     [SerializeReference] public BlackboardVariable<OuterMap> Map;
     Agent Target;
     Vertex COrigin;
-    public Queue<Vertex> Stack = new Queue<Vertex>();
+    public Queue<Point> Stack = new Queue<Point>();
 
     Vertex[] Ends = new Vertex[2];
 
@@ -33,8 +49,8 @@ public partial class FollowAgentAction : Action
             Ends = new Vertex[2] { Target.Origin, Target.Heading };
         }
 
-        Stack.Enqueue(Ends[0]);
-        Stack.Enqueue(Ends[1]);
+        Stack.Enqueue(new Point(Ends[0]));
+        //Stack.Enqueue(Ends[1]);
 
         COrigin = Target.Origin;
 
@@ -49,37 +65,59 @@ public partial class FollowAgentAction : Action
 
         if (Target.Origin == COrigin) return Status.Running;
 
-        if (Target.Origin.g_ID == -1 && Target.Origin.r_ID == -1) return Status.Running;
-
-        if (Target.Origin.g_ID == -1)
+        if (Target.Origin.IsPointer)
         {
-            if (Stack.Count > 0 && Stack.Last().g_ID == -1)
+            if (Stack.Count > 0 && Stack.Last().IsPointer)
             {
-                Stack.Dequeue();
-                Stack.Enqueue(Target.Origin);
+                if (Vector2.Distance(Target.Origin.Position, Stack.ElementAt(1).Position) > 
+                Vector2.Distance(Stack.Last().Position, Stack.ElementAt(1).Position))
+                {
+                    Stack.Dequeue();
+                    Stack.Enqueue(new Point(Target.Origin));
+                }
             }
             else
             {
-                Stack.Enqueue(Target.Origin);
+                Stack.Enqueue(new Point(Target.Origin));
             }
         }
-        else if (Stack.Count > 0 && Stack.Last().g_ID == -1)
+        else if (Stack.Count > 0 && Stack.Last().IsPointer)
         {
             Stack.Dequeue();
         }
 
+        if (Target.Origin.IsStation)
+        {
+            if (Stack.Count > 0 && Stack.Last().IsStation)
+            {
+                if (Vector2.Distance(Target.Origin.Position, Stack.ElementAt(1).Position) > 
+                Vector2.Distance(Stack.Last().Position, Stack.ElementAt(1).Position))
+                {
+                    Stack.Dequeue();
+                    Stack.Enqueue(new Point(Target.Origin));
+                }
+            }
+            else
+            {
+                Stack.Enqueue(new Point(Target.Origin));
+            }
+        }
+        else if (Stack.Count > 0 && Stack.Last().IsStation)
+        {
+            Stack.Dequeue();
+        }
 
         if (Stack.Count > 10)
         {
-            Vertex vertex = Stack.Dequeue();
+            Vertex vertex = Stack.Dequeue().Vertex;
             vertex.GetComponent<SpriteRenderer>().color = Color.gray;
         }
         
-        Stack.Enqueue(Target.Origin);
+        Stack.Enqueue(new Point(Target.Origin));
         
-        foreach (Vertex v in Stack)
+        foreach (Point p in Stack)
         {
-            v.GetComponent<SpriteRenderer>().color = Color.red;
+            p.Vertex.GetComponent<SpriteRenderer>().color = Color.red;
         }
 
         COrigin = Target.Origin;
@@ -91,7 +129,7 @@ public partial class FollowAgentAction : Action
     {
         float remainingDistance = distance;
 
-        Vertex origin = Stack.Last();
+        Point origin = Stack.Last();
         float segmentDistance = Vector2.Distance(Target.transform.position, origin.Position);
 
         if (Vector2.Distance(Target.transform.position, Agent.Value.Pointer.Position) < remainingDistance && 
@@ -109,8 +147,8 @@ public partial class FollowAgentAction : Action
 
         for (int i = Stack.Count - 1; i > 0; i--)
         {
-            Vertex current = Stack.ElementAt(i);
-            Vertex next = Stack.ElementAt(i - 1);
+            Point current = Stack.ElementAt(i);
+            Point next = Stack.ElementAt(i - 1);
             
             segmentDistance = Vector2.Distance(current.Position, next.Position);
 

@@ -19,6 +19,9 @@ public class Vertex : MonoBehaviour
     [SerializeField] private float _vertexReach = 5f;
     public string Name => Station ? $"R-{Room.name}-S-{r_ID}" : $"R-{Room.name}-V-{r_ID}";
 
+    public bool IsStation => g_ID == -1 && r_ID != -1;
+    public bool IsPointer => g_ID == -1 && r_ID == -1;
+
     // Get all the surrounding vertices and add them to the current edges
     public void ConfigureVertex(Room room, int r_ID, int p_ID, Station station = null)
     {
