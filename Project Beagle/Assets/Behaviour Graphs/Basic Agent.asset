@@ -126,7 +126,7 @@ MonoBehaviour:
           m_Value0: 12657728705760878381
           m_Value1: 7608506640987574116
         Name: Rooms
-        m_Value: {fileID: 0}
+        m_Value: {fileID: 11400000, guid: 208efd689baf938458ee6a4acec2cc75, type: 2}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -179,7 +179,7 @@ MonoBehaviour:
   - rid: 3284953114845118986
   - rid: 3284953114845119070
   - rid: 3284953158298632357
-  m_VersionTimestamp: 638761932187641816
+  m_VersionTimestamp: 638762991788874644
   m_DebugInfo: {fileID: 4175278685329229694}
   m_RuntimeGraph: {fileID: 4342619363467918153}
   AssetID:
@@ -309,7 +309,7 @@ MonoBehaviour:
     Variables: []
     NamedChildren: []
   - Name: FollowAgent
-    Story: '[Agent] follows Target within [Distance]'
+    Story: '[Agent] follows Target'
     RuntimeTypeID:
       m_Value0: 10339325771432964594
       m_Value1: 617165249474522109
@@ -318,11 +318,6 @@ MonoBehaviour:
       Type:
         m_SerializableType: Agent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
           PublicKeyToken=null
-      Tooltip: 
-    - Name: Distance
-      Type:
-        m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
-          PublicKeyToken=b77a5c561934e089
       Tooltip: 
     - Name: Map
       Type:
@@ -2853,7 +2848,6 @@ MonoBehaviour:
           m_Value1: 617165249474522109
         m_FieldValues:
         - rid: 3284953114845119073
-        - rid: 3284953211888205916
         - rid: 3284953145737740292
     - rid: 3284953114845119071
       type: {class: PortModel, ns: Unity.Behavior.GraphFramework, asm: Unity.Behavior.GraphFramework}
@@ -3028,25 +3022,6 @@ MonoBehaviour:
         IsExposed: 1
         m_IsShared: 0
         m_Value: {fileID: 0}
-    - rid: 3284953211888205916
-      type: {class: BehaviorGraphNodeModel/FieldModel, ns: Unity.Behavior, asm: Unity.Behavior.Authoring}
-      data:
-        FieldName: Distance
-        Type:
-          m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
-            PublicKeyToken=b77a5c561934e089
-        LocalValue:
-          rid: 3284953211888205917
-        LinkedVariable:
-          rid: -2
-    - rid: 3284953211888205917
-      type: {class: 'BlackboardVariable`1[[System.Single, mscorlib]]', ns: Unity.Behavior, asm: Unity.Behavior}
-      data:
-        GUID:
-          m_Value0: 0
-          m_Value1: 0
-        Name: 
-        m_Value: 0.2
 --- !u!114 &4175278685329229694
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3088,7 +3063,7 @@ MonoBehaviour:
         AuthoringAssetID:
           m_Value0: 2599040145095367468
           m_Value1: 7805452853526969352
-        m_DebugInfo: {fileID: 0}
+        m_DebugInfo: {fileID: 4175278685329229694}
         Root:
           rid: 3284953211888206000
         BlackboardReference:
@@ -3281,8 +3256,6 @@ MonoBehaviour:
           rid: 3284953211888206013
         Agent:
           rid: 3284953211888206023
-        Distance:
-          rid: 3284953211888206024
         Map:
           rid: 3284953211888206010
     - rid: 3284953211888206018
@@ -3384,14 +3357,6 @@ MonoBehaviour:
         m_Value: {fileID: 0}
         m_LinkedVariable:
           rid: 3284953211888206008
-    - rid: 3284953211888206024
-      type: {class: 'BlackboardVariable`1[[System.Single, mscorlib]]', ns: Unity.Behavior, asm: Unity.Behavior}
-      data:
-        GUID:
-          m_Value0: 0
-          m_Value1: 0
-        Name: 
-        m_Value: 0.2
     - rid: 3284953211888206025
       type: {class: 'GameObjectToComponentBlackboardVariable`1[[Agent, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:

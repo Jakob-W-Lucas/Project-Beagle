@@ -153,4 +153,4 @@ MonoBehaviour:
   p_ID: -1
   Room: {fileID: 0}
   Station: {fileID: 0}
-  _vertexReach: 3
+  _vertexReach: 2.5
