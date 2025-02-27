@@ -57,7 +57,6 @@ public class Agent : MonoBehaviour
     public void SetPointer(Room room, Vector2 position)
     {
         Pointer.ConfigureVertex(room, position);
-        Pointer.g_ID = 1;
     }
 
     // Vacate current station (if it exists) and occupy the new station

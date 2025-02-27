@@ -49,9 +49,27 @@ public partial class FollowAgentAction : Action
 
         if (Target.Origin == COrigin) return Status.Running;
 
-        if (Target.Origin.g_ID == -1 || Target.Origin.r_ID == -1) return Status.Running;
+        if (Target.Origin.g_ID == -1 && Target.Origin.r_ID == -1) return Status.Running;
 
-        if (Stack.Count > 5)
+        if (Target.Origin.g_ID == -1)
+        {
+            if (Stack.Count > 0 && Stack.Last().g_ID == -1)
+            {
+                Stack.Dequeue();
+                Stack.Enqueue(Target.Origin);
+            }
+            else
+            {
+                Stack.Enqueue(Target.Origin);
+            }
+        }
+        else if (Stack.Count > 0 && Stack.Last().g_ID == -1)
+        {
+            Stack.Dequeue();
+        }
+
+
+        if (Stack.Count > 10)
         {
             Vertex vertex = Stack.Dequeue();
             vertex.GetComponent<SpriteRenderer>().color = Color.gray;
@@ -72,11 +90,16 @@ public partial class FollowAgentAction : Action
     void MoveAlongStack(float distance)
     {
         float remainingDistance = distance;
-        float segmentDistance = Vector2.Distance(Target.transform.position, Stack.Last().Position);
+
+        Vertex origin = Stack.Last();
+        float segmentDistance = Vector2.Distance(Target.transform.position, origin.Position);
+
+        if (Vector2.Distance(Target.transform.position, Agent.Value.Pointer.Position) < remainingDistance && 
+                POLine(Target.transform.position, origin.Position, Agent.Value.Pointer.Position)) return;
 
         if (remainingDistance - segmentDistance <= 0)
         {
-            Vector2 direction = (Target.Origin.Position - (Vector2)Target.transform.position).normalized;
+            Vector2 direction = (origin.Position - (Vector2)Target.transform.position).normalized;
             Vector2 newPosition = (Vector2)Target.transform.position + direction * remainingDistance;
             Agent.Value.SetPointer(Target.Room, newPosition);
             return;
@@ -91,6 +114,9 @@ public partial class FollowAgentAction : Action
             
             segmentDistance = Vector2.Distance(current.Position, next.Position);
 
+            if (Vector2.Distance(current.Position, Agent.Value.Pointer.Position) < remainingDistance && 
+                POLine(current.Position, next.Position, Agent.Value.Pointer.Position)) return;
+            
             if (remainingDistance - segmentDistance <= 0)
             {
                 Vector2 direction = (next.Position - current.Position).normalized;
@@ -106,6 +132,14 @@ public partial class FollowAgentAction : Action
         {
             Agent.Value.SetPointer(Target.Room, Stack.ElementAt(0).Position);
         }
+    }
+
+    bool POLine(Vector2 pos1, Vector2 pos2, Vector2 point)
+    {
+        float m = (pos2.y - pos1.y) / (pos2.x - pos1.x);
+        float c = pos1.y - m * pos1.x;
+
+        return point.y == m * point.x + c;
     }
 
     void SetVertexColor()
@@ -124,25 +158,6 @@ public partial class FollowAgentAction : Action
 
         Ends[0].GetComponent<SpriteRenderer>().color = Color.blue;
         Ends[1].GetComponent<SpriteRenderer>().color = Color.red;
-    }
-
-    void DummyFollow()
-    {
-        List<Vertex> options = new List<Vertex>() { Agent.Value.Origin, Agent.Value.Heading };
-        Route best = new Route();
-        foreach (Vertex v in options)
-        {   
-            if (v == null) continue;
-
-            Route p_best = Map.Value.CompareRoutes(
-                Map.Value.GetRoute(v, Ends[0]),
-                Map.Value.GetRoute(v, Ends[1])
-            );
-
-            best = Map.Value.CompareRoutes(best, p_best);
-        }
-
-        Agent.Value.FollowPath(best);
     }
 }
 
