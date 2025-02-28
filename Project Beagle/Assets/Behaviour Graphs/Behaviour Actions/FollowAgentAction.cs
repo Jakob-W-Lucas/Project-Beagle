@@ -33,16 +33,27 @@ public static class PathMath
 public class Point
 {
     public Vertex Vertex;
+    public Vertex[] Between;
     public Vector2 Position;
     public bool IsPointer;
     public bool IsStation;
 
-    public Point(Vertex v)
+    public Point(Agent a, OuterMap map)
     {
-        Vertex = v;
-        Position = v.Position;
-        IsPointer = v.IsPointer;
-        IsStation = v.IsStation;
+        Vertex = a.Origin;
+        Between = map.GetNearestRoomVertices(a);
+        Position = Vertex.Position;
+        IsPointer = Vertex.IsPointer;
+        IsStation = Vertex.IsStation;
+    }
+
+    public Point(Vertex l, Vertex r)
+    {
+        Vertex = null;
+        Between = new Vertex[2] { l, r };
+        Position = Vertex.Position;
+        IsPointer = Vertex.IsPointer;
+        IsStation = Vertex.IsStation;
     }
 }
 
@@ -59,7 +70,7 @@ public partial class FollowAgentAction : Action
     protected override Status OnStart()
     {
         Target = Agent.Value.Follow.Target;
-        Stack.Enqueue(new Point(Target.Origin));
+        Stack.Enqueue(new Point(Target, Map));
 
         return Status.Running;
     }
@@ -84,8 +95,8 @@ public partial class FollowAgentAction : Action
 
         float segmentDistance = Vector2.Distance(s, u);
 
-        if (Vector2.Distance(s, Agent.Value.Pointer.Position) < remainingDistance && 
-                PathMath.IsPointBetweenPoints(s, u, Agent.Value.Pointer.Position)) return 0;
+        // if (Vector2.Distance(s, Agent.Value.Pointer.Position) < remainingDistance && 
+        //         PathMath.IsPointBetweenPoints(s, u, Agent.Value.Pointer.Position)) return 0;
 
         if (remainingDistance <= segmentDistance)
         {
@@ -119,12 +130,18 @@ public partial class FollowAgentAction : Action
 
     void UpdatePathStack()
     {
-        Point newPoint = new Point(Target.Origin);
+        if (Target.Origin.IsPointer || Target.Origin.IsStation) return;
+
+        Point newPoint = new Point(Target, Map);
         
+        /* DUMMY CODE FOR HARD FOLLOW
+
+        Use for a follow function where the followers will follow the exact path of the target
+
         if (Stack.Count > 0)
         {
             Point last = Stack.Last();
-            bool shouldReplace = (Target.Origin.IsPointer || Target.Origin.IsStation) && 
+            bool shouldReplace = (Target.Origin.IsPointer || Target.Origin.IsStation) && (last.IsPointer || last.IsStation) &&
                                 Vector2.Distance(newPoint.Position, Stack.ElementAt(1).Position) > 
                                 Vector2.Distance(last.Position, Stack.ElementAt(1).Position);
 
@@ -134,7 +151,11 @@ public partial class FollowAgentAction : Action
                 Stack.Enqueue(newPoint);
                 return;
             }
+
+            
         }
+
+        */
 
         Stack.Enqueue(newPoint);
     }
