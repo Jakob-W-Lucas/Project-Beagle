@@ -60,13 +60,13 @@ public class Room : MonoBehaviour
             );
 
             RoomEnterRoutes[i] = new Route[_stations.Length]; 
+        }
 
-            for (int j = 0; j < _vertices.Length; j++)
-            {
-                if (i == j) continue;
-
-                _vertices[i].AddEdge(_vertices[j]);
-            }
+        // Creates a path through the room vertices regardless of distance
+        for (int i = 0; i < _vertices.Length - 1; i++)
+        {
+            _vertices[i].AddEdge(_vertices[i + 1]);
+            _vertices[i + 1].AddEdge(_vertices[i]);
         }
 
         ConfigureStations();
