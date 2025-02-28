@@ -78,45 +78,40 @@ public partial class FollowAgentAction : Action
         return Status.Running;
     }
 
-    void MoveAlongStack(float distance)
+    float GetPositionOnSegment(Vector2 s, Vector2 u, float distance)
     {
         float remainingDistance = distance;
 
-        Point origin = Stack.Last();
-        float segmentDistance = Vector2.Distance(Target.transform.position, origin.Position);
+        float segmentDistance = Vector2.Distance(s, u);
 
-        if (Vector2.Distance(Target.transform.position, Agent.Value.Pointer.Position) < remainingDistance && 
-                PathMath.IsPointBetweenPoints(Target.transform.position, origin.Position, Agent.Value.Pointer.Position)) return;
+        if (Vector2.Distance(s, Agent.Value.Pointer.Position) < remainingDistance && 
+                PathMath.IsPointBetweenPoints(s, u, Agent.Value.Pointer.Position)) return 0;
 
-        if (remainingDistance - segmentDistance <= 0)
+        if (remainingDistance <= segmentDistance)
         {
-            Vector2 direction = (origin.Position - (Vector2)Target.transform.position).normalized;
-            Vector2 newPosition = (Vector2)Target.transform.position + direction * remainingDistance;
+            Vector2 direction = (u - s).normalized;
+            Vector2 newPosition = s + direction * remainingDistance;
             Agent.Value.SetPointer(Target.Room, newPosition);
-            return;
         }
 
-        remainingDistance -= segmentDistance;
+        return remainingDistance - segmentDistance;
+    }
+
+    void MoveAlongStack(float distance)
+    {
+        Point origin = Stack.Last();
+        float remainingDistance = GetPositionOnSegment(Target.transform.position, origin.Position, distance);
+        
+        if (remainingDistance <= 0) return;
 
         for (int i = Stack.Count - 1; i > 0; i--)
         {
             Point current = Stack.ElementAt(i);
             Point next = Stack.ElementAt(i - 1);
             
-            segmentDistance = Vector2.Distance(current.Position, next.Position);
+            remainingDistance = GetPositionOnSegment(current.Position, next.Position, remainingDistance);
 
-            if (Vector2.Distance(current.Position, Agent.Value.Pointer.Position) < remainingDistance && 
-                PathMath.IsPointBetweenPoints(current.Position, next.Position, Agent.Value.Pointer.Position)) return;
-            
-            if (remainingDistance <= segmentDistance)
-            {
-                Vector2 direction = (next.Position - current.Position).normalized;
-                Vector2 newPosition = current.Position + direction * remainingDistance;
-                Agent.Value.SetPointer(Target.Room, newPosition);
-                return;
-            }
-
-            remainingDistance -= segmentDistance;
+            if (remainingDistance <= 0) return;
         }
 
         Agent.Value.SetPointer(Target.Room, Stack.First().Position);
