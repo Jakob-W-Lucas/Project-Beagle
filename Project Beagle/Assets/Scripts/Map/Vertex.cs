@@ -19,6 +19,7 @@ public class Vertex : MonoBehaviour
     [SerializeField] private float _vertexReach = 5f;
     public string Name => Station ? $"R-{Room.name}-S-{r_ID}" : $"R-{Room.name}-V-{r_ID}";
 
+    public bool IsRoom => g_ID != -1;
     public bool IsStation => g_ID == -1 && r_ID != -1;
     public bool IsPointer => g_ID == -1 && r_ID == -1;
 

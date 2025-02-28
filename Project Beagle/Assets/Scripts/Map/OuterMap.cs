@@ -87,17 +87,10 @@ public class OuterMap : MonoBehaviour
 
     # region Querying
 
-    public Route Travel(Agent a, Vertex u)
+    // Travel to a pointer node
+    public Route Travel(Agent a, Point u)
     {
-        Route route = new Route();
-        foreach (Vertex v in SetVertices(a))
-        {
-            route = CompareRoutes(route, TravelToRoom(v, null, u.Room));
-        }
-
-        route.Vertices.Add(u);
-
-        return route;
+        return null;
     }
 
     /// <summary>
@@ -134,8 +127,6 @@ public class OuterMap : MonoBehaviour
     {
         if ((u_st && s.Station == u_st) || (s.Station && s.Station.Type == T)) return null;
 
-        bool s_station = s.g_ID == -1;
-
         int index = T ? stationDatabase.GetIndex(T) : -1;
 
         if (T && index == -1)
@@ -153,12 +144,9 @@ public class OuterMap : MonoBehaviour
             // Ensure that the station to travel to is avaliable before getting a route
             if (!st.Avaliable) continue;
             
-            if (s_station) {
-                contender = CompareRoutes(contender, StationToStation(s, st.Vertex)); 
-                continue;
-            }
-            
-            contender = CompareRoutes(contender, RoomToStation(s, st.Vertex));
+            contender = s.IsStation ? 
+                        CompareRoutes(contender, StationToStation(s, st.Vertex)) :
+                        CompareRoutes(contender, RoomToStation(s, st.Vertex));
         }
 
         return contender;
@@ -168,8 +156,6 @@ public class OuterMap : MonoBehaviour
     public Route TravelToRoom(Vertex s, RoomType T, Room u_room = null)
     {
         if (s == null) return null;
-
-        bool s_station = s.g_ID == -1;
 
         int index = T ? roomDatabase.GetIndex(T) : -1;
 
@@ -185,12 +171,9 @@ public class OuterMap : MonoBehaviour
 
         foreach (Room r in rooms)
         {
-            if (s_station) {
-                contender = CompareRoutes(contender, StationToRoom(s, r)); 
-                continue;
-            }
-            
-            contender = CompareRoutes(contender, RoomToRoom(s, r));
+            contender = s.IsStation ? 
+                        CompareRoutes(contender, StationToRoom(s, r)) :
+                        CompareRoutes(contender, RoomToRoom(s, r));
         }
 
         return contender;
@@ -329,9 +312,9 @@ public class OuterMap : MonoBehaviour
     public List<Vertex> SetVertices(Agent a)
     {
         List<Vertex> vertices;
-        if (a.Origin.IsPointer || a.Heading.IsPointer)
+        if (a.Origin.IsPointer || (a.Heading && a.Heading.IsPointer))
         {
-            vertices = GetNearestRoomVertex(a).ToList();
+            vertices = GetNearestRoomVertices(a).ToList();
         }
         else
         {
@@ -343,13 +326,20 @@ public class OuterMap : MonoBehaviour
     }
 
     /// <summary>
-    /// Retrieves the closest room vertices to the left and right of the agent
+    /// Retrieves the closest room vertices to the left and right of the agent,
+    /// if the room vertices the agent is in between are different rooms, return the origin and heading.
+    /// For the rooms to be different the agent must be travelling between rooms (hence heading and origin).
     /// </summary>
     /// <param name="a">The agent for which the travel route is being determined.</param>
-    /// <returns>The cloest vertex to the left and the right of the agent.</returns>
+    /// <returns>The cloest room vertex to the left and the right of the agent.</returns>
 
-    public Vertex[] GetNearestRoomVertex(Agent a)
+    public Vertex[] GetNearestRoomVertices(Agent a)
     {
+        if (a.Heading && a.Heading.Room != a.Origin.Room)
+        {
+            return new Vertex[2] { a.Origin, a.Heading };
+        }
+
         List<Vertex> vertices = a.Room.NearestWithinRoom(a.transform.position);
         Vertex[] leftRightVertices = new Vertex[2] { vertices[0], null};
 
