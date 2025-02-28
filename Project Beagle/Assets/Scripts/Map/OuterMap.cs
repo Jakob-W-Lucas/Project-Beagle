@@ -87,20 +87,17 @@ public class OuterMap : MonoBehaviour
 
     # region Querying
 
-    public List<Vertex> SetVertices(Agent a)
+    public Route Travel(Agent a, Vertex u)
     {
-        List<Vertex> vertices;
-        if (a.Origin.r_ID == -1 || a.Heading.r_ID == -1)
+        Route route = new Route();
+        foreach (Vertex v in SetVertices(a))
         {
-            vertices = GetNearestRoomVertex(a).ToList();
-        }
-        else
-        {
-            vertices = new List<Vertex>() { a.Origin };
-            if (a.Heading != null) vertices.Add(a.Heading);
+            route = CompareRoutes(route, TravelToRoom(v, null, u.Room));
         }
 
-        return vertices;
+        route.Vertices.Add(u);
+
+        return route;
     }
 
     /// <summary>
@@ -323,6 +320,28 @@ public class OuterMap : MonoBehaviour
         return exitRoute.Join(roomRoute).Join(enterRoute);
     }
 
+    # endregion
+
+    # region Utility
+
+    public Route CompareRoutes(Route route, Route other) => route.CompareTo(other) == 1 ? route : other;
+
+    public List<Vertex> SetVertices(Agent a)
+    {
+        List<Vertex> vertices;
+        if (a.Origin.IsPointer || a.Heading.IsPointer)
+        {
+            vertices = GetNearestRoomVertex(a).ToList();
+        }
+        else
+        {
+            vertices = new List<Vertex>() { a.Origin };
+            if (a.Heading != null) vertices.Add(a.Heading);
+        }
+
+        return vertices;
+    }
+
     /// <summary>
     /// Retrieves the closest room vertices to the left and right of the agent
     /// </summary>
@@ -331,7 +350,7 @@ public class OuterMap : MonoBehaviour
 
     public Vertex[] GetNearestRoomVertex(Agent a)
     {
-        List<Vertex> vertices = new List<Vertex>{ Map.GetNearestVertex(a.transform.position) };
+        List<Vertex> vertices = a.Room.NearestWithinRoom(a.transform.position);
         Vertex[] leftRightVertices = new Vertex[2] { vertices[0], null};
 
         int direction = vertices[0].Position.x > a.transform.position.x ? 1 : -1;
@@ -347,19 +366,6 @@ public class OuterMap : MonoBehaviour
 
         return leftRightVertices;
     }
-
-    public Route GetRoute(Vertex s, Vertex u) 
-    {
-        if (s.Station || u.Station) return new Route();
-
-        return Map.Routes[s.g_ID][u.g_ID];
-    }
-
-    # endregion
-
-    # region Utility
-
-    public Route CompareRoutes(Route route, Route other) => route.CompareTo(other) == 1 ? route : other;
 
     void OnDrawGizmos()
     {
