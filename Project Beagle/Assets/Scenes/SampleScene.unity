@@ -12524,7 +12524,7 @@ MonoBehaviour:
     Target: {fileID: 0}
     HardDistance: 0
     SoftDistance: 0
-  Speed: 2
+  Speed: 6
 --- !u!58 &1315457579
 CircleCollider2D:
   m_ObjectHideFlags: 0
