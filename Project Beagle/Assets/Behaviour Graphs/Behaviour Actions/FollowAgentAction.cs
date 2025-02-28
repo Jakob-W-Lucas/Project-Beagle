@@ -63,9 +63,10 @@ public partial class FollowAgentAction : Action
 {
     [SerializeReference] public BlackboardVariable<Agent> Agent;
     [SerializeReference] public BlackboardVariable<OuterMap> Map;
+    public Queue<Point> Stack = new Queue<Point>();
     Agent Target;
     Vertex COrigin;
-    public Queue<Point> Stack = new Queue<Point>();
+    Vertex[] Between;
 
     protected override Status OnStart()
     {
@@ -78,7 +79,7 @@ public partial class FollowAgentAction : Action
     {
         Agent.Value.GetNextHeading();
         MoveAlongStack(Agent.Value.Follow.HardDistance);
-
+        
         if (Target.Origin == COrigin) 
             return Status.Running;
 
@@ -113,7 +114,10 @@ public partial class FollowAgentAction : Action
         Point origin = Stack.Last();
         float remainingDistance = GetPositionOnSegment(Target.transform.position, origin.Position, distance);
         
-        if (remainingDistance <= 0) return;
+        if (remainingDistance <= 0) {
+            UpdateBetween(Map.Value.GetNearestRoomVertices(Target));
+            return;
+        }
 
         for (int i = Stack.Count - 1; i > 0; i--)
         {
@@ -122,15 +126,20 @@ public partial class FollowAgentAction : Action
             
             remainingDistance = GetPositionOnSegment(current.Position, next.Position, remainingDistance);
 
-            if (remainingDistance <= 0) return;
+            if (remainingDistance <= 0) {
+                UpdateBetween(new Vertex[2] { current.Vertex, next.Vertex });
+                return;
+            }
         }
 
-        Agent.Value.SetPointer(Target.Room, Stack.First().Position);
+        Vertex first = Stack.First().Vertex;
+        Agent.Value.SetPointer(Target.Room, first.Position);
+        UpdateBetween(new Vertex[2] { first, first });
     }
 
     void UpdatePathStack()
     {
-        if (Target.Origin.IsPointer || Target.Origin.IsStation) return;
+        if (!Target.Origin.IsRoom) return;
 
         Point newPoint = new Point(Target, Map);
         
@@ -151,8 +160,6 @@ public partial class FollowAgentAction : Action
                 Stack.Enqueue(newPoint);
                 return;
             }
-
-            
         }
 
         */
@@ -166,6 +173,26 @@ public partial class FollowAgentAction : Action
         {
             p.Vertex.GetComponent<SpriteRenderer>().color = 
                 (p.IsPointer || p.IsStation) ? Color.blue : Color.red;
+        }
+    }
+
+    void UpdateBetween(Vertex[] vertices)
+    {
+        if (Between != null)
+        {
+            foreach (Vertex v in Between)
+            {
+                if (v == null) continue;
+                v.GetComponent<SpriteRenderer>().color = Color.gray;
+            }
+        }
+
+        Between = vertices;
+
+        foreach (Vertex v in Between)
+        {
+            if (v == null) continue;
+            v.GetComponent<SpriteRenderer>().color = Color.green;
         }
     }
 
