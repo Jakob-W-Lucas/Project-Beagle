@@ -33,24 +33,13 @@ public static class PathMath
 public class Point
 {
     public Vertex Vertex;
-    public Vertex[] Between;
     public Vector2 Position;
     public bool IsPointer;
     public bool IsStation;
 
-    public Point(Agent a, OuterMap map)
+    public Point(Agent a)
     {
         Vertex = a.Origin;
-        Between = map.GetNearestRoomVertices(a);
-        Position = Vertex.Position;
-        IsPointer = Vertex.IsPointer;
-        IsStation = Vertex.IsStation;
-    }
-
-    public Point(Vertex l, Vertex r)
-    {
-        Vertex = null;
-        Between = new Vertex[2] { l, r };
         Position = Vertex.Position;
         IsPointer = Vertex.IsPointer;
         IsStation = Vertex.IsStation;
@@ -66,28 +55,74 @@ public partial class FollowAgentAction : Action
     public Queue<Point> Stack = new Queue<Point>();
     Agent Target;
     Vertex COrigin;
-    Vertex[] Between;
+    Vertex[] CurrentBetween = new Vertex[2];
+    Vertex[] PointerBetween;
 
     protected override Status OnStart()
     {
         Target = Agent.Value.Follow.Target;
-        Stack.Enqueue(new Point(Target, Map));
+        Stack.Enqueue(new Point(Target));
 
         return Status.Running;
     }
     protected override Status OnUpdate()
     {
         Agent.Value.GetNextHeading();
+
         MoveAlongStack(Agent.Value.Follow.HardDistance);
+
+        if (PointerBetween[1] != null && PointerBetween[1].Position.x > PointerBetween[0].Position.x)
+        {
+            Array.Reverse(PointerBetween);
+        }
+
+        for (int i = 0; i < 2; i++)
+        {
+            if (CurrentBetween != null && CurrentBetween[i] != null) CurrentBetween[i].gameObject.GetComponent<SpriteRenderer>().color = Color.gray;
+        }
+
+        for (int i = 0; i < 2; i++)
+        {
+            if (PointerBetween != null && PointerBetween[i] != null) PointerBetween[i].gameObject.GetComponent<SpriteRenderer>().color = Color.green;
+        }
         
+        if (!CurrentBetween.SequenceEqual(PointerBetween))
+        {
+            UpdatePath();
+        }
+
         if (Target.Origin == COrigin) 
             return Status.Running;
 
         UpdatePathStack();
-        VisualizePath();
+        //VisualizePath();
         MaintainStackSize();
 
         return Status.Running;
+    }
+
+    void UpdatePath()
+    {
+        Route best = new Route();
+        Debug.Log($"Pointer = {Agent.Value.Between}");
+        foreach (Vertex v1 in Agent.Value.Between)
+        {
+            if (v1 == null) continue;
+
+            foreach (Vertex v2 in PointerBetween)
+            {
+                Debug.Log($"v1: {v1}, v2: {v2}");
+                if (v2 == null) continue;
+
+                Route p_best = Map.Value.Map.Routes[v1.g_ID][v2.g_ID];
+                p_best.Join(new Route(v2, Agent.Value.Pointer));
+                best = Map.Value.CompareRoutes(best, p_best);
+            }
+        }
+        Debug.Log("Update");
+        Agent.Value.FollowPath(best);
+        
+        CurrentBetween = PointerBetween;
     }
 
     float GetPositionOnSegment(Vector2 s, Vector2 u, float distance)
@@ -103,7 +138,7 @@ public partial class FollowAgentAction : Action
         {
             Vector2 direction = (u - s).normalized;
             Vector2 newPosition = s + direction * remainingDistance;
-            Agent.Value.SetPointer(Target.Room, newPosition);
+            Agent.Value.SetPointer(Target.Room, newPosition); 
         }
 
         return remainingDistance - segmentDistance;
@@ -111,13 +146,11 @@ public partial class FollowAgentAction : Action
 
     void MoveAlongStack(float distance)
     {
-        Point origin = Stack.Last();
+        Vertex origin = Stack.Last().Vertex;
         float remainingDistance = GetPositionOnSegment(Target.transform.position, origin.Position, distance);
-        
-        if (remainingDistance <= 0) {
-            UpdateBetween(Map.Value.GetNearestRoomVertices(Target));
-            return;
-        }
+        PointerBetween = Target.Between;
+
+        if (remainingDistance <= 0) return;
 
         for (int i = Stack.Count - 1; i > 0; i--)
         {
@@ -125,23 +158,21 @@ public partial class FollowAgentAction : Action
             Point next = Stack.ElementAt(i - 1);
             
             remainingDistance = GetPositionOnSegment(current.Position, next.Position, remainingDistance);
+            PointerBetween = new Vertex[2] { current.Vertex, next.Vertex };
 
-            if (remainingDistance <= 0) {
-                UpdateBetween(new Vertex[2] { current.Vertex, next.Vertex });
-                return;
-            }
+            if (remainingDistance <= 0) return;
         }
 
         Vertex first = Stack.First().Vertex;
         Agent.Value.SetPointer(Target.Room, first.Position);
-        UpdateBetween(new Vertex[2] { first, first });
+        PointerBetween = new Vertex[2] { first, null };
     }
 
     void UpdatePathStack()
     {
         if (!Target.Origin.IsRoom) return;
 
-        Point newPoint = new Point(Target, Map);
+        Point newPoint = new Point(Target);
         
         /* DUMMY CODE FOR HARD FOLLOW
 
@@ -173,26 +204,6 @@ public partial class FollowAgentAction : Action
         {
             p.Vertex.GetComponent<SpriteRenderer>().color = 
                 (p.IsPointer || p.IsStation) ? Color.blue : Color.red;
-        }
-    }
-
-    void UpdateBetween(Vertex[] vertices)
-    {
-        if (Between != null)
-        {
-            foreach (Vertex v in Between)
-            {
-                if (v == null) continue;
-                v.GetComponent<SpriteRenderer>().color = Color.gray;
-            }
-        }
-
-        Between = vertices;
-
-        foreach (Vertex v in Between)
-        {
-            if (v == null) continue;
-            v.GetComponent<SpriteRenderer>().color = Color.green;
         }
     }
 

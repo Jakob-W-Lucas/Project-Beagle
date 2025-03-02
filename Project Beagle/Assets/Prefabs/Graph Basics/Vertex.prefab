@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5690843904893469323}
   - component: {fileID: 2555025100014030901}
   - component: {fileID: 8887604098018754847}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Vertex
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -133,7 +133,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.28125, y: 0.28125}
+  m_Size: {x: 0.1, y: 0.1}
   m_EdgeRadius: 0
 --- !u!114 &8887604098018754847
 MonoBehaviour:

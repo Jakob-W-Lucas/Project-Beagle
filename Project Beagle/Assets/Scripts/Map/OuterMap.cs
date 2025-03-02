@@ -4,6 +4,7 @@ using System;
 using Unity.Mathematics;
 using System.Linq;
 using Unity.VisualScripting;
+using UnityEngine.UIElements;
 
 public class OuterMap : MonoBehaviour
 {
@@ -309,12 +310,13 @@ public class OuterMap : MonoBehaviour
 
     public Route CompareRoutes(Route route, Route other) => route.CompareTo(other) == 1 ? route : other;
 
+    // Remove later
     public List<Vertex> SetVertices(Agent a)
     {
         List<Vertex> vertices;
         if (a.Origin.IsPointer || (a.Heading && a.Heading.IsPointer))
         {
-            vertices = GetNearestRoomVertices(a).ToList();
+            vertices = a.Between.ToList();
         }
         else
         {
@@ -323,38 +325,6 @@ public class OuterMap : MonoBehaviour
         }
 
         return vertices;
-    }
-
-    /// <summary>
-    /// Retrieves the closest room vertices to the left and right of the agent,
-    /// if the room vertices the agent is in between are different rooms, return the origin and heading.
-    /// For the rooms to be different the agent must be travelling between rooms (hence heading and origin).
-    /// </summary>
-    /// <param name="a">The agent for which the travel route is being determined.</param>
-    /// <returns>The cloest room vertex to the left and the right of the agent.</returns>
-
-    public Vertex[] GetNearestRoomVertices(Agent a)
-    {
-        if (a.Heading && a.Heading.Room != a.Origin.Room)
-        {
-            return new Vertex[2] { a.Origin, a.Heading };
-        }
-
-        List<Vertex> vertices = a.Room.NearestWithinRoom(a.transform.position);
-        Vertex[] leftRightVertices = new Vertex[2] { vertices[0], null};
-
-        int direction = vertices[0].Position.x > a.transform.position.x ? 1 : -1;
-        foreach (Vertex v in vertices)
-        {
-            int newDirection = v.Position.x > a.transform.position.x ? 1 : -1;
-            if (newDirection != direction)
-            {
-                leftRightVertices[1] = v;
-                break;
-            }
-        }
-
-        return leftRightVertices;
     }
 
     void OnDrawGizmos()
