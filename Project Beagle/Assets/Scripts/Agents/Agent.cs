@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Unity.Behavior;
@@ -21,6 +22,7 @@ public class Agent : MonoBehaviour
     // Current vertex agent is travelling to
     public Vertex Heading { get; private set; }
     public Vertex Pointer { get; private set; }
+    public Vertex[] Between;
 
     public GameObject test;
     public FollowAgent Follow;
@@ -45,6 +47,8 @@ public class Agent : MonoBehaviour
 
         Origin = s;
         Room = s.Room;
+
+        if (s) Between = GetInBetween(transform.position, s);
     }
 
     public void UpdateHeading(Vertex u)
@@ -52,7 +56,39 @@ public class Agent : MonoBehaviour
         if (Heading == u) return;
 
         Heading = u;
+
+        if (u) Between = GetInBetween(transform.position, u);
     }
+
+    public Vertex[] GetInBetween(Vector2 pos, Vertex u)
+    {
+        LayerMask layerMask = LayerMask.GetMask("Room");
+        Vector2 direction = (u.Position - pos).normalized;
+
+        // Cast forward ray (in direction away from u)
+        RaycastHit2D f_hit = Physics2D.Raycast(pos, -direction, 20f, layerMask);
+        Vertex forward = f_hit.collider?.GetComponent<Vertex>();
+
+        // Cast backward ray (towards u) with improved origin offset
+        Vertex backward = null;
+        if (f_hit.collider != null)
+        {
+            RaycastHit2D[] b_hits = Physics2D.RaycastAll(pos, direction, 20f, layerMask);
+            
+            foreach (var hit in b_hits)
+            {
+                // Compare colliders instead of hit objects
+                if (hit.collider != null && hit.collider != f_hit.collider)
+                {
+                    backward = hit.collider.GetComponent<Vertex>();
+                    break;
+                }
+            }
+        }
+
+        return new Vertex[2] { forward, backward };
+    }
+
 
     public void SetPointer(Room room, Vector2 position)
     {
