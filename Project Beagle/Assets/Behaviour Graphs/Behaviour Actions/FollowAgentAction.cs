@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using UnityUtils;
 using System.Linq;
 using Unity.VisualScripting;
+using UnityEngine.UIElements;
 
 public static class PathMath
 {
@@ -61,7 +62,6 @@ public partial class FollowAgentAction : Action
     protected override Status OnStart()
     {
         Target = Agent.Value.Follow.Target;
-        Stack.Enqueue(new Point(Target));
 
         return Status.Running;
     }
@@ -69,27 +69,16 @@ public partial class FollowAgentAction : Action
     {
         Agent.Value.GetNextHeading();
 
+        if (Agent.Value.Heading == null) Agent.Value.UpdateHeading(Agent.Value.Pointer);
+
         MoveAlongStack(Agent.Value.Follow.HardDistance);
 
-        if (PointerBetween[1] != null && PointerBetween[1].Position.x > PointerBetween[0].Position.x)
+        if (PointerBetween != null && PointerBetween.Length == 2 && PointerBetween[1] != null && PointerBetween[1].Position.x > PointerBetween[0].Position.x)
         {
             Array.Reverse(PointerBetween);
         }
-
-        for (int i = 0; i < 2; i++)
-        {
-            if (CurrentBetween != null && CurrentBetween[i] != null) CurrentBetween[i].gameObject.GetComponent<SpriteRenderer>().color = Color.gray;
-        }
-
-        for (int i = 0; i < 2; i++)
-        {
-            if (PointerBetween != null && PointerBetween[i] != null) PointerBetween[i].gameObject.GetComponent<SpriteRenderer>().color = Color.green;
-        }
         
-        if (!CurrentBetween.SequenceEqual(PointerBetween))
-        {
-            UpdatePath();
-        }
+        UpdatePath();
 
         if (Target.Origin == COrigin) 
             return Status.Running;
@@ -103,15 +92,24 @@ public partial class FollowAgentAction : Action
 
     void UpdatePath()
     {
+        if (PointerBetween == null || CurrentBetween == null || Agent.Value.Between == null) return;
+
+        if (ShouldUpdatePath())
+        {
+            Agent.Value.Route.Clear();
+            Agent.Value.UpdateHeading(Agent.Value.Pointer);
+            return;
+        }
+
+        if (CurrentBetween.SequenceEqual(PointerBetween)) return;
+        
         Route best = new Route();
-        Debug.Log($"Pointer = {Agent.Value.Between}");
         foreach (Vertex v1 in Agent.Value.Between)
         {
             if (v1 == null) continue;
 
             foreach (Vertex v2 in PointerBetween)
             {
-                Debug.Log($"v1: {v1}, v2: {v2}");
                 if (v2 == null) continue;
 
                 Route p_best = Map.Value.Map.Routes[v1.g_ID][v2.g_ID];
@@ -119,10 +117,29 @@ public partial class FollowAgentAction : Action
                 best = Map.Value.CompareRoutes(best, p_best);
             }
         }
-        Debug.Log("Update");
+
         Agent.Value.FollowPath(best);
         
         CurrentBetween = PointerBetween;
+    }
+
+    bool ShouldUpdatePath()
+    {
+        if (Agent.Value.GetInBetween(Agent.Value.Pointer).SequenceEqual(PointerBetween)) return true;
+
+        if (Vector2.Distance(Agent.Value.transform.position, Agent.Value.Pointer.Position) < 0.25f) return true;
+
+        // foreach (Vertex v1 in PointerBetween)
+        // {
+        //     foreach (Vertex v2 in Agent.Value.Between)
+        //     {
+        //         if (v2 == null || v1 == null) continue;
+
+        //         if (v1 == v2 && PointerBetween[1] != null && PointerBetween[1].Room == v2.Room) return true;
+        //     }
+        // }
+
+        return false;
     }
 
     float GetPositionOnSegment(Vector2 s, Vector2 u, float distance)
@@ -146,6 +163,8 @@ public partial class FollowAgentAction : Action
 
     void MoveAlongStack(float distance)
     {
+        if (Stack == null || Stack.Count == 0) return;
+
         Vertex origin = Stack.Last().Vertex;
         float remainingDistance = GetPositionOnSegment(Target.transform.position, origin.Position, distance);
         PointerBetween = Target.Between;

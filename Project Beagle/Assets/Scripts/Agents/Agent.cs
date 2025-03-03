@@ -23,8 +23,6 @@ public class Agent : MonoBehaviour
     public Vertex Heading { get; private set; }
     public Vertex Pointer { get; private set; }
     public Vertex[] Between;
-
-    public GameObject test;
     public FollowAgent Follow;
     public float Speed = 0.5f;
 
@@ -36,10 +34,6 @@ public class Agent : MonoBehaviour
         Pointer = GetComponent<Vertex>();
     }
 
-    private void Update() {
-        if (test) test.transform.position = Pointer.Position;
-    }
-
     // Set the origin of the agent (current vertex)
     public void UpdateOrigin(Vertex s)
     {
@@ -48,7 +42,7 @@ public class Agent : MonoBehaviour
         Origin = s;
         Room = s.Room;
 
-        if (s) Between = GetInBetween(transform.position, s);
+        //if (s) Between = GetInBetween(transform.position, s);
     }
 
     public void UpdateHeading(Vertex u)
@@ -57,11 +51,12 @@ public class Agent : MonoBehaviour
 
         Heading = u;
 
-        if (u) Between = GetInBetween(transform.position, u);
+        if (u) Between = GetInBetween(u);
     }
 
-    public Vertex[] GetInBetween(Vector2 pos, Vertex u)
+    public Vertex[] GetInBetween(Vertex u)
     {
+        Vector2 pos = (Vector2)transform.position;
         LayerMask layerMask = LayerMask.GetMask("Room");
         Vector2 direction = (u.Position - pos).normalized;
 
