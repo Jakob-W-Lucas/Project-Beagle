@@ -4,55 +4,62 @@ using System.Linq;
 using Unity.Behavior;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(Health))]
 public class Agent : MonoBehaviour
 {
-    [Header("Behaviour Agent")]
-    [SerializeField] private BehaviorGraphAgent _behaviourAgent;
+    [Header("Configuration")]
+    [SerializeField] private float _speed = 0.5f;
+    
+    [Header("Dependencies")]
+    [SerializeField] private BehaviorGraphAgent _behaviorAgent;
+    [SerializeField] private FollowAgent _followAgentConfig;
 
-    [Header("Organs")]
+    public NavigationState Navigation { get; private set; }
     public Sensor Sensor { get; private set; }
     public Brain Brain { get; private set; }
+    public Room CurrentRoom => Navigation.CurrentRoom;
+    public FollowAgent FollowConfig => _followAgentConfig;
 
-    // Current route for the agent to follow
-    public Queue<Vertex> Route { get; set; } = new Queue<Vertex>();
-    public Room Room { get; set; }
-    // Current station of the agent (station of origin or station of destination vertex, if travelling)
-    public Station Station { get; private set; }
-    // Most recently occupied vertex of the agent
-    public Vertex Origin { get; private set; }
-    // Current vertex agent is travelling to
-    public Vertex Heading { get; private set; }
-    public Vertex Pointer { get; private set; }
-    public Vertex[] Between;
-    public FollowAgent Follow;
-    public Agent temp;
-    public float Speed = 0.5f;
-
-    # region "Initialization"
+    public void SetState(ActionState actionState) => _behaviorAgent.Graph.BlackboardReference.SetVariableValue("State", actionState);
 
     private void Awake() 
     {
-        _behaviourAgent = GetComponent<BehaviorGraphAgent>();
+        _behaviorAgent = GetComponent<BehaviorGraphAgent>();
         Brain = GetComponent<Brain>();
         Sensor = GetComponent<Sensor>();
-        Pointer = GetComponent<Vertex>();
-
-        temp = Follow.Target;
+        Navigation = new NavigationState(this, _speed);
     }
+}
 
-    # endregion
+[System.Serializable]
+public class NavigationState
+{
+    private Agent _a;
+    public Queue<Vertex> Route { get; } = new Queue<Vertex>();
+    public Vertex Origin { get; private set; }
+    public Vertex Heading { get; private set; }
+    public Vertex Pointer { get; private set; }
+    public Station CurrentStation { get; private set; }
+    public Room CurrentRoom { get; private set; }
+    public Vertex[] PathSegment;
+    private readonly float _movementSpeed;
+    public float MovementSpeed => _movementSpeed;
 
-    # region "Travel"
-    
+    public NavigationState(Agent a, float speed)
+    {
+        _a = a;
+        Pointer = a.GetComponent<Vertex>();
+        _movementSpeed = speed;
+    }
     // Set the origin of the agent (current vertex)
     public void UpdateOrigin(Vertex s)
     {
         if (Origin == s) return;
 
         Origin = s;
-        Room = s.Room;
+        CurrentRoom = s.Room;
     }
 
     public void UpdateHeading(Vertex u)
@@ -61,7 +68,7 @@ public class Agent : MonoBehaviour
 
         Heading = u;
 
-        if (u) Between = GetInBetween(u);
+        if (u) PathSegment = GetInBetween(u);
     }
 
     public void SetPointer(Room room, Vector2 position)
@@ -72,22 +79,22 @@ public class Agent : MonoBehaviour
     // Vacate current station (if it exists) and occupy the new station
     private void OccupyStation(Station st)
     {
-        if (st != Station)
+        if (st != CurrentStation)
         {
-            if (Station) Station.Vacate(this);
+            if (CurrentStation) CurrentStation.Vacate(_a);
             
-            st.Occupy(this);
-            Station = st;
+            st.Occupy(_a);
+            CurrentStation = st;
         }
     }
 
     // Vacate the current station
     private void VacateStation()
     {
-        if (Station)
+        if (CurrentStation)
         {
-            Station.Vacate(this);
-            Station = null;
+            CurrentStation.Vacate(_a);
+            CurrentStation = null;
         }
     }
 
@@ -121,7 +128,7 @@ public class Agent : MonoBehaviour
 
     public void GetNextHeading()
     {
-        if (Heading == Origin && (Vector2)transform.position == Heading.Position) {
+        if (Heading == Origin && (Vector2)_a.transform.position == Heading.Position) {
 
             // If there are no more vertices to travel to we can stop updating the position
             if (Route.Count == 0) 
@@ -136,15 +143,9 @@ public class Agent : MonoBehaviour
         }
     }
 
-    # endregion
-
-    # region "Utility"
-
-    public void SetState(ActionState actionState) => _behaviourAgent.Graph.BlackboardReference.SetVariableValue("State", actionState);
-
     public Vertex[] GetInBetween(Vertex u)
     {
-        Vector2 pos = (Vector2)transform.position;
+        Vector2 pos = (Vector2)_a.transform.position;
         LayerMask layerMask = LayerMask.GetMask("Room");
         Vector2 direction = (u.Position - pos).normalized;
 
@@ -171,6 +172,4 @@ public class Agent : MonoBehaviour
 
         return new Vertex[2] { forward, backward };
     }
-
-    # endregion
 }
