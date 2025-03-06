@@ -61,12 +61,16 @@ public partial class FollowAgentAction : Action
 
     protected override Status OnStart()
     {
+        if (Agent.Value.Follow.Target == null) return Status.Failure;
+
         Target = Agent.Value.Follow.Target;
 
         return Status.Running;
     }
     protected override Status OnUpdate()
     {
+        if (Agent.Value.Follow.Target == null) return Status.Success;
+
         Agent.Value.GetNextHeading();
 
         if (Agent.Value.Heading == null) Agent.Value.UpdateHeading(Agent.Value.Pointer);
@@ -123,33 +127,18 @@ public partial class FollowAgentAction : Action
         CurrentBetween = PointerBetween;
     }
 
-    bool ShouldUpdatePath()
-    {
-        if (Agent.Value.GetInBetween(Agent.Value.Pointer).SequenceEqual(PointerBetween)) return true;
+    bool ShouldUpdatePath() =>
+    
+        Agent.Value.GetInBetween(Agent.Value.Pointer).SequenceEqual(PointerBetween) ||
 
-        if (Vector2.Distance(Agent.Value.transform.position, Agent.Value.Pointer.Position) < 0.25f) return true;
-
-        // foreach (Vertex v1 in PointerBetween)
-        // {
-        //     foreach (Vertex v2 in Agent.Value.Between)
-        //     {
-        //         if (v2 == null || v1 == null) continue;
-
-        //         if (v1 == v2 && PointerBetween[1] != null && PointerBetween[1].Room == v2.Room) return true;
-        //     }
-        // }
-
-        return false;
-    }
+        Vector2.Distance(Agent.Value.transform.position, Agent.Value.Pointer.Position) < 0.25f;
+    
 
     float GetPositionOnSegment(Vector2 s, Vector2 u, float distance)
     {
         float remainingDistance = distance;
 
         float segmentDistance = Vector2.Distance(s, u);
-
-        // if (Vector2.Distance(s, Agent.Value.Pointer.Position) < remainingDistance && 
-        //         PathMath.IsPointBetweenPoints(s, u, Agent.Value.Pointer.Position)) return 0;
 
         if (remainingDistance <= segmentDistance)
         {
@@ -236,5 +225,9 @@ public partial class FollowAgentAction : Action
         
         COrigin = Target.Origin;
     }
-}
 
+    protected override void OnEnd()
+    {
+        Agent.Value.Between = PointerBetween;
+    }
+}
