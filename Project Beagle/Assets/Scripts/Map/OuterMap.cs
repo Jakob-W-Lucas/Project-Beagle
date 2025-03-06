@@ -1,10 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
-using System;
-using Unity.Mathematics;
 using System.Linq;
-using Unity.VisualScripting;
-using UnityEngine.UIElements;
+using static UnityUtils.PathExtensions;
 
 public class OuterMap : MonoBehaviour
 {
@@ -305,25 +302,6 @@ public class OuterMap : MonoBehaviour
     # endregion
 
     # region Utility
-
-    public Route CompareRoutes(Route route, Route other) => route.CompareTo(other) == 1 ? route : other;
-
-    // Remove later
-    public List<Vertex> SetVertices(Agent a)
-    {
-        List<Vertex> vertices;
-        if (a.Origin.IsPointer || (a.Heading && a.Heading.IsPointer))
-        {
-            vertices = a.Between.ToList();
-        }
-        else
-        {
-            vertices = new List<Vertex>() { a.Origin };
-            if (a.Heading != null) vertices.Add(a.Heading);
-        }
-
-        return vertices;
-    }
 
     void OnDrawGizmos()
     {

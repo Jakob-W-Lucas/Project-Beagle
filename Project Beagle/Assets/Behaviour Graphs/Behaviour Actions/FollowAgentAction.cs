@@ -4,48 +4,8 @@ using UnityEngine;
 using Action = Unity.Behavior.Action;
 using Unity.Properties;
 using System.Collections.Generic;
-using UnityUtils;
 using System.Linq;
-using Unity.VisualScripting;
-using UnityEngine.UIElements;
-
-public static class PathMath
-{
-    const float Epsilon = 0.01f;
-    
-    public static bool IsPointBetweenPoints(Vector2 a, Vector2 b, Vector2 point)
-    {
-        if (Mathf.Approximately(a.x, b.x))
-            return WithinBounds(a, b, point) && 
-                Mathf.Abs(point.x - a.x) < Epsilon;
-            
-        float slope = (b.y - a.y) / (b.x - a.x);
-        float intercept = a.y - slope * a.x;
-        float calculatedY = slope * point.x + intercept;
-
-        return WithinBounds(a, b, point) &&
-            Mathf.Abs(point.y - calculatedY) < Epsilon;
-    }
-
-    public static bool WithinBounds(Vector2 a, Vector2 b, Vector2 point) => point.x > Mathf.Min(a.x, b.x) && point.x < Mathf.Max(a.x, b.x) &&
-        point.y > Mathf.Min(a.y, b.y) && point.y < Mathf.Max(a.y, b.y);
-}
-
-public class Point
-{
-    public Vertex Vertex;
-    public Vector2 Position;
-    public bool IsPointer;
-    public bool IsStation;
-
-    public Point(Agent a)
-    {
-        Vertex = a.Origin;
-        Position = Vertex.Position;
-        IsPointer = Vertex.IsPointer;
-        IsStation = Vertex.IsStation;
-    }
-}
+using static UnityUtils.PathExtensions;
 
 [Serializable, GeneratePropertyBag]
 [NodeDescription(name: "FollowAgent", story: "[Agent] follows Target", category: "Action", id: "f2b14d4f02aa7c8ffdeba446869c9008")]
@@ -118,7 +78,7 @@ public partial class FollowAgentAction : Action
 
                 Route p_best = Map.Value.Map.Routes[v1.g_ID][v2.g_ID];
                 p_best.Join(new Route(v2, Agent.Value.Pointer));
-                best = Map.Value.CompareRoutes(best, p_best);
+                best = CompareRoutes(best, p_best);
             }
         }
 
@@ -181,27 +141,6 @@ public partial class FollowAgentAction : Action
         if (!Target.Origin.IsRoom) return;
 
         Point newPoint = new Point(Target);
-        
-        /* DUMMY CODE FOR HARD FOLLOW
-
-        Use for a follow function where the followers will follow the exact path of the target
-
-        if (Stack.Count > 0)
-        {
-            Point last = Stack.Last();
-            bool shouldReplace = (Target.Origin.IsPointer || Target.Origin.IsStation) && (last.IsPointer || last.IsStation) &&
-                                Vector2.Distance(newPoint.Position, Stack.ElementAt(1).Position) > 
-                                Vector2.Distance(last.Position, Stack.ElementAt(1).Position);
-
-            if (shouldReplace)
-            {
-                Stack.Dequeue();
-                Stack.Enqueue(newPoint);
-                return;
-            }
-        }
-
-        */
 
         Stack.Enqueue(newPoint);
     }
