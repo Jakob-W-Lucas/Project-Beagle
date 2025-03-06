@@ -6,6 +6,6 @@ public class TravelAction : AIAction
 {
     public override void Execute(Context context)
     {
-        context.agent.BGAgent.SetVariableValue("ActionState", ActionState.Travel);
+        context.agent.SetState(ActionState.Travel);
     }
 }

@@ -39,8 +39,6 @@ public partial class MoveWithinRoomAction : Action
     protected override Status OnUpdate()
     {
         if (Agent.Value.Origin != CurrentPointer) return Status.Running;
-
-        Agent.Value.UpdateOrigin(CurrentPointer);
        
         return Status.Success;
     }

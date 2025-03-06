@@ -15,7 +15,11 @@ public partial class TravelToRoomAction : Action
     [SerializeReference] public BlackboardVariable<OuterMap> Map;
     protected override Status OnStart()
     {
-        Agent.Value.FollowPath(Map.Value.Travel(Agent.Value, Room));
+        Route route = Map.Value.Travel(Agent.Value, Room);
+
+        if (route.Vertices.Count == 0) return Status.Failure;
+
+        Agent.Value.FollowPath(route);
 
         return Status.Running;
     }

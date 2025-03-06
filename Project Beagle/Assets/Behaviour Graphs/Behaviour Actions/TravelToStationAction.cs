@@ -13,7 +13,11 @@ public partial class TravelToStationAction : Action
     [SerializeReference] public BlackboardVariable<OuterMap> Map;
     protected override Status OnStart()
     {
-        Agent.Value.FollowPath(Map.Value.Travel(Agent.Value, Station));
+        Route route = Map.Value.Travel(Agent.Value, Station);
+
+        if (route.Vertices.Count == 0) return Status.Failure;
+
+        Agent.Value.FollowPath(route);
 
         return Status.Running;
     }
