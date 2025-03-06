@@ -11,12 +11,14 @@ public partial class TravelToNearestRoomVertexAction : Action
 {
     [SerializeReference] public BlackboardVariable<Agent> Agent;
     [SerializeReference] public BlackboardVariable<OuterMap> Map;
+    NavigationState Nav;
     Room room;
     List<Vertex> vertices;
 
     protected override Status OnStart()
     {
-        room = Agent.Value.Room;
+        Nav = Agent.Value.Navigation;
+        room = Nav.CurrentRoom;
 
         vertices = 
             room == null ? 
@@ -28,14 +30,14 @@ public partial class TravelToNearestRoomVertexAction : Action
 
     protected override Status OnUpdate()
     {
-        if (Agent.Value.Origin == vertices[0]) {
-            Agent.Value.UpdateOrigin(vertices[0]);
+        if (Nav.Origin == vertices[0]) {
+            Nav.UpdateOrigin(vertices[0]);
             return Status.Success;
         }
 
-        if (Agent.Value.Heading != vertices[0])
+        if (Nav.Heading != vertices[0])
         {
-            Agent.Value.UpdateHeading(vertices[0]);
+            Nav.UpdateHeading(vertices[0]);
         }
 
         return Status.Running;

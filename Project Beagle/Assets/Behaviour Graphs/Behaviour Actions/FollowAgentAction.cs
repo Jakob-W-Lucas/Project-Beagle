@@ -6,6 +6,7 @@ using Unity.Properties;
 using System.Collections.Generic;
 using System.Linq;
 using static UnityUtils.PathExtensions;
+using Unity.VisualScripting;
 
 [Serializable, GeneratePropertyBag]
 [NodeDescription(name: "FollowAgent", story: "[Agent] follows Target", category: "Action", id: "f2b14d4f02aa7c8ffdeba446869c9008")]
@@ -13,6 +14,7 @@ public partial class FollowAgentAction : Action
 {
     [SerializeReference] public BlackboardVariable<Agent> Agent;
     [SerializeReference] public BlackboardVariable<OuterMap> Map;
+    private NavigationState Nav;
     public Queue<Point> Stack = new Queue<Point>();
     Agent Target;
     Vertex COrigin;
@@ -21,21 +23,23 @@ public partial class FollowAgentAction : Action
 
     protected override Status OnStart()
     {
-        if (Agent.Value.Follow.Target == null) return Status.Failure;
+        Nav = Agent.Value.Navigation;
 
-        Target = Agent.Value.Follow.Target;
+        if (Agent.Value.FollowConfig.Target == null) return Status.Failure;
+
+        Target = Agent.Value.FollowConfig.Target;
 
         return Status.Running;
     }
     protected override Status OnUpdate()
     {
-        if (Agent.Value.Follow.Target == null) return Status.Success;
+        if (Agent.Value.FollowConfig.Target == null) return Status.Success;
 
-        Agent.Value.GetNextHeading();
+        Nav.GetNextHeading();
 
-        if (Agent.Value.Heading == null) Agent.Value.UpdateHeading(Agent.Value.Pointer);
+        if (Nav.Heading == null) Nav.UpdateHeading(Nav.Pointer);
 
-        MoveAlongStack(Agent.Value.Follow.HardDistance);
+        MoveAlongStack(Agent.Value.FollowConfig.HardDistance);
 
         if (PointerBetween != null && PointerBetween.Length == 2 && PointerBetween[1] != null && PointerBetween[1].Position.x > PointerBetween[0].Position.x)
         {
@@ -44,7 +48,7 @@ public partial class FollowAgentAction : Action
         
         UpdatePath();
 
-        if (Target.Origin == COrigin) 
+        if (Target.Navigation.Origin == COrigin) 
             return Status.Running;
 
         UpdatePathStack();
@@ -56,19 +60,19 @@ public partial class FollowAgentAction : Action
 
     void UpdatePath()
     {
-        if (PointerBetween == null || CurrentBetween == null || Agent.Value.Between == null) return;
+        if (PointerBetween == null || CurrentBetween == null || Nav.PathSegment == null) return;
 
         if (ShouldUpdatePath())
         {
-            Agent.Value.Route.Clear();
-            Agent.Value.UpdateHeading(Agent.Value.Pointer);
+            Nav.Route.Clear();
+            Nav.UpdateHeading(Nav.Pointer);
             return;
         }
 
         if (CurrentBetween.SequenceEqual(PointerBetween)) return;
         
         Route best = new Route();
-        foreach (Vertex v1 in Agent.Value.Between)
+        foreach (Vertex v1 in Nav.PathSegment)
         {
             if (v1 == null) continue;
 
@@ -77,21 +81,24 @@ public partial class FollowAgentAction : Action
                 if (v2 == null) continue;
 
                 Route p_best = Map.Value.Map.Routes[v1.g_ID][v2.g_ID];
-                p_best.Join(new Route(v2, Agent.Value.Pointer));
+                p_best.Join(new Route(v2, Nav.Pointer));
                 best = CompareRoutes(best, p_best);
             }
         }
 
-        Agent.Value.FollowPath(best);
+        Nav.FollowPath(best);
         
         CurrentBetween = PointerBetween;
     }
 
     bool ShouldUpdatePath() =>
-    
-        Agent.Value.GetInBetween(Agent.Value.Pointer).SequenceEqual(PointerBetween) ||
 
-        Vector2.Distance(Agent.Value.transform.position, Agent.Value.Pointer.Position) < 0.25f;
+        /* This should change so that that it gets the last detected room vertices
+        Currently it is getting it between the agent and the pointer so when the pointer
+        is moving far ahead of the */
+        Nav.GetInBetween(Nav.Pointer).SequenceEqual(PointerBetween) ||
+
+        Vector2.Distance(Agent.Value.transform.position, Nav.Pointer.Position) < 0.25f;
     
 
     float GetPositionOnSegment(Vector2 s, Vector2 u, float distance)
@@ -104,7 +111,7 @@ public partial class FollowAgentAction : Action
         {
             Vector2 direction = (u - s).normalized;
             Vector2 newPosition = s + direction * remainingDistance;
-            Agent.Value.SetPointer(Target.Room, newPosition); 
+            Nav.SetPointer(Target.Navigation.CurrentRoom, newPosition); 
         }
 
         return remainingDistance - segmentDistance;
@@ -116,7 +123,7 @@ public partial class FollowAgentAction : Action
 
         Vertex origin = Stack.Last().Vertex;
         float remainingDistance = GetPositionOnSegment(Target.transform.position, origin.Position, distance);
-        PointerBetween = Target.Between;
+        PointerBetween = Target.Navigation.PathSegment;
 
         if (remainingDistance <= 0) return;
 
@@ -132,13 +139,13 @@ public partial class FollowAgentAction : Action
         }
 
         Vertex first = Stack.First().Vertex;
-        Agent.Value.SetPointer(Target.Room, first.Position);
+        Nav.SetPointer(Target.Navigation.CurrentRoom, first.Position);
         PointerBetween = new Vertex[2] { first, null };
     }
 
     void UpdatePathStack()
     {
-        if (!Target.Origin.IsRoom) return;
+        if (!Target.Navigation.Origin.IsRoom) return;
 
         Point newPoint = new Point(Target);
 
@@ -162,11 +169,11 @@ public partial class FollowAgentAction : Action
             removed.Vertex.GetComponent<SpriteRenderer>().color = Color.gray;
         }
         
-        COrigin = Target.Origin;
+        COrigin = Target.Navigation.Origin;
     }
 
     protected override void OnEnd()
     {
-        Agent.Value.Between = PointerBetween;
+        Nav.PathSegment = PointerBetween;
     }
 }

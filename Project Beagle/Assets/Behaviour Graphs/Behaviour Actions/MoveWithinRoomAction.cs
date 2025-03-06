@@ -11,6 +11,7 @@ using System.Collections.Generic;
 public partial class MoveWithinRoomAction : Action
 {
     [SerializeReference] public BlackboardVariable<Agent> Agent;
+    NavigationState Nav;
     Vertex CurrentPointer;
     Room room;
     float x_1;
@@ -18,27 +19,29 @@ public partial class MoveWithinRoomAction : Action
 
     protected override Status OnStart()
     {
-        room = Agent.Value.Room;
+        Nav = Agent.Value.Navigation;
+
+        room = Nav.CurrentRoom;
 
         x_1 = room.Bounds.center.x - room.Bounds.extents.x;
         x_2 = room.Bounds.center.x + room.Bounds.extents.x;
 
         float rand = UnityEngine.Random.Range(x_1, x_2);
 
-        Agent.Value.SetPointer(room, Agent.Value.transform.position.With(x:rand));
+        Nav.SetPointer(room, Agent.Value.transform.position.With(x:rand));
 
-        Agent.Value.Route.Clear();
+        Nav.Route.Clear();
 
-        Agent.Value.UpdateHeading(Agent.Value.Pointer);
+        Nav.UpdateHeading(Nav.Pointer);
 
-        CurrentPointer = Agent.Value.Pointer;
+        CurrentPointer = Nav.Pointer;
 
         return Status.Running;
     }
 
     protected override Status OnUpdate()
     {
-        if (Agent.Value.Origin != CurrentPointer) return Status.Running;
+        if (Nav.Origin != CurrentPointer) return Status.Running;
        
         return Status.Success;
     }

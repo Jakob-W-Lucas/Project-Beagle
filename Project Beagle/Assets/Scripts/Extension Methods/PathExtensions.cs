@@ -10,7 +10,7 @@ public class Point
 
     public Point(Agent a)
     {
-        Vertex = a.Origin;
+        Vertex = a.Navigation.Origin;
         Position = Vertex.Position;
         IsPointer = Vertex.IsPointer;
         IsStation = Vertex.IsStation;

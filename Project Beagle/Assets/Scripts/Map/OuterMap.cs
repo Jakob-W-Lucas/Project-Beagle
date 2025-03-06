@@ -94,7 +94,7 @@ public class OuterMap : MonoBehaviour
     
     public Route Travel(Agent a, StationType T, Station u_st = null)
     {
-        Vertex[] between = a.Between == null || a.Between[0] == null ? new Vertex[1] { a.Origin } : a.Between; 
+        Vertex[] between = a.Navigation.PathSegment == null || a.Navigation.PathSegment[0] == null ? new Vertex[1] { a.Navigation.Origin } : a.Navigation.PathSegment; 
         Route route = new Route();
         foreach (Vertex v in between)
         {
@@ -106,7 +106,7 @@ public class OuterMap : MonoBehaviour
 
     public Route Travel(Agent a, RoomType T, Room u_room = null)
     {
-        Vertex[] between = a.Between == null || a.Between[0] == null ? new Vertex[1] { a.Origin } : a.Between; 
+        Vertex[] between = a.Navigation.PathSegment == null || a.Navigation.PathSegment[0] == null ? new Vertex[1] { a.Navigation.Origin } : a.Navigation.PathSegment; 
         Route route = new Route();
         foreach (Vertex v in between)
         {

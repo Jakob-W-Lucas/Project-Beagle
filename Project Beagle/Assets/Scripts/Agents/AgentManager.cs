@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Data.Common;
 using UnityEngine;
+using UnityEngine.UI;
 
 [System.Serializable]
 public class FollowAgent
@@ -64,17 +65,18 @@ public class AgentManager : MonoBehaviour
     // Move an agent towards its next target position
     void UpdatePosition(Agent a)
     {   
-        if (a.Heading == null) return;
+        NavigationState nav = a.Navigation;
+        if (nav.Heading == null) return;
         
         // Continue to move towards the heading vertex if distance is greater than 0.01 in either cardinal direction
-        if (NaiveDistanceCheck(a.transform.position, a.Heading.Position)) {
-            a.transform.position = Vector2.MoveTowards(a.transform.position, a.Heading.Position, a.Speed * Time.fixedDeltaTime);
+        if (NaiveDistanceCheck(a.transform.position, nav.Heading.Position)) {
+            a.transform.position = Vector2.MoveTowards(a.transform.position, nav.Heading.Position, nav.MovementSpeed * Time.fixedDeltaTime);
             return; 
         }
 
-        a.UpdateOrigin(a.Heading);
+        nav.UpdateOrigin(nav.Heading);
 
-        a.transform.position = a.Heading.Position;
+        a.transform.position = nav.Heading.Position;
     }
 
     bool NaiveDistanceCheck(Vector2 a, Vector2 b) {

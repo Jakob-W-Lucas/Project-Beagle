@@ -640,14 +640,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9a9740ac0b1b2449b69a851ba4f04f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BGAgent: {fileID: 0}
-  Between: []
-  Follow:
+  _speed: 2
+  _behaviorAgent: {fileID: 0}
+  _followAgentConfig:
     Target: {fileID: 1315457578}
     HardDistance: 3.6
     SoftDistance: 0
-  temp: {fileID: 0}
-  Speed: 3
 --- !u!212 &62230968
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -951,14 +949,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9a9740ac0b1b2449b69a851ba4f04f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BGAgent: {fileID: 0}
-  Between: []
-  Follow:
+  _speed: 2
+  _behaviorAgent: {fileID: 0}
+  _followAgentConfig:
     Target: {fileID: 1315457578}
     HardDistance: 1
     SoftDistance: 0
-  temp: {fileID: 0}
-  Speed: 3
 --- !u!212 &77901541
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1438,14 +1434,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9a9740ac0b1b2449b69a851ba4f04f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BGAgent: {fileID: 0}
-  Between: []
-  Follow:
+  _speed: 2
+  _behaviorAgent: {fileID: 0}
+  _followAgentConfig:
     Target: {fileID: 1315457578}
     HardDistance: 2.2
     SoftDistance: 0
-  temp: {fileID: 0}
-  Speed: 3
 --- !u!58 &220228919
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -2024,14 +2018,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9a9740ac0b1b2449b69a851ba4f04f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BGAgent: {fileID: 0}
-  Between: []
-  Follow:
+  _speed: 2
+  _behaviorAgent: {fileID: 0}
+  _followAgentConfig:
     Target: {fileID: 1315457578}
     HardDistance: 4.2
     SoftDistance: 0
-  temp: {fileID: 0}
-  Speed: 3
 --- !u!212 &295193937
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2504,14 +2496,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9a9740ac0b1b2449b69a851ba4f04f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BGAgent: {fileID: 0}
-  Between: []
-  Follow:
+  _speed: 2
+  _behaviorAgent: {fileID: 0}
+  _followAgentConfig:
     Target: {fileID: 1315457578}
     HardDistance: 2
     SoftDistance: 0
-  temp: {fileID: 0}
-  Speed: 3
 --- !u!212 &342785473
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3644,14 +3634,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9a9740ac0b1b2449b69a851ba4f04f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BGAgent: {fileID: 0}
-  Between: []
-  Follow:
+  _speed: 2
+  _behaviorAgent: {fileID: 0}
+  _followAgentConfig:
     Target: {fileID: 1315457578}
     HardDistance: 3.4
     SoftDistance: 0
-  temp: {fileID: 0}
-  Speed: 3
 --- !u!212 &495380288
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4440,14 +4428,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9a9740ac0b1b2449b69a851ba4f04f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BGAgent: {fileID: 0}
-  Between: []
-  Follow:
+  _speed: 2
+  _behaviorAgent: {fileID: 0}
+  _followAgentConfig:
     Target: {fileID: 1315457578}
     HardDistance: 3
     SoftDistance: 0
-  temp: {fileID: 0}
-  Speed: 3
 --- !u!212 &559308346
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4751,14 +4737,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9a9740ac0b1b2449b69a851ba4f04f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BGAgent: {fileID: 0}
-  Between: []
-  Follow:
+  _speed: 2
+  _behaviorAgent: {fileID: 0}
+  _followAgentConfig:
     Target: {fileID: 1315457578}
     HardDistance: 2.6
     SoftDistance: 0
-  temp: {fileID: 0}
-  Speed: 3
 --- !u!212 &559821523
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5569,14 +5553,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9a9740ac0b1b2449b69a851ba4f04f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BGAgent: {fileID: 0}
-  Between: []
-  Follow:
+  _speed: 2
+  _behaviorAgent: {fileID: 0}
+  _followAgentConfig:
     Target: {fileID: 1315457578}
     HardDistance: 2.4
     SoftDistance: 0
-  temp: {fileID: 0}
-  Speed: 3
 --- !u!212 &609705770
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6041,14 +6023,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9a9740ac0b1b2449b69a851ba4f04f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BGAgent: {fileID: 0}
-  Between: []
-  Follow:
+  _speed: 2
+  _behaviorAgent: {fileID: 0}
+  _followAgentConfig:
     Target: {fileID: 1315457578}
     HardDistance: 0.4
     SoftDistance: 0
-  temp: {fileID: 0}
-  Speed: 3
 --- !u!212 &662450830
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6696,14 +6676,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9a9740ac0b1b2449b69a851ba4f04f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BGAgent: {fileID: 0}
-  Between: []
-  Follow:
+  _speed: 2
+  _behaviorAgent: {fileID: 0}
+  _followAgentConfig:
     Target: {fileID: 1315457578}
     HardDistance: 4
     SoftDistance: 0
-  temp: {fileID: 0}
-  Speed: 3
 --- !u!212 &682071258
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -7721,14 +7699,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9a9740ac0b1b2449b69a851ba4f04f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BGAgent: {fileID: 0}
-  Between: []
-  Follow:
+  _speed: 2
+  _behaviorAgent: {fileID: 0}
+  _followAgentConfig:
     Target: {fileID: 1315457578}
     HardDistance: 2.8
     SoftDistance: 0
-  temp: {fileID: 0}
-  Speed: 3
 --- !u!212 &819757371
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -8259,14 +8235,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9a9740ac0b1b2449b69a851ba4f04f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BGAgent: {fileID: 0}
-  Between: []
-  Follow:
+  _speed: 2
+  _behaviorAgent: {fileID: 0}
+  _followAgentConfig:
     Target: {fileID: 1315457578}
     HardDistance: 3.2
     SoftDistance: 0
-  temp: {fileID: 0}
-  Speed: 3
 --- !u!58 &885982037
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -8918,14 +8892,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9a9740ac0b1b2449b69a851ba4f04f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BGAgent: {fileID: 0}
-  Between: []
-  Follow:
+  _speed: 2
+  _behaviorAgent: {fileID: 0}
+  _followAgentConfig:
     Target: {fileID: 1315457578}
     HardDistance: 4.8
     SoftDistance: 0
-  temp: {fileID: 0}
-  Speed: 3
 --- !u!212 &962865304
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -9795,14 +9767,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9a9740ac0b1b2449b69a851ba4f04f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BGAgent: {fileID: 0}
-  Between: []
-  Follow:
+  _speed: 2
+  _behaviorAgent: {fileID: 0}
+  _followAgentConfig:
     Target: {fileID: 1315457578}
     HardDistance: 1.4
     SoftDistance: 0
-  temp: {fileID: 0}
-  Speed: 3
 --- !u!212 &1112151129
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -10201,14 +10171,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9a9740ac0b1b2449b69a851ba4f04f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BGAgent: {fileID: 0}
-  Between: []
-  Follow:
+  _speed: 2
+  _behaviorAgent: {fileID: 0}
+  _followAgentConfig:
     Target: {fileID: 1315457578}
     HardDistance: 1.2
     SoftDistance: 0
-  temp: {fileID: 0}
-  Speed: 3
 --- !u!58 &1199132864
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -11112,14 +11080,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9a9740ac0b1b2449b69a851ba4f04f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BGAgent: {fileID: 0}
-  Between: []
-  Follow:
+  _speed: 4
+  _behaviorAgent: {fileID: 0}
+  _followAgentConfig:
     Target: {fileID: 0}
     HardDistance: 0
     SoftDistance: 0
-  temp: {fileID: 0}
-  Speed: 2
 --- !u!58 &1315457579
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -11560,14 +11526,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9a9740ac0b1b2449b69a851ba4f04f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BGAgent: {fileID: 0}
-  Between: []
-  Follow:
+  _speed: 2
+  _behaviorAgent: {fileID: 0}
+  _followAgentConfig:
     Target: {fileID: 1315457578}
     HardDistance: 1.8
     SoftDistance: 0
-  temp: {fileID: 0}
-  Speed: 3
 --- !u!212 &1323612061
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -12620,14 +12584,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9a9740ac0b1b2449b69a851ba4f04f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BGAgent: {fileID: 0}
-  Between: []
-  Follow:
+  _speed: 2
+  _behaviorAgent: {fileID: 0}
+  _followAgentConfig:
     Target: {fileID: 1315457578}
     HardDistance: 4.4
     SoftDistance: 0
-  temp: {fileID: 0}
-  Speed: 3
 --- !u!212 &1415015121
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -13811,14 +13773,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9a9740ac0b1b2449b69a851ba4f04f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BGAgent: {fileID: 0}
-  Between: []
-  Follow:
+  _speed: 2
+  _behaviorAgent: {fileID: 0}
+  _followAgentConfig:
     Target: {fileID: 1315457578}
     HardDistance: 1.6
     SoftDistance: 0
-  temp: {fileID: 0}
-  Speed: 3
 --- !u!212 &1542992504
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -14826,14 +14786,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9a9740ac0b1b2449b69a851ba4f04f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BGAgent: {fileID: 0}
-  Between: []
-  Follow:
+  _speed: 2
+  _behaviorAgent: {fileID: 0}
+  _followAgentConfig:
     Target: {fileID: 1315457578}
     HardDistance: 4.6
     SoftDistance: 0
-  temp: {fileID: 0}
-  Speed: 3
 --- !u!212 &1661278019
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -15190,14 +15148,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9a9740ac0b1b2449b69a851ba4f04f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BGAgent: {fileID: 0}
-  Between: []
-  Follow:
+  _speed: 2
+  _behaviorAgent: {fileID: 0}
+  _followAgentConfig:
     Target: {fileID: 1315457578}
     HardDistance: 0.2
     SoftDistance: 0
-  temp: {fileID: 0}
-  Speed: 3
 --- !u!114 &1699166575
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15601,14 +15557,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9a9740ac0b1b2449b69a851ba4f04f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BGAgent: {fileID: 0}
-  Between: []
-  Follow:
+  _speed: 2
+  _behaviorAgent: {fileID: 0}
+  _followAgentConfig:
     Target: {fileID: 1315457578}
     HardDistance: 0.6
     SoftDistance: 0
-  temp: {fileID: 0}
-  Speed: 3
 --- !u!212 &1724273883
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -16792,14 +16746,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9a9740ac0b1b2449b69a851ba4f04f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BGAgent: {fileID: 0}
-  Between: []
-  Follow:
+  _speed: 2
+  _behaviorAgent: {fileID: 0}
+  _followAgentConfig:
     Target: {fileID: 1315457578}
     HardDistance: 3.8
     SoftDistance: 0
-  temp: {fileID: 0}
-  Speed: 3
 --- !u!212 &1930299883
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -17476,14 +17428,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9a9740ac0b1b2449b69a851ba4f04f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BGAgent: {fileID: 0}
-  Between: []
-  Follow:
+  _speed: 2
+  _behaviorAgent: {fileID: 0}
+  _followAgentConfig:
     Target: {fileID: 1315457578}
     HardDistance: 0.8
     SoftDistance: 0
-  temp: {fileID: 0}
-  Speed: 3
 --- !u!212 &1974697520
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -17829,14 +17779,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9a9740ac0b1b2449b69a851ba4f04f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BGAgent: {fileID: 0}
-  Between: []
-  Follow:
+  _speed: 2
+  _behaviorAgent: {fileID: 0}
+  _followAgentConfig:
     Target: {fileID: 1315457578}
     HardDistance: 5
     SoftDistance: 0
-  temp: {fileID: 0}
-  Speed: 3
 --- !u!212 &1980324796
 SpriteRenderer:
   m_ObjectHideFlags: 0
