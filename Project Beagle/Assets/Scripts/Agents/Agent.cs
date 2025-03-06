@@ -2,12 +2,15 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Unity.Behavior;
+using Unity.VisualScripting;
 using UnityEngine;
 
 [RequireComponent(typeof(Health))]
 public class Agent : MonoBehaviour
 {
-    public BehaviorGraphAgent BGAgent;
+    [Header("Behaviour Agent")]
+    [SerializeField] private BehaviorGraphAgent _behaviourAgent;
+
     [Header("Organs")]
     public Sensor Sensor { get; private set; }
     public Brain Brain { get; private set; }
@@ -24,16 +27,25 @@ public class Agent : MonoBehaviour
     public Vertex Pointer { get; private set; }
     public Vertex[] Between;
     public FollowAgent Follow;
+    public Agent temp;
     public float Speed = 0.5f;
+
+    # region "Initialization"
 
     private void Awake() 
     {
-        BGAgent = GetComponent<BehaviorGraphAgent>();
+        _behaviourAgent = GetComponent<BehaviorGraphAgent>();
         Brain = GetComponent<Brain>();
         Sensor = GetComponent<Sensor>();
         Pointer = GetComponent<Vertex>();
+
+        temp = Follow.Target;
     }
 
+    # endregion
+
+    # region "Travel"
+    
     // Set the origin of the agent (current vertex)
     public void UpdateOrigin(Vertex s)
     {
@@ -41,8 +53,6 @@ public class Agent : MonoBehaviour
 
         Origin = s;
         Room = s.Room;
-
-        //if (s) Between = GetInBetween(transform.position, s);
     }
 
     public void UpdateHeading(Vertex u)
@@ -53,37 +63,6 @@ public class Agent : MonoBehaviour
 
         if (u) Between = GetInBetween(u);
     }
-
-    public Vertex[] GetInBetween(Vertex u)
-    {
-        Vector2 pos = (Vector2)transform.position;
-        LayerMask layerMask = LayerMask.GetMask("Room");
-        Vector2 direction = (u.Position - pos).normalized;
-
-        // Cast forward ray (in direction away from u)
-        RaycastHit2D f_hit = Physics2D.Raycast(pos, -direction, 20f, layerMask);
-        Vertex forward = f_hit.collider?.GetComponent<Vertex>();
-
-        // Cast backward ray (towards u) with improved origin offset
-        Vertex backward = null;
-        if (f_hit.collider != null)
-        {
-            RaycastHit2D[] b_hits = Physics2D.RaycastAll(pos, direction, 20f, layerMask);
-            
-            foreach (var hit in b_hits)
-            {
-                // Compare colliders instead of hit objects
-                if (hit.collider != null && hit.collider != f_hit.collider)
-                {
-                    backward = hit.collider.GetComponent<Vertex>();
-                    break;
-                }
-            }
-        }
-
-        return new Vertex[2] { forward, backward };
-    }
-
 
     public void SetPointer(Room room, Vector2 position)
     {
@@ -156,4 +135,42 @@ public class Agent : MonoBehaviour
             }
         }
     }
+
+    # endregion
+
+    # region "Utility"
+
+    public void SetState(ActionState actionState) => _behaviourAgent.Graph.BlackboardReference.SetVariableValue("State", actionState);
+
+    public Vertex[] GetInBetween(Vertex u)
+    {
+        Vector2 pos = (Vector2)transform.position;
+        LayerMask layerMask = LayerMask.GetMask("Room");
+        Vector2 direction = (u.Position - pos).normalized;
+
+        // Cast forward ray (in direction away from u)
+        RaycastHit2D f_hit = Physics2D.Raycast(pos, -direction, 20f, layerMask);
+        Vertex forward = f_hit.collider?.GetComponent<Vertex>();
+
+        // Cast backward ray (towards u) with improved origin offset
+        Vertex backward = null;
+        if (f_hit.collider != null)
+        {
+            RaycastHit2D[] b_hits = Physics2D.RaycastAll(pos, direction, 20f, layerMask);
+            
+            foreach (var hit in b_hits)
+            {
+                // Compare colliders instead of hit objects
+                if (hit.collider != null && hit.collider != f_hit.collider)
+                {
+                    backward = hit.collider.GetComponent<Vertex>();
+                    break;
+                }
+            }
+        }
+
+        return new Vertex[2] { forward, backward };
+    }
+
+    # endregion
 }

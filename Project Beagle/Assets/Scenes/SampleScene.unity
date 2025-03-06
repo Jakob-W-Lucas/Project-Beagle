@@ -286,7 +286,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Type: {fileID: 11400000, guid: 1daa47cee9f8fd14698864d2c62ee66f, type: 2}
-  _capacity: 1
+  _capacity: 2
 --- !u!1 &44724373
 GameObject:
   m_ObjectHideFlags: 0
@@ -646,6 +646,7 @@ MonoBehaviour:
     Target: {fileID: 1315457578}
     HardDistance: 3.6
     SoftDistance: 0
+  temp: {fileID: 0}
   Speed: 3
 --- !u!212 &62230968
 SpriteRenderer:
@@ -720,6 +721,7 @@ MonoBehaviour:
   - rid: 3284953070623785524
   - rid: 3284953070623785540
   - rid: 3284953145737740671
+  - rid: 6119213312020316625
   m_IsInitialised: 0
   m_IsStarted: 0
   references:
@@ -757,6 +759,14 @@ MonoBehaviour:
           m_Value1: 14818642356139347783
         Name: ActionState
         m_Value: 2
+    - rid: 6119213312020316625
+      type: {class: 'BlackboardVariable`1[[Agent, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 4369050710446065266
+          m_Value1: 5613661496081385598
+        Name: Target
+        m_Value: {fileID: 62230967}
 --- !u!1 &77901532
 GameObject:
   m_ObjectHideFlags: 0
@@ -947,6 +957,7 @@ MonoBehaviour:
     Target: {fileID: 1315457578}
     HardDistance: 1
     SoftDistance: 0
+  temp: {fileID: 0}
   Speed: 3
 --- !u!212 &77901541
 SpriteRenderer:
@@ -1021,6 +1032,7 @@ MonoBehaviour:
   - rid: 3284953070623785524
   - rid: 3284953070623785540
   - rid: 3284953145737740671
+  - rid: 6119213312020316626
   m_IsInitialised: 0
   m_IsStarted: 0
   references:
@@ -1058,6 +1070,14 @@ MonoBehaviour:
           m_Value1: 14818642356139347783
         Name: ActionState
         m_Value: 2
+    - rid: 6119213312020316626
+      type: {class: 'BlackboardVariable`1[[Agent, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 4369050710446065266
+          m_Value1: 5613661496081385598
+        Name: Target
+        m_Value: {fileID: 77901540}
 --- !u!1 &90267849
 GameObject:
   m_ObjectHideFlags: 0
@@ -1424,6 +1444,7 @@ MonoBehaviour:
     Target: {fileID: 1315457578}
     HardDistance: 2.2
     SoftDistance: 0
+  temp: {fileID: 0}
   Speed: 3
 --- !u!58 &220228919
 CircleCollider2D:
@@ -1629,6 +1650,7 @@ MonoBehaviour:
   - rid: 3284953070623785524
   - rid: 3284953070623785540
   - rid: 3284953145737740671
+  - rid: 6119213312020316627
   m_IsInitialised: 0
   m_IsStarted: 0
   references:
@@ -1666,6 +1688,14 @@ MonoBehaviour:
           m_Value1: 14818642356139347783
         Name: ActionState
         m_Value: 2
+    - rid: 6119213312020316627
+      type: {class: 'BlackboardVariable`1[[Agent, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 4369050710446065266
+          m_Value1: 5613661496081385598
+        Name: Target
+        m_Value: {fileID: 220228918}
 --- !u!4 &220228927
 Transform:
   m_ObjectHideFlags: 0
@@ -2000,6 +2030,7 @@ MonoBehaviour:
     Target: {fileID: 1315457578}
     HardDistance: 4.2
     SoftDistance: 0
+  temp: {fileID: 0}
   Speed: 3
 --- !u!212 &295193937
 SpriteRenderer:
@@ -2074,6 +2105,7 @@ MonoBehaviour:
   - rid: 3284953070623785524
   - rid: 3284953070623785540
   - rid: 3284953145737740671
+  - rid: 6119213312020316628
   m_IsInitialised: 0
   m_IsStarted: 0
   references:
@@ -2111,6 +2143,14 @@ MonoBehaviour:
           m_Value1: 14818642356139347783
         Name: ActionState
         m_Value: 2
+    - rid: 6119213312020316628
+      type: {class: 'BlackboardVariable`1[[Agent, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 4369050710446065266
+          m_Value1: 5613661496081385598
+        Name: Target
+        m_Value: {fileID: 295193936}
 --- !u!1 &327407052
 GameObject:
   m_ObjectHideFlags: 0
@@ -2470,6 +2510,7 @@ MonoBehaviour:
     Target: {fileID: 1315457578}
     HardDistance: 2
     SoftDistance: 0
+  temp: {fileID: 0}
   Speed: 3
 --- !u!212 &342785473
 SpriteRenderer:
@@ -2544,6 +2585,7 @@ MonoBehaviour:
   - rid: 3284953070623785524
   - rid: 3284953070623785540
   - rid: 3284953145737740671
+  - rid: 6119213312020316629
   m_IsInitialised: 0
   m_IsStarted: 0
   references:
@@ -2581,6 +2623,14 @@ MonoBehaviour:
           m_Value1: 14818642356139347783
         Name: ActionState
         m_Value: 2
+    - rid: 6119213312020316629
+      type: {class: 'BlackboardVariable`1[[Agent, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 4369050710446065266
+          m_Value1: 5613661496081385598
+        Name: Target
+        m_Value: {fileID: 342785472}
 --- !u!1 &345956099
 GameObject:
   m_ObjectHideFlags: 0
@@ -2749,7 +2799,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Type: {fileID: 11400000, guid: c6fee659ce7a98140887b8a0526cd0d1, type: 2}
-  _capacity: 15
+  _capacity: 1
 --- !u!1 &388013702
 GameObject:
   m_ObjectHideFlags: 0
@@ -3409,7 +3459,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Type: {fileID: 11400000, guid: c6fee659ce7a98140887b8a0526cd0d1, type: 2}
-  _capacity: 10
+  _capacity: 1
 --- !u!1 &495380279
 GameObject:
   m_ObjectHideFlags: 0
@@ -3600,6 +3650,7 @@ MonoBehaviour:
     Target: {fileID: 1315457578}
     HardDistance: 3.4
     SoftDistance: 0
+  temp: {fileID: 0}
   Speed: 3
 --- !u!212 &495380288
 SpriteRenderer:
@@ -3674,6 +3725,7 @@ MonoBehaviour:
   - rid: 3284953070623785524
   - rid: 3284953070623785540
   - rid: 3284953145737740671
+  - rid: 6119213312020316630
   m_IsInitialised: 0
   m_IsStarted: 0
   references:
@@ -3711,6 +3763,14 @@ MonoBehaviour:
           m_Value1: 14818642356139347783
         Name: ActionState
         m_Value: 2
+    - rid: 6119213312020316630
+      type: {class: 'BlackboardVariable`1[[Agent, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 4369050710446065266
+          m_Value1: 5613661496081385598
+        Name: Target
+        m_Value: {fileID: 495380287}
 --- !u!1 &508927027
 GameObject:
   m_ObjectHideFlags: 0
@@ -4386,6 +4446,7 @@ MonoBehaviour:
     Target: {fileID: 1315457578}
     HardDistance: 3
     SoftDistance: 0
+  temp: {fileID: 0}
   Speed: 3
 --- !u!212 &559308346
 SpriteRenderer:
@@ -4460,6 +4521,7 @@ MonoBehaviour:
   - rid: 3284953070623785524
   - rid: 3284953070623785540
   - rid: 3284953145737740671
+  - rid: 6119213312020316631
   m_IsInitialised: 0
   m_IsStarted: 0
   references:
@@ -4497,6 +4559,14 @@ MonoBehaviour:
           m_Value1: 14818642356139347783
         Name: ActionState
         m_Value: 2
+    - rid: 6119213312020316631
+      type: {class: 'BlackboardVariable`1[[Agent, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 4369050710446065266
+          m_Value1: 5613661496081385598
+        Name: Target
+        m_Value: {fileID: 559308345}
 --- !u!1 &559821514
 GameObject:
   m_ObjectHideFlags: 0
@@ -4687,6 +4757,7 @@ MonoBehaviour:
     Target: {fileID: 1315457578}
     HardDistance: 2.6
     SoftDistance: 0
+  temp: {fileID: 0}
   Speed: 3
 --- !u!212 &559821523
 SpriteRenderer:
@@ -4761,6 +4832,7 @@ MonoBehaviour:
   - rid: 3284953070623785524
   - rid: 3284953070623785540
   - rid: 3284953145737740671
+  - rid: 6119213312020316632
   m_IsInitialised: 0
   m_IsStarted: 0
   references:
@@ -4798,6 +4870,14 @@ MonoBehaviour:
           m_Value1: 14818642356139347783
         Name: ActionState
         m_Value: 2
+    - rid: 6119213312020316632
+      type: {class: 'BlackboardVariable`1[[Agent, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 4369050710446065266
+          m_Value1: 5613661496081385598
+        Name: Target
+        m_Value: {fileID: 559821522}
 --- !u!1 &572227411
 GameObject:
   m_ObjectHideFlags: 0
@@ -5495,6 +5575,7 @@ MonoBehaviour:
     Target: {fileID: 1315457578}
     HardDistance: 2.4
     SoftDistance: 0
+  temp: {fileID: 0}
   Speed: 3
 --- !u!212 &609705770
 SpriteRenderer:
@@ -5569,6 +5650,7 @@ MonoBehaviour:
   - rid: 3284953070623785524
   - rid: 3284953070623785540
   - rid: 3284953145737740671
+  - rid: 6119213312020316633
   m_IsInitialised: 0
   m_IsStarted: 0
   references:
@@ -5606,6 +5688,14 @@ MonoBehaviour:
           m_Value1: 14818642356139347783
         Name: ActionState
         m_Value: 2
+    - rid: 6119213312020316633
+      type: {class: 'BlackboardVariable`1[[Agent, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 4369050710446065266
+          m_Value1: 5613661496081385598
+        Name: Target
+        m_Value: {fileID: 609705769}
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0
@@ -5957,6 +6047,7 @@ MonoBehaviour:
     Target: {fileID: 1315457578}
     HardDistance: 0.4
     SoftDistance: 0
+  temp: {fileID: 0}
   Speed: 3
 --- !u!212 &662450830
 SpriteRenderer:
@@ -6031,6 +6122,7 @@ MonoBehaviour:
   - rid: 3284953070623785524
   - rid: 3284953070623785540
   - rid: 3284953145737740671
+  - rid: 6119213312020316634
   m_IsInitialised: 0
   m_IsStarted: 0
   references:
@@ -6068,6 +6160,14 @@ MonoBehaviour:
           m_Value1: 14818642356139347783
         Name: ActionState
         m_Value: 2
+    - rid: 6119213312020316634
+      type: {class: 'BlackboardVariable`1[[Agent, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 4369050710446065266
+          m_Value1: 5613661496081385598
+        Name: Target
+        m_Value: {fileID: 662450829}
 --- !u!1 &663585538
 GameObject:
   m_ObjectHideFlags: 0
@@ -6602,6 +6702,7 @@ MonoBehaviour:
     Target: {fileID: 1315457578}
     HardDistance: 4
     SoftDistance: 0
+  temp: {fileID: 0}
   Speed: 3
 --- !u!212 &682071258
 SpriteRenderer:
@@ -6676,6 +6777,7 @@ MonoBehaviour:
   - rid: 3284953070623785524
   - rid: 3284953070623785540
   - rid: 3284953145737740671
+  - rid: 6119213312020316635
   m_IsInitialised: 0
   m_IsStarted: 0
   references:
@@ -6713,6 +6815,14 @@ MonoBehaviour:
           m_Value1: 14818642356139347783
         Name: ActionState
         m_Value: 2
+    - rid: 6119213312020316635
+      type: {class: 'BlackboardVariable`1[[Agent, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 4369050710446065266
+          m_Value1: 5613661496081385598
+        Name: Target
+        m_Value: {fileID: 682071257}
 --- !u!1 &695815932
 GameObject:
   m_ObjectHideFlags: 0
@@ -7037,7 +7147,7 @@ Transform:
   m_GameObject: {fileID: 729592846}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 6.3, y: 0.9, z: -0.07096062}
+  m_LocalPosition: {x: 4.798, y: -0.297, z: -0.07096062}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -7617,6 +7727,7 @@ MonoBehaviour:
     Target: {fileID: 1315457578}
     HardDistance: 2.8
     SoftDistance: 0
+  temp: {fileID: 0}
   Speed: 3
 --- !u!212 &819757371
 SpriteRenderer:
@@ -7691,6 +7802,7 @@ MonoBehaviour:
   - rid: 3284953070623785524
   - rid: 3284953070623785540
   - rid: 3284953145737740671
+  - rid: 6119213312020316636
   m_IsInitialised: 0
   m_IsStarted: 0
   references:
@@ -7728,6 +7840,14 @@ MonoBehaviour:
           m_Value1: 14818642356139347783
         Name: ActionState
         m_Value: 2
+    - rid: 6119213312020316636
+      type: {class: 'BlackboardVariable`1[[Agent, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 4369050710446065266
+          m_Value1: 5613661496081385598
+        Name: Target
+        m_Value: {fileID: 819757370}
 --- !u!1 &845829472
 GameObject:
   m_ObjectHideFlags: 0
@@ -8101,7 +8221,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Type: {fileID: 11400000, guid: ee3e9fff333d3284f8135eee80dc9267, type: 2}
-  _capacity: 40
+  _capacity: 2
 --- !u!1 &885982035
 GameObject:
   m_ObjectHideFlags: 0
@@ -8145,6 +8265,7 @@ MonoBehaviour:
     Target: {fileID: 1315457578}
     HardDistance: 3.2
     SoftDistance: 0
+  temp: {fileID: 0}
   Speed: 3
 --- !u!58 &885982037
 CircleCollider2D:
@@ -8350,6 +8471,7 @@ MonoBehaviour:
   - rid: 3284953070623785524
   - rid: 3284953070623785540
   - rid: 3284953145737740671
+  - rid: 6119213312020316637
   m_IsInitialised: 0
   m_IsStarted: 0
   references:
@@ -8387,6 +8509,14 @@ MonoBehaviour:
           m_Value1: 14818642356139347783
         Name: ActionState
         m_Value: 2
+    - rid: 6119213312020316637
+      type: {class: 'BlackboardVariable`1[[Agent, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 4369050710446065266
+          m_Value1: 5613661496081385598
+        Name: Target
+        m_Value: {fileID: 885982036}
 --- !u!4 &885982045
 Transform:
   m_ObjectHideFlags: 0
@@ -8794,6 +8924,7 @@ MonoBehaviour:
     Target: {fileID: 1315457578}
     HardDistance: 4.8
     SoftDistance: 0
+  temp: {fileID: 0}
   Speed: 3
 --- !u!212 &962865304
 SpriteRenderer:
@@ -8868,6 +8999,7 @@ MonoBehaviour:
   - rid: 3284953070623785524
   - rid: 3284953070623785540
   - rid: 3284953145737740671
+  - rid: 6119213312020316638
   m_IsInitialised: 0
   m_IsStarted: 0
   references:
@@ -8905,6 +9037,14 @@ MonoBehaviour:
           m_Value1: 14818642356139347783
         Name: ActionState
         m_Value: 2
+    - rid: 6119213312020316638
+      type: {class: 'BlackboardVariable`1[[Agent, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 4369050710446065266
+          m_Value1: 5613661496081385598
+        Name: Target
+        m_Value: {fileID: 962865303}
 --- !u!1 &1016863737
 GameObject:
   m_ObjectHideFlags: 0
@@ -9661,6 +9801,7 @@ MonoBehaviour:
     Target: {fileID: 1315457578}
     HardDistance: 1.4
     SoftDistance: 0
+  temp: {fileID: 0}
   Speed: 3
 --- !u!212 &1112151129
 SpriteRenderer:
@@ -9735,6 +9876,7 @@ MonoBehaviour:
   - rid: 3284953070623785524
   - rid: 3284953070623785540
   - rid: 3284953145737740671
+  - rid: 6119213312020316639
   m_IsInitialised: 0
   m_IsStarted: 0
   references:
@@ -9772,6 +9914,14 @@ MonoBehaviour:
           m_Value1: 14818642356139347783
         Name: ActionState
         m_Value: 2
+    - rid: 6119213312020316639
+      type: {class: 'BlackboardVariable`1[[Agent, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 4369050710446065266
+          m_Value1: 5613661496081385598
+        Name: Target
+        m_Value: {fileID: 1112151128}
 --- !u!1 &1141939549
 GameObject:
   m_ObjectHideFlags: 0
@@ -10057,6 +10207,7 @@ MonoBehaviour:
     Target: {fileID: 1315457578}
     HardDistance: 1.2
     SoftDistance: 0
+  temp: {fileID: 0}
   Speed: 3
 --- !u!58 &1199132864
 CircleCollider2D:
@@ -10262,6 +10413,7 @@ MonoBehaviour:
   - rid: 3284953070623785524
   - rid: 3284953070623785540
   - rid: 3284953145737740671
+  - rid: 6119213312020316640
   m_IsInitialised: 0
   m_IsStarted: 0
   references:
@@ -10299,6 +10451,14 @@ MonoBehaviour:
           m_Value1: 14818642356139347783
         Name: ActionState
         m_Value: 2
+    - rid: 6119213312020316640
+      type: {class: 'BlackboardVariable`1[[Agent, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 4369050710446065266
+          m_Value1: 5613661496081385598
+        Name: Target
+        m_Value: {fileID: 1199132863}
 --- !u!4 &1199132872
 Transform:
   m_ObjectHideFlags: 0
@@ -10958,6 +11118,7 @@ MonoBehaviour:
     Target: {fileID: 0}
     HardDistance: 0
     SoftDistance: 0
+  temp: {fileID: 0}
   Speed: 2
 --- !u!58 &1315457579
 CircleCollider2D:
@@ -11162,6 +11323,7 @@ MonoBehaviour:
   - rid: 3284953070623785220
   - rid: 3284953070623785524
   - rid: 3284953070623785540
+  - rid: 6119213312020316624
   m_IsInitialised: 0
   m_IsStarted: 0
   references:
@@ -11191,6 +11353,14 @@ MonoBehaviour:
           m_Value1: 7608506640987574116
         Name: Rooms
         m_Value: {fileID: 11400000, guid: 208efd689baf938458ee6a4acec2cc75, type: 2}
+    - rid: 6119213312020316624
+      type: {class: 'BlackboardVariable`1[[Agent, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 4369050710446065266
+          m_Value1: 5613661496081385598
+        Name: Target
+        m_Value: {fileID: 1315457578}
 --- !u!4 &1315457587
 Transform:
   m_ObjectHideFlags: 0
@@ -11396,6 +11566,7 @@ MonoBehaviour:
     Target: {fileID: 1315457578}
     HardDistance: 1.8
     SoftDistance: 0
+  temp: {fileID: 0}
   Speed: 3
 --- !u!212 &1323612061
 SpriteRenderer:
@@ -11470,6 +11641,7 @@ MonoBehaviour:
   - rid: 3284953070623785524
   - rid: 3284953070623785540
   - rid: 3284953145737740671
+  - rid: 6119213312020316641
   m_IsInitialised: 0
   m_IsStarted: 0
   references:
@@ -11507,6 +11679,14 @@ MonoBehaviour:
           m_Value1: 14818642356139347783
         Name: ActionState
         m_Value: 2
+    - rid: 6119213312020316641
+      type: {class: 'BlackboardVariable`1[[Agent, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 4369050710446065266
+          m_Value1: 5613661496081385598
+        Name: Target
+        m_Value: {fileID: 1323612060}
 --- !u!1 &1324555010
 GameObject:
   m_ObjectHideFlags: 0
@@ -11815,7 +11995,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Type: {fileID: 11400000, guid: c0ecd172b333f88428a157642b05f2d9, type: 2}
-  _capacity: 30
+  _capacity: 5
 --- !u!1 &1384313809
 GameObject:
   m_ObjectHideFlags: 0
@@ -12446,6 +12626,7 @@ MonoBehaviour:
     Target: {fileID: 1315457578}
     HardDistance: 4.4
     SoftDistance: 0
+  temp: {fileID: 0}
   Speed: 3
 --- !u!212 &1415015121
 SpriteRenderer:
@@ -12520,6 +12701,7 @@ MonoBehaviour:
   - rid: 3284953070623785524
   - rid: 3284953070623785540
   - rid: 3284953145737740671
+  - rid: 6119213312020316642
   m_IsInitialised: 0
   m_IsStarted: 0
   references:
@@ -12557,6 +12739,14 @@ MonoBehaviour:
           m_Value1: 14818642356139347783
         Name: ActionState
         m_Value: 2
+    - rid: 6119213312020316642
+      type: {class: 'BlackboardVariable`1[[Agent, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 4369050710446065266
+          m_Value1: 5613661496081385598
+        Name: Target
+        m_Value: {fileID: 1415015120}
 --- !u!1001 &1421403827
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13627,6 +13817,7 @@ MonoBehaviour:
     Target: {fileID: 1315457578}
     HardDistance: 1.6
     SoftDistance: 0
+  temp: {fileID: 0}
   Speed: 3
 --- !u!212 &1542992504
 SpriteRenderer:
@@ -13701,6 +13892,7 @@ MonoBehaviour:
   - rid: 3284953070623785524
   - rid: 3284953070623785540
   - rid: 3284953145737740671
+  - rid: 6119213312020316643
   m_IsInitialised: 0
   m_IsStarted: 0
   references:
@@ -13738,6 +13930,14 @@ MonoBehaviour:
           m_Value1: 14818642356139347783
         Name: ActionState
         m_Value: 2
+    - rid: 6119213312020316643
+      type: {class: 'BlackboardVariable`1[[Agent, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 4369050710446065266
+          m_Value1: 5613661496081385598
+        Name: Target
+        m_Value: {fileID: 1542992503}
 --- !u!1001 &1553181701
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14632,6 +14832,7 @@ MonoBehaviour:
     Target: {fileID: 1315457578}
     HardDistance: 4.6
     SoftDistance: 0
+  temp: {fileID: 0}
   Speed: 3
 --- !u!212 &1661278019
 SpriteRenderer:
@@ -14706,6 +14907,7 @@ MonoBehaviour:
   - rid: 3284953070623785524
   - rid: 3284953070623785540
   - rid: 3284953145737740671
+  - rid: 6119213312020316644
   m_IsInitialised: 0
   m_IsStarted: 0
   references:
@@ -14743,6 +14945,14 @@ MonoBehaviour:
           m_Value1: 14818642356139347783
         Name: ActionState
         m_Value: 2
+    - rid: 6119213312020316644
+      type: {class: 'BlackboardVariable`1[[Agent, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 4369050710446065266
+          m_Value1: 5613661496081385598
+        Name: Target
+        m_Value: {fileID: 1661278018}
 --- !u!1 &1674634070
 GameObject:
   m_ObjectHideFlags: 0
@@ -14986,6 +15196,7 @@ MonoBehaviour:
     Target: {fileID: 1315457578}
     HardDistance: 0.2
     SoftDistance: 0
+  temp: {fileID: 0}
   Speed: 3
 --- !u!114 &1699166575
 MonoBehaviour:
@@ -15090,6 +15301,7 @@ MonoBehaviour:
   - rid: 3284953070623785524
   - rid: 3284953070623785540
   - rid: 3284953145737740671
+  - rid: 6119213312020316645
   m_IsInitialised: 0
   m_IsStarted: 0
   references:
@@ -15127,6 +15339,14 @@ MonoBehaviour:
           m_Value1: 14818642356139347783
         Name: ActionState
         m_Value: 2
+    - rid: 6119213312020316645
+      type: {class: 'BlackboardVariable`1[[Agent, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 4369050710446065266
+          m_Value1: 5613661496081385598
+        Name: Target
+        m_Value: {fileID: 1699166574}
 --- !u!114 &1699166580
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15387,6 +15607,7 @@ MonoBehaviour:
     Target: {fileID: 1315457578}
     HardDistance: 0.6
     SoftDistance: 0
+  temp: {fileID: 0}
   Speed: 3
 --- !u!212 &1724273883
 SpriteRenderer:
@@ -15461,6 +15682,7 @@ MonoBehaviour:
   - rid: 3284953070623785524
   - rid: 3284953070623785540
   - rid: 3284953145737740671
+  - rid: 6119213312020316646
   m_IsInitialised: 0
   m_IsStarted: 0
   references:
@@ -15498,6 +15720,14 @@ MonoBehaviour:
           m_Value1: 14818642356139347783
         Name: ActionState
         m_Value: 2
+    - rid: 6119213312020316646
+      type: {class: 'BlackboardVariable`1[[Agent, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 4369050710446065266
+          m_Value1: 5613661496081385598
+        Name: Target
+        m_Value: {fileID: 1724273882}
 --- !u!1 &1735322255
 GameObject:
   m_ObjectHideFlags: 0
@@ -16568,6 +16798,7 @@ MonoBehaviour:
     Target: {fileID: 1315457578}
     HardDistance: 3.8
     SoftDistance: 0
+  temp: {fileID: 0}
   Speed: 3
 --- !u!212 &1930299883
 SpriteRenderer:
@@ -16642,6 +16873,7 @@ MonoBehaviour:
   - rid: 3284953070623785524
   - rid: 3284953070623785540
   - rid: 3284953145737740671
+  - rid: 6119213312020316647
   m_IsInitialised: 0
   m_IsStarted: 0
   references:
@@ -16679,6 +16911,14 @@ MonoBehaviour:
           m_Value1: 14818642356139347783
         Name: ActionState
         m_Value: 2
+    - rid: 6119213312020316647
+      type: {class: 'BlackboardVariable`1[[Agent, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 4369050710446065266
+          m_Value1: 5613661496081385598
+        Name: Target
+        m_Value: {fileID: 1930299882}
 --- !u!1 &1953391685
 GameObject:
   m_ObjectHideFlags: 0
@@ -17242,6 +17482,7 @@ MonoBehaviour:
     Target: {fileID: 1315457578}
     HardDistance: 0.8
     SoftDistance: 0
+  temp: {fileID: 0}
   Speed: 3
 --- !u!212 &1974697520
 SpriteRenderer:
@@ -17316,6 +17557,7 @@ MonoBehaviour:
   - rid: 3284953070623785524
   - rid: 3284953070623785540
   - rid: 3284953145737740671
+  - rid: 6119213312020316648
   m_IsInitialised: 0
   m_IsStarted: 0
   references:
@@ -17353,6 +17595,14 @@ MonoBehaviour:
           m_Value1: 14818642356139347783
         Name: ActionState
         m_Value: 2
+    - rid: 6119213312020316648
+      type: {class: 'BlackboardVariable`1[[Agent, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 4369050710446065266
+          m_Value1: 5613661496081385598
+        Name: Target
+        m_Value: {fileID: 1974697519}
 --- !u!1 &1979972822
 GameObject:
   m_ObjectHideFlags: 0
@@ -17585,6 +17835,7 @@ MonoBehaviour:
     Target: {fileID: 1315457578}
     HardDistance: 5
     SoftDistance: 0
+  temp: {fileID: 0}
   Speed: 3
 --- !u!212 &1980324796
 SpriteRenderer:
@@ -17659,6 +17910,7 @@ MonoBehaviour:
   - rid: 3284953070623785524
   - rid: 3284953070623785540
   - rid: 3284953145737740671
+  - rid: 6119213312020316649
   m_IsInitialised: 0
   m_IsStarted: 0
   references:
@@ -17696,6 +17948,14 @@ MonoBehaviour:
           m_Value1: 14818642356139347783
         Name: ActionState
         m_Value: 2
+    - rid: 6119213312020316649
+      type: {class: 'BlackboardVariable`1[[Agent, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 4369050710446065266
+          m_Value1: 5613661496081385598
+        Name: Target
+        m_Value: {fileID: 1980324795}
 --- !u!1 &2020261367
 GameObject:
   m_ObjectHideFlags: 0
@@ -18082,7 +18342,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Type: {fileID: 11400000, guid: ee3e9fff333d3284f8135eee80dc9267, type: 2}
-  _capacity: 49
+  _capacity: 2
 --- !u!1 &2098361354
 GameObject:
   m_ObjectHideFlags: 0
@@ -18251,7 +18511,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Type: {fileID: 11400000, guid: 829b68ebedf2280409270a2a8465726c, type: 2}
-  _capacity: 15
+  _capacity: 1
 --- !u!1 &2115744115
 GameObject:
   m_ObjectHideFlags: 0
@@ -19038,7 +19298,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Type: {fileID: 11400000, guid: b2566e28c8183914a84093274c39d127, type: 2}
-  _capacity: 35
+  _capacity: 1
 --- !u!212 &6810073736835105634
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -19214,7 +19474,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Type: {fileID: 11400000, guid: 829b68ebedf2280409270a2a8465726c, type: 2}
-  _capacity: 20
+  _capacity: 1
 --- !u!114 &7766703622507425123
 MonoBehaviour:
   m_ObjectHideFlags: 0

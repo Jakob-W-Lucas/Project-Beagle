@@ -28,7 +28,10 @@ public partial class TravelToNearestRoomVertexAction : Action
 
     protected override Status OnUpdate()
     {
-        if (Agent.Value.Origin == vertices[0]) return Status.Success;
+        if (Agent.Value.Origin == vertices[0]) {
+            Agent.Value.UpdateOrigin(vertices[0]);
+            return Status.Success;
+        }
 
         if (Agent.Value.Heading != vertices[0])
         {

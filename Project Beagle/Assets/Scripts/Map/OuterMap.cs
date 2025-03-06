@@ -88,12 +88,6 @@ public class OuterMap : MonoBehaviour
 
     # region Querying
 
-    // Travel to a pointer node
-    public Route Travel(Agent a, Point u)
-    {
-        return null;
-    }
-
     /// <summary>
     /// Determines the best route for an agent to travel based on the provided action.
     /// </summary>
@@ -103,8 +97,9 @@ public class OuterMap : MonoBehaviour
     
     public Route Travel(Agent a, StationType T, Station u_st = null)
     {
+        Vertex[] between = a.Between == null || a.Between[0] == null ? new Vertex[1] { a.Origin } : a.Between; 
         Route route = new Route();
-        foreach (Vertex v in SetVertices(a))
+        foreach (Vertex v in between)
         {
             route = CompareRoutes(route, TravelToStation(v, T, u_st));
         }
@@ -114,8 +109,9 @@ public class OuterMap : MonoBehaviour
 
     public Route Travel(Agent a, RoomType T, Room u_room = null)
     {
+        Vertex[] between = a.Between == null || a.Between[0] == null ? new Vertex[1] { a.Origin } : a.Between; 
         Route route = new Route();
-        foreach (Vertex v in SetVertices(a))
+        foreach (Vertex v in between)
         {
             route = CompareRoutes(route, TravelToRoom(v, T, u_room));
         }
@@ -126,6 +122,8 @@ public class OuterMap : MonoBehaviour
     // Returns the path from any vertex to any station
     public Route TravelToStation(Vertex s, StationType T, Station u_st = null)
     {
+        if (s == null) return null;
+
         if ((u_st && s.Station == u_st) || (s.Station && s.Station.Type == T)) return null;
 
         int index = T ? stationDatabase.GetIndex(T) : -1;
