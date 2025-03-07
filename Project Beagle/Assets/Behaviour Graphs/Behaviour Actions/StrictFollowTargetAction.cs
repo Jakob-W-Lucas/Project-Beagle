@@ -34,7 +34,7 @@ public partial class StrictFollowAgentAction : Action
     {
         if (Agent.Value.FollowConfig.Target == null) return Status.Success;
 
-        Nav.GetNextHeading();
+        Nav.MoveThroughPath();
 
         if (Nav.Heading == null) Nav.UpdateHeading(Nav.Pointer);
 
@@ -81,7 +81,7 @@ public partial class StrictFollowAgentAction : Action
 
                 Route p_best = Map.Value.Map.Routes[v1.g_ID][v2.g_ID];
                 p_best.Join(new Route(v2, Nav.Pointer));
-                best = CompareRoutes(best, p_best);
+                best = best.CompareRoutes(p_best);
             }
         }
 
@@ -92,7 +92,7 @@ public partial class StrictFollowAgentAction : Action
 
     bool ShouldUpdatePath() =>
     
-        Nav.GetInBetween(Nav.Pointer).SequenceEqual(PointerBetween) ||
+        Nav.CalculateIntermediateVertices(Nav.Pointer).SequenceEqual(PointerBetween) ||
 
         Vector2.Distance(Agent.Value.transform.position, Nav.Pointer.Position) < 0.25f;
     

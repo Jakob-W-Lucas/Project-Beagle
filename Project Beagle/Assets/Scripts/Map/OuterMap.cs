@@ -98,7 +98,7 @@ public class OuterMap : MonoBehaviour
         Route route = new Route();
         foreach (Vertex v in between)
         {
-            route = CompareRoutes(route, TravelToStation(v, T, u_st));
+            route = route.CompareRoutes(TravelToStation(v, T, u_st));
         }
 
         return route;
@@ -110,7 +110,7 @@ public class OuterMap : MonoBehaviour
         Route route = new Route();
         foreach (Vertex v in between)
         {
-            route = CompareRoutes(route, TravelToRoom(v, T, u_room));
+            route = route.CompareRoutes(TravelToRoom(v, T, u_room));
         }
 
         return route;
@@ -141,8 +141,8 @@ public class OuterMap : MonoBehaviour
             if (!st.Avaliable) continue;
             
             contender = s.IsStation ? 
-                        CompareRoutes(contender, StationToStation(s, st.Vertex)) :
-                        CompareRoutes(contender, RoomToStation(s, st.Vertex));
+                        contender.CompareRoutes(StationToStation(s, st.Vertex)) :
+                        contender.CompareRoutes(RoomToStation(s, st.Vertex));
         }
 
         return contender;
@@ -168,8 +168,8 @@ public class OuterMap : MonoBehaviour
         foreach (Room r in rooms)
         {
             contender = s.IsStation ? 
-                        CompareRoutes(contender, StationToRoom(s, r)) :
-                        CompareRoutes(contender, RoomToRoom(s, r));
+                        contender.CompareRoutes(StationToRoom(s, r)) :
+                        contender.CompareRoutes(RoomToRoom(s, r));
         }
 
         return contender;
@@ -189,7 +189,7 @@ public class OuterMap : MonoBehaviour
 
             float totalDist = roomRoute.Distance;
 
-            contender = CompareRoutes(contender, roomRoute);
+            contender = contender.CompareRoutes(roomRoute);
         }
 
         return contender;

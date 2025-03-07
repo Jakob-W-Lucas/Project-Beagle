@@ -5,7 +5,7 @@ using Action = Unity.Behavior.Action;
 using Unity.Properties;
 using System.Collections.Generic;
 using System.Linq;
-using static UnityUtils.PathExtensions;
+using UnityUtils;
 using Unity.VisualScripting;
 
 [Serializable, GeneratePropertyBag]
@@ -35,7 +35,9 @@ public partial class FollowAgentAction : Action
     {
         if (Agent.Value.FollowConfig.Target == null) return Status.Success;
 
-        Nav.GetNextHeading();
+        Nav.MoveThroughPath();
+
+        UpdatePath();
 
         if (Nav.Heading == null) Nav.UpdateHeading(Nav.Pointer);
 
@@ -45,8 +47,6 @@ public partial class FollowAgentAction : Action
         {
             Array.Reverse(PointerBetween);
         }
-        
-        UpdatePath();
 
         if (Target.Navigation.Origin == COrigin) 
             return Status.Running;
@@ -82,7 +82,7 @@ public partial class FollowAgentAction : Action
 
                 Route p_best = Map.Value.Map.Routes[v1.g_ID][v2.g_ID];
                 p_best.Join(new Route(v2, Nav.Pointer));
-                best = CompareRoutes(best, p_best);
+                best = best.CompareRoutes(p_best);
             }
         }
 
@@ -91,14 +91,13 @@ public partial class FollowAgentAction : Action
         CurrentBetween = PointerBetween;
     }
 
-    bool ShouldUpdatePath() =>
-
-        /* This should change so that that it gets the last detected room vertices
-        Currently it is getting it between the agent and the pointer so when the pointer
-        is moving far ahead of the */
-        Nav.GetInBetween(Nav.Pointer).SequenceEqual(PointerBetween) ||
+    bool ShouldUpdatePath() {
+        /* Needs to get the imediate vertices from the position of the 
+        agent that is moving, not from the pointer */
+        return Nav.CalculateIntermediateVertices(Nav.Pointer).SequenceEqual(PointerBetween) ||
 
         Vector2.Distance(Agent.Value.transform.position, Nav.Pointer.Position) < 0.25f;
+    }
     
 
     float GetPositionOnSegment(Vector2 s, Vector2 u, float distance)
@@ -172,8 +171,8 @@ public partial class FollowAgentAction : Action
         COrigin = Target.Navigation.Origin;
     }
 
-    protected override void OnEnd()
-    {
-        Nav.PathSegment = PointerBetween;
-    }
+    // protected override void OnEnd()
+    // {
+    //     Nav.PathSegment = PointerBetween;
+    // }
 }

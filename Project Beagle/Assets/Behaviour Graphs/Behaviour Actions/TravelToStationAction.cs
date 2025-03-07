@@ -28,7 +28,7 @@ public partial class TravelToStationAction : Action
     {
         if (Nav.Origin.Station && Nav.Origin.Station.Type == Station.Value) return Status.Success;
 
-        Nav.GetNextHeading();
+        Nav.MoveThroughPath();
 
         return Status.Running;
     }

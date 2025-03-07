@@ -20,11 +20,11 @@ public class Point
 namespace UnityUtils {
     public static class PathExtensions {
         
-        public static Route CompareRoutes(Route route, Route other) => route.CompareTo(other) == 1 ? route : other;
+        public static Route CompareRoutes(this Route route, Route other) => route.CompareTo(other) == 1 ? route : other;
 
         const float Epsilon = 0.01f;
             
-        public static bool IsPointBetweenPoints(Vector2 a, Vector2 b, Vector2 point)
+        public static bool IsPointBetweenPoints(this Vector2 point, Vector2 a, Vector2 b)
         {
             if (Mathf.Approximately(a.x, b.x))
                 return WithinBounds(a, b, point) && 

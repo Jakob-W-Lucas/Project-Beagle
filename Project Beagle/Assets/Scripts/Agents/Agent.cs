@@ -1,12 +1,13 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.AppUI.UI;
 using Unity.Behavior;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
-[RequireComponent(typeof(Health))]
+[RequireComponent(typeof(Health), typeof(Rigidbody2D))]
 public class Agent : MonoBehaviour
 {
     [Header("Configuration")]
@@ -68,7 +69,7 @@ public class NavigationState
 
         Heading = u;
 
-        if (u) PathSegment = GetInBetween(u);
+        if (u) PathSegment = CalculateIntermediateVertices(u);
     }
 
     public void SetPointer(Room room, Vector2 position)
@@ -76,32 +77,19 @@ public class NavigationState
         Pointer.ConfigureVertex(room, position);
     }
 
-    // Vacate current station (if it exists) and occupy the new station
-    private void OccupyStation(Station st)
+    private void UpdateStationOccupation(Station newStation)
     {
-        if (st != CurrentStation)
-        {
-            if (CurrentStation) CurrentStation.Vacate(_a);
-            
-            st.Occupy(_a);
-            CurrentStation = st;
-        }
-    }
-
-    // Vacate the current station
-    private void VacateStation()
-    {
-        if (CurrentStation)
-        {
-            CurrentStation.Vacate(_a);
-            CurrentStation = null;
-        }
+        if (CurrentStation == newStation) return;
+        
+        CurrentStation?.Vacate(_a);
+        newStation?.Occupy(_a);
+        CurrentStation = newStation;
     }
 
     // Creates an agent path to follow
     public void FollowPath(Route route)
     {
-        if (route == null || route.Vertices.Count == 0) return;
+        if (route?.Vertices.Count == 0) return;
         
         Route.Clear();
         Heading = null;
@@ -114,36 +102,17 @@ public class NavigationState
 
         // Begin the pathfinding
         Heading = Route.Dequeue();
-
-        // Ensure the destination station is changed prior to travelling
-        Station st = route.Vertices.Last().Station;
-        if (st)
-        {
-            OccupyStation(st);
-            return;
-        }
-
-        VacateStation();
+        UpdateStationOccupation(route.Vertices.Last().Station);
     }
 
-    public void GetNextHeading()
+    public void MoveThroughPath()
     {
-        if (Heading == Origin && (Vector2)_a.transform.position == Heading.Position) {
+        if (Heading != Origin || (Vector2)_a.transform.position != Heading.Position) return;
 
-            // If there are no more vertices to travel to we can stop updating the position
-            if (Route.Count == 0) 
-            {
-                UpdateHeading(null);
-            }
-            else
-            {
-                // Get the next vertex to travel to along the route
-                UpdateHeading(Route.Dequeue());
-            }
-        }
+        UpdateHeading(Route.Count > 0 ? Route.Dequeue() : null);
     }
 
-    public Vertex[] GetInBetween(Vertex u)
+    public Vertex[] CalculateIntermediateVertices(Vertex u)
     {
         Vector2 pos = (Vector2)_a.transform.position;
         LayerMask layerMask = LayerMask.GetMask("Room");

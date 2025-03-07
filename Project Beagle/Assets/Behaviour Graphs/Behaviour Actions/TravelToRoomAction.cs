@@ -30,7 +30,7 @@ public partial class TravelToRoomAction : Action
     {
         if (Nav.CurrentRoom && Nav.CurrentRoom.Type == Room.Value) return Status.Success;
 
-        Nav.GetNextHeading();
+        Nav.MoveThroughPath();
 
         return Status.Running;
     }

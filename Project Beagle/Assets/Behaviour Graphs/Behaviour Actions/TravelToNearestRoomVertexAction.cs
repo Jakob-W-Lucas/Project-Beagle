@@ -17,7 +17,13 @@ public partial class TravelToNearestRoomVertexAction : Action
 
     protected override Status OnStart()
     {
+        if (!ValidateDependencies()) return Status.Failure;
+        
         Nav = Agent.Value.Navigation;
+        // If wanting to use this function later for something else, this should be removed
+        // As is exists for initialization
+        if (Nav.Origin) return Status.Success;
+
         room = Nav.CurrentRoom;
 
         vertices = 
@@ -26,6 +32,16 @@ public partial class TravelToNearestRoomVertexAction : Action
             vertices = room.NearestWithinRoom(Agent.Value.transform.position);
 
         return Status.Running;
+    }
+
+    private bool ValidateDependencies()
+    {
+        if (Map == null)
+        {
+            Debug.LogError("Missing outer map configuration!");
+        }
+
+        return Map != null;
     }
 
     protected override Status OnUpdate()

@@ -147,7 +147,7 @@ Transform:
   m_GameObject: {fileID: 12785079}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.99, y: 0.39600003, z: 0}
+  m_LocalPosition: {x: -1.99, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -640,7 +640,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9a9740ac0b1b2449b69a851ba4f04f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 2
+  _speed: 3
   _behaviorAgent: {fileID: 0}
   _followAgentConfig:
     Target: {fileID: 1315457578}
@@ -755,8 +755,8 @@ MonoBehaviour:
         GUID:
           m_Value0: 16886864235039362290
           m_Value1: 14818642356139347783
-        Name: ActionState
-        m_Value: 2
+        Name: State
+        m_Value: 0
     - rid: 6119213312020316625
       type: {class: 'BlackboardVariable`1[[Agent, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
@@ -949,7 +949,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9a9740ac0b1b2449b69a851ba4f04f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 2
+  _speed: 3
   _behaviorAgent: {fileID: 0}
   _followAgentConfig:
     Target: {fileID: 1315457578}
@@ -1064,8 +1064,8 @@ MonoBehaviour:
         GUID:
           m_Value0: 16886864235039362290
           m_Value1: 14818642356139347783
-        Name: ActionState
-        m_Value: 2
+        Name: State
+        m_Value: 0
     - rid: 6119213312020316626
       type: {class: 'BlackboardVariable`1[[Agent, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
@@ -1434,7 +1434,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9a9740ac0b1b2449b69a851ba4f04f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 2
+  _speed: 3
   _behaviorAgent: {fileID: 0}
   _followAgentConfig:
     Target: {fileID: 1315457578}
@@ -1680,8 +1680,8 @@ MonoBehaviour:
         GUID:
           m_Value0: 16886864235039362290
           m_Value1: 14818642356139347783
-        Name: ActionState
-        m_Value: 2
+        Name: State
+        m_Value: 0
     - rid: 6119213312020316627
       type: {class: 'BlackboardVariable`1[[Agent, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
@@ -2018,7 +2018,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9a9740ac0b1b2449b69a851ba4f04f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 2
+  _speed: 3
   _behaviorAgent: {fileID: 0}
   _followAgentConfig:
     Target: {fileID: 1315457578}
@@ -2133,8 +2133,8 @@ MonoBehaviour:
         GUID:
           m_Value0: 16886864235039362290
           m_Value1: 14818642356139347783
-        Name: ActionState
-        m_Value: 2
+        Name: State
+        m_Value: 0
     - rid: 6119213312020316628
       type: {class: 'BlackboardVariable`1[[Agent, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
@@ -2292,7 +2292,7 @@ Transform:
   m_GameObject: {fileID: 327407052}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.245, y: -0.22999978, z: 0}
+  m_LocalPosition: {x: 1.245, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2496,7 +2496,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9a9740ac0b1b2449b69a851ba4f04f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 2
+  _speed: 3
   _behaviorAgent: {fileID: 0}
   _followAgentConfig:
     Target: {fileID: 1315457578}
@@ -2611,8 +2611,8 @@ MonoBehaviour:
         GUID:
           m_Value0: 16886864235039362290
           m_Value1: 14818642356139347783
-        Name: ActionState
-        m_Value: 2
+        Name: State
+        m_Value: 0
     - rid: 6119213312020316629
       type: {class: 'BlackboardVariable`1[[Agent, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
@@ -2870,7 +2870,7 @@ Transform:
   m_GameObject: {fileID: 408992492}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.5, y: 0.39600003, z: 0}
+  m_LocalPosition: {x: -0.5, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3310,7 +3310,7 @@ Transform:
   m_GameObject: {fileID: 493447321}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.33, y: 0.39600003, z: 0}
+  m_LocalPosition: {x: 2.33, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3634,7 +3634,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9a9740ac0b1b2449b69a851ba4f04f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 2
+  _speed: 3
   _behaviorAgent: {fileID: 0}
   _followAgentConfig:
     Target: {fileID: 1315457578}
@@ -3749,8 +3749,8 @@ MonoBehaviour:
         GUID:
           m_Value0: 16886864235039362290
           m_Value1: 14818642356139347783
-        Name: ActionState
-        m_Value: 2
+        Name: State
+        m_Value: 0
     - rid: 6119213312020316630
       type: {class: 'BlackboardVariable`1[[Agent, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
@@ -4027,7 +4027,7 @@ Transform:
   m_GameObject: {fileID: 529276384}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.5, y: 1.3, z: 0}
+  m_LocalPosition: {x: -0.5, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4428,7 +4428,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9a9740ac0b1b2449b69a851ba4f04f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 2
+  _speed: 3
   _behaviorAgent: {fileID: 0}
   _followAgentConfig:
     Target: {fileID: 1315457578}
@@ -4543,8 +4543,8 @@ MonoBehaviour:
         GUID:
           m_Value0: 16886864235039362290
           m_Value1: 14818642356139347783
-        Name: ActionState
-        m_Value: 2
+        Name: State
+        m_Value: 0
     - rid: 6119213312020316631
       type: {class: 'BlackboardVariable`1[[Agent, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
@@ -4737,7 +4737,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9a9740ac0b1b2449b69a851ba4f04f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 2
+  _speed: 3
   _behaviorAgent: {fileID: 0}
   _followAgentConfig:
     Target: {fileID: 1315457578}
@@ -4852,8 +4852,8 @@ MonoBehaviour:
         GUID:
           m_Value0: 16886864235039362290
           m_Value1: 14818642356139347783
-        Name: ActionState
-        m_Value: 2
+        Name: State
+        m_Value: 0
     - rid: 6119213312020316632
       type: {class: 'BlackboardVariable`1[[Agent, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
@@ -5553,7 +5553,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9a9740ac0b1b2449b69a851ba4f04f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 2
+  _speed: 3
   _behaviorAgent: {fileID: 0}
   _followAgentConfig:
     Target: {fileID: 1315457578}
@@ -5668,8 +5668,8 @@ MonoBehaviour:
         GUID:
           m_Value0: 16886864235039362290
           m_Value1: 14818642356139347783
-        Name: ActionState
-        m_Value: 2
+        Name: State
+        m_Value: 0
     - rid: 6119213312020316633
       type: {class: 'BlackboardVariable`1[[Agent, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
@@ -6023,7 +6023,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9a9740ac0b1b2449b69a851ba4f04f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 2
+  _speed: 3
   _behaviorAgent: {fileID: 0}
   _followAgentConfig:
     Target: {fileID: 1315457578}
@@ -6138,8 +6138,8 @@ MonoBehaviour:
         GUID:
           m_Value0: 16886864235039362290
           m_Value1: 14818642356139347783
-        Name: ActionState
-        m_Value: 2
+        Name: State
+        m_Value: 0
     - rid: 6119213312020316634
       type: {class: 'BlackboardVariable`1[[Agent, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
@@ -6676,7 +6676,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9a9740ac0b1b2449b69a851ba4f04f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 2
+  _speed: 3
   _behaviorAgent: {fileID: 0}
   _followAgentConfig:
     Target: {fileID: 1315457578}
@@ -6791,8 +6791,8 @@ MonoBehaviour:
         GUID:
           m_Value0: 16886864235039362290
           m_Value1: 14818642356139347783
-        Name: ActionState
-        m_Value: 2
+        Name: State
+        m_Value: 0
     - rid: 6119213312020316635
       type: {class: 'BlackboardVariable`1[[Agent, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
@@ -7375,7 +7375,7 @@ Transform:
   m_GameObject: {fileID: 819358491}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.5, y: 0.75, z: 0}
+  m_LocalPosition: {x: -1.5, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7699,7 +7699,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9a9740ac0b1b2449b69a851ba4f04f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 2
+  _speed: 3
   _behaviorAgent: {fileID: 0}
   _followAgentConfig:
     Target: {fileID: 1315457578}
@@ -7814,8 +7814,8 @@ MonoBehaviour:
         GUID:
           m_Value0: 16886864235039362290
           m_Value1: 14818642356139347783
-        Name: ActionState
-        m_Value: 2
+        Name: State
+        m_Value: 0
     - rid: 6119213312020316636
       type: {class: 'BlackboardVariable`1[[Agent, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
@@ -8235,7 +8235,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9a9740ac0b1b2449b69a851ba4f04f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 2
+  _speed: 3
   _behaviorAgent: {fileID: 0}
   _followAgentConfig:
     Target: {fileID: 1315457578}
@@ -8481,8 +8481,8 @@ MonoBehaviour:
         GUID:
           m_Value0: 16886864235039362290
           m_Value1: 14818642356139347783
-        Name: ActionState
-        m_Value: 2
+        Name: State
+        m_Value: 0
     - rid: 6119213312020316637
       type: {class: 'BlackboardVariable`1[[Agent, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
@@ -8656,7 +8656,7 @@ Transform:
   m_GameObject: {fileID: 945963692}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.95, y: 0.39600003, z: 0}
+  m_LocalPosition: {x: 0.95, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8892,7 +8892,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9a9740ac0b1b2449b69a851ba4f04f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 2
+  _speed: 3
   _behaviorAgent: {fileID: 0}
   _followAgentConfig:
     Target: {fileID: 1315457578}
@@ -9007,8 +9007,8 @@ MonoBehaviour:
         GUID:
           m_Value0: 16886864235039362290
           m_Value1: 14818642356139347783
-        Name: ActionState
-        m_Value: 2
+        Name: State
+        m_Value: 0
     - rid: 6119213312020316638
       type: {class: 'BlackboardVariable`1[[Agent, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
@@ -9443,7 +9443,7 @@ Transform:
   m_GameObject: {fileID: 1108119770}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.69, y: -0.22999978, z: 0}
+  m_LocalPosition: {x: 0.69, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -9767,7 +9767,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9a9740ac0b1b2449b69a851ba4f04f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 2
+  _speed: 3
   _behaviorAgent: {fileID: 0}
   _followAgentConfig:
     Target: {fileID: 1315457578}
@@ -9882,8 +9882,8 @@ MonoBehaviour:
         GUID:
           m_Value0: 16886864235039362290
           m_Value1: 14818642356139347783
-        Name: ActionState
-        m_Value: 2
+        Name: State
+        m_Value: 0
     - rid: 6119213312020316639
       type: {class: 'BlackboardVariable`1[[Agent, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
@@ -10171,7 +10171,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9a9740ac0b1b2449b69a851ba4f04f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 2
+  _speed: 3
   _behaviorAgent: {fileID: 0}
   _followAgentConfig:
     Target: {fileID: 1315457578}
@@ -10417,8 +10417,8 @@ MonoBehaviour:
         GUID:
           m_Value0: 16886864235039362290
           m_Value1: 14818642356139347783
-        Name: ActionState
-        m_Value: 2
+        Name: State
+        m_Value: 0
     - rid: 6119213312020316640
       type: {class: 'BlackboardVariable`1[[Agent, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
@@ -10472,7 +10472,7 @@ Transform:
   m_GameObject: {fileID: 1201501578}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.53, y: -0.22999978, z: 0}
+  m_LocalPosition: {x: -1.53, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -11080,7 +11080,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9a9740ac0b1b2449b69a851ba4f04f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 4
+  _speed: 2
   _behaviorAgent: {fileID: 0}
   _followAgentConfig:
     Target: {fileID: 0}
@@ -11526,7 +11526,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9a9740ac0b1b2449b69a851ba4f04f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 2
+  _speed: 3
   _behaviorAgent: {fileID: 0}
   _followAgentConfig:
     Target: {fileID: 1315457578}
@@ -11641,8 +11641,8 @@ MonoBehaviour:
         GUID:
           m_Value0: 16886864235039362290
           m_Value1: 14818642356139347783
-        Name: ActionState
-        m_Value: 2
+        Name: State
+        m_Value: 0
     - rid: 6119213312020316641
       type: {class: 'BlackboardVariable`1[[Agent, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
@@ -11989,7 +11989,7 @@ Transform:
   m_GameObject: {fileID: 1384313809}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.5, y: 0.75, z: 0}
+  m_LocalPosition: {x: 1.5, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -12584,7 +12584,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9a9740ac0b1b2449b69a851ba4f04f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 2
+  _speed: 3
   _behaviorAgent: {fileID: 0}
   _followAgentConfig:
     Target: {fileID: 1315457578}
@@ -12699,8 +12699,8 @@ MonoBehaviour:
         GUID:
           m_Value0: 16886864235039362290
           m_Value1: 14818642356139347783
-        Name: ActionState
-        m_Value: 2
+        Name: State
+        m_Value: 0
     - rid: 6119213312020316642
       type: {class: 'BlackboardVariable`1[[Agent, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
@@ -13071,7 +13071,7 @@ Transform:
   m_GameObject: {fileID: 1450352938}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.95, y: 0.39600003, z: 0}
+  m_LocalPosition: {x: -0.95, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -13773,7 +13773,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9a9740ac0b1b2449b69a851ba4f04f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 2
+  _speed: 3
   _behaviorAgent: {fileID: 0}
   _followAgentConfig:
     Target: {fileID: 1315457578}
@@ -13888,8 +13888,8 @@ MonoBehaviour:
         GUID:
           m_Value0: 16886864235039362290
           m_Value1: 14818642356139347783
-        Name: ActionState
-        m_Value: 2
+        Name: State
+        m_Value: 0
     - rid: 6119213312020316643
       type: {class: 'BlackboardVariable`1[[Agent, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
@@ -14037,7 +14037,7 @@ Transform:
   m_GameObject: {fileID: 1581150630}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.5, y: 1.3, z: 0}
+  m_LocalPosition: {x: 0.5, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -14296,7 +14296,7 @@ Transform:
   m_GameObject: {fileID: 1639035686}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.975, y: -0.22999978, z: 0}
+  m_LocalPosition: {x: -0.975, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -14786,7 +14786,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9a9740ac0b1b2449b69a851ba4f04f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 2
+  _speed: 3
   _behaviorAgent: {fileID: 0}
   _followAgentConfig:
     Target: {fileID: 1315457578}
@@ -14901,8 +14901,8 @@ MonoBehaviour:
         GUID:
           m_Value0: 16886864235039362290
           m_Value1: 14818642356139347783
-        Name: ActionState
-        m_Value: 2
+        Name: State
+        m_Value: 0
     - rid: 6119213312020316644
       type: {class: 'BlackboardVariable`1[[Agent, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
@@ -15148,7 +15148,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9a9740ac0b1b2449b69a851ba4f04f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 2
+  _speed: 3
   _behaviorAgent: {fileID: 0}
   _followAgentConfig:
     Target: {fileID: 1315457578}
@@ -15293,8 +15293,8 @@ MonoBehaviour:
         GUID:
           m_Value0: 16886864235039362290
           m_Value1: 14818642356139347783
-        Name: ActionState
-        m_Value: 2
+        Name: State
+        m_Value: 0
     - rid: 6119213312020316645
       type: {class: 'BlackboardVariable`1[[Agent, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
@@ -15557,7 +15557,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9a9740ac0b1b2449b69a851ba4f04f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 2
+  _speed: 3
   _behaviorAgent: {fileID: 0}
   _followAgentConfig:
     Target: {fileID: 1315457578}
@@ -15672,8 +15672,8 @@ MonoBehaviour:
         GUID:
           m_Value0: 16886864235039362290
           m_Value1: 14818642356139347783
-        Name: ActionState
-        m_Value: 2
+        Name: State
+        m_Value: 0
     - rid: 6119213312020316646
       type: {class: 'BlackboardVariable`1[[Agent, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
@@ -15864,7 +15864,7 @@ Transform:
   m_GameObject: {fileID: 1802256746}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.135, y: -0.22999978, z: 0}
+  m_LocalPosition: {x: 0.135, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -16202,7 +16202,7 @@ Transform:
   m_GameObject: {fileID: 1813067485}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.42, y: -0.22999978, z: 0}
+  m_LocalPosition: {x: -0.42, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -16746,7 +16746,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9a9740ac0b1b2449b69a851ba4f04f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 2
+  _speed: 3
   _behaviorAgent: {fileID: 0}
   _followAgentConfig:
     Target: {fileID: 1315457578}
@@ -16861,8 +16861,8 @@ MonoBehaviour:
         GUID:
           m_Value0: 16886864235039362290
           m_Value1: 14818642356139347783
-        Name: ActionState
-        m_Value: 2
+        Name: State
+        m_Value: 0
     - rid: 6119213312020316647
       type: {class: 'BlackboardVariable`1[[Agent, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
@@ -17069,7 +17069,7 @@ Transform:
   m_GameObject: {fileID: 1957757996}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.5, y: 0.39600003, z: 0}
+  m_LocalPosition: {x: 0.5, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -17428,7 +17428,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9a9740ac0b1b2449b69a851ba4f04f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 2
+  _speed: 3
   _behaviorAgent: {fileID: 0}
   _followAgentConfig:
     Target: {fileID: 1315457578}
@@ -17543,8 +17543,8 @@ MonoBehaviour:
         GUID:
           m_Value0: 16886864235039362290
           m_Value1: 14818642356139347783
-        Name: ActionState
-        m_Value: 2
+        Name: State
+        m_Value: 0
     - rid: 6119213312020316648
       type: {class: 'BlackboardVariable`1[[Agent, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
@@ -17779,7 +17779,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9a9740ac0b1b2449b69a851ba4f04f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 2
+  _speed: 3
   _behaviorAgent: {fileID: 0}
   _followAgentConfig:
     Target: {fileID: 1315457578}
@@ -17894,8 +17894,8 @@ MonoBehaviour:
         GUID:
           m_Value0: 16886864235039362290
           m_Value1: 14818642356139347783
-        Name: ActionState
-        m_Value: 2
+        Name: State
+        m_Value: 0
     - rid: 6119213312020316649
       type: {class: 'BlackboardVariable`1[[Agent, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
@@ -18151,7 +18151,7 @@ Transform:
   m_GameObject: {fileID: 2091904618}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.99, y: 0.39600003, z: 0}
+  m_LocalPosition: {x: -1.99, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -18576,7 +18576,7 @@ Transform:
   m_GameObject: {fileID: 7652633026338795997}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.98, y: 0.396, z: 0}
+  m_LocalPosition: {x: 1.98, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -18809,7 +18809,7 @@ Transform:
   m_GameObject: {fileID: 8628297579716275351}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.085, y: -0.23, z: 0}
+  m_LocalPosition: {x: -2.085, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
