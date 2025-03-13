@@ -30,7 +30,7 @@ public partial class MoveWithinRoomAction : Action
 
         Nav.SetPointer(room, Agent.Value.transform.position.With(x:rand));
 
-        Nav.Route.Clear();
+        Nav.PathQueue.Clear();
 
         Nav.UpdateHeading(Nav.Pointer);
 

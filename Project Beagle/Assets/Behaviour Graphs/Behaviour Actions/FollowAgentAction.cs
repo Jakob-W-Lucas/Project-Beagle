@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityUtils;
 using Unity.VisualScripting;
+using UnityEngine.UIElements;
 
 [Serializable, GeneratePropertyBag]
 [NodeDescription(name: "FollowAgent", story: "[Agent] follows Target", category: "Action", id: "f2b14d4f02aa7c8ffdeba446869c9008")]
@@ -18,8 +19,10 @@ public partial class FollowAgentAction : Action
     public Queue<Point> Stack = new Queue<Point>();
     Agent Target;
     Vertex COrigin;
-    Vertex[] CurrentBetween = new Vertex[2];
-    Vertex[] PointerBetween;
+    Edge CurrentEdge;
+    Vertex[] CurrentBetween;
+    Vertex[] LastBetween;
+    Vertex[] lastVertices = new Vertex[2];
 
     protected override Status OnStart()
     {
@@ -35,24 +38,19 @@ public partial class FollowAgentAction : Action
     {
         if (Agent.Value.FollowConfig.Target == null) return Status.Success;
 
+        
+        
         Nav.MoveThroughPath();
-
-        UpdatePath();
-
-        if (Nav.Heading == null) Nav.UpdateHeading(Nav.Pointer);
 
         MoveAlongStack(Agent.Value.FollowConfig.HardDistance);
 
-        if (PointerBetween != null && PointerBetween.Length == 2 && PointerBetween[1] != null && PointerBetween[1].Position.x > PointerBetween[0].Position.x)
-        {
-            Array.Reverse(PointerBetween);
-        }
+        UpdatePath();
 
+        // Only update the stack if the Target has moved past a new room node
         if (Target.Navigation.Origin == COrigin) 
             return Status.Running;
 
         UpdatePathStack();
-        //VisualizePath();
         MaintainStackSize();
 
         return Status.Running;
@@ -60,46 +58,31 @@ public partial class FollowAgentAction : Action
 
     void UpdatePath()
     {
-        if (PointerBetween == null || CurrentBetween == null || Nav.PathSegment == null) return;
+        Edge e = Map.Value.QuadTreeInstance.IsPointOnEdge(Nav.Pointer.Position);
 
-        if (ShouldUpdatePath())
+        if (ShouldRecalculate(e))
         {
-            Nav.Route.Clear();
+            string str = Vector2.Distance(Agent.Value.transform.position, Nav.Pointer.Position) < 0.02f ? $"It is because of the distance check: Agent: {Agent.Value.transform.position}, Pointer: {Nav.Pointer.Position}" : 
+                $"It is because of the edge check. Agent: {Nav?.CurrentEdge?.Start}->{Nav?.CurrentEdge?.End}, Pointer: {e?.Start} -> {e?.End})";
+            //Debug.Log("Agent has decided to move to pointer. " + str);
+            Nav.PathQueue.Clear();
             Nav.UpdateHeading(Nav.Pointer);
             return;
         }
 
-        if (CurrentBetween.SequenceEqual(PointerBetween)) return;
-        
-        Route best = new Route();
-        foreach (Vertex v1 in Nav.PathSegment)
-        {
-            if (v1 == null) continue;
+        if (e != null && CurrentEdge == e) return;
+        CurrentEdge = e;
 
-            foreach (Vertex v2 in PointerBetween)
-            {
-                if (v2 == null) continue;
-
-                Route p_best = Map.Value.Map.Routes[v1.g_ID][v2.g_ID];
-                p_best.Join(new Route(v2, Nav.Pointer));
-                best = best.CompareRoutes(p_best);
-            }
-        }
-
-        Nav.FollowPath(best);
-        
-        CurrentBetween = PointerBetween;
+        Nav.FollowPath(Map.Value.Travel(Agent.Value, Target));
     }
 
-    bool ShouldUpdatePath() {
-        /* Needs to get the imediate vertices from the position of the 
-        agent that is moving, not from the pointer */
-        return Nav.CalculateIntermediateVertices(Nav.Pointer).SequenceEqual(PointerBetween) ||
+    bool ShouldRecalculate(Edge edge) =>
+        (Nav != null &&
+        Nav.CurrentEdge != null &&
+        Nav.CurrentEdge == edge) ||
+        Vector2.Distance(Agent.Value.transform.position, Nav.Pointer.Position) < 0.05f;
 
-        Vector2.Distance(Agent.Value.transform.position, Nav.Pointer.Position) < 0.25f;
-    }
     
-
     float GetPositionOnSegment(Vector2 s, Vector2 u, float distance)
     {
         float remainingDistance = distance;
@@ -122,7 +105,6 @@ public partial class FollowAgentAction : Action
 
         Vertex origin = Stack.Last().Vertex;
         float remainingDistance = GetPositionOnSegment(Target.transform.position, origin.Position, distance);
-        PointerBetween = Target.Navigation.PathSegment;
 
         if (remainingDistance <= 0) return;
 
@@ -132,14 +114,12 @@ public partial class FollowAgentAction : Action
             Point next = Stack.ElementAt(i - 1);
             
             remainingDistance = GetPositionOnSegment(current.Position, next.Position, remainingDistance);
-            PointerBetween = new Vertex[2] { current.Vertex, next.Vertex };
 
             if (remainingDistance <= 0) return;
         }
 
         Vertex first = Stack.First().Vertex;
         Nav.SetPointer(Target.Navigation.CurrentRoom, first.Position);
-        PointerBetween = new Vertex[2] { first, null };
     }
 
     void UpdatePathStack()
@@ -174,5 +154,28 @@ public partial class FollowAgentAction : Action
     // protected override void OnEnd()
     // {
     //     Nav.PathSegment = PointerBetween;
+    // }
+
+    // void UpdatePathStack()
+    // {
+    //     if (!Target.Navigation.Origin.IsRoom) return;
+
+    //     Point newPoint = new Point(Target);
+    //     if (Stack.Count > 0)
+    //     {
+    //         Point last = Stack.Last();
+    //         bool shouldReplace = (Target.Navigation.Origin.IsPointer || Target.Navigation.Origin.IsStation) && (last.IsPointer || last.IsStation) &&
+    //                             Vector2.Distance(newPoint.Position, Stack.ElementAt(1).Position) > 
+    //                             Vector2.Distance(last.Position, Stack.ElementAt(1).Position);
+
+    //         if (shouldReplace)
+    //         {
+    //             Stack.Dequeue();
+    //             Stack.Enqueue(newPoint);
+    //             return;
+    //         }
+    //     }
+
+    //     Stack.Enqueue(newPoint);
     // }
 }

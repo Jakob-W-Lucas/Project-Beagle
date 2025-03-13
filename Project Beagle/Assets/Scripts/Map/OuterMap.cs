@@ -2,6 +2,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using static UnityUtils.PathExtensions;
+using System;
+using UnityEngine.Assertions.Must;
 
 public class OuterMap : MonoBehaviour
 {
@@ -12,6 +14,8 @@ public class OuterMap : MonoBehaviour
     private List<Room>[] _lookupRooms;
     private List<Station>[] _lookupStations;
     private List<Vertex> _roomVertices = new List<Vertex>();
+    private List<Edge> _allEdges = new List<Edge>();
+    public QuadTree QuadTreeInstance { get; private set; }
 
     # region Initialization
 
@@ -32,12 +36,53 @@ public class OuterMap : MonoBehaviour
             {
                 v.g_ID = n;
                 _roomVertices.Add(v);
+                v.name = v.Name;
 
                 n++;
             }
+
+            _allEdges.AddRange(room.Edges);
+        }
+
+        float minLeft = Mathf.Infinity;
+        float maxRight = -Mathf.Infinity;
+        float maxUp = -Mathf.Infinity;
+        float minDown = Mathf.Infinity;
+
+        foreach (Edge e in _allEdges)
+        {
+            Vector2 horizontal = new Vector2(Mathf.Min(e.StartPos.x, e.EndPos.x), Mathf.Max(e.StartPos.x, e.EndPos.x));
+            Vector2 vertical = new Vector2(Mathf.Min(e.StartPos.y, e.EndPos.y), Mathf.Max(e.StartPos.y, e.EndPos.y));
+
+            minLeft = Mathf.Min(minLeft, horizontal.x);
+            maxRight = Mathf.Max(maxRight, horizontal.y);
+            minDown = Mathf.Min(minDown, vertical.x);
+            maxUp = Mathf.Max(maxUp, vertical.y);
+        }
+
+        // Ensure the width/height are calculated correctly
+        float width = maxRight - minLeft;
+        float height = maxUp - minDown;
+
+        QuadTreeInstance = new QuadTree(new Rect(minLeft - 0.5f, minDown - 0.5f, width + 1f, height + 1f), _roomVertices.ToArray());
+
+        foreach (Edge e in _allEdges)
+        {
+            QuadTreeInstance.Insert(e);
         }
 
         Map = new Map(_roomVertices.ToArray());
+    }
+
+     void Update()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Edge edge = QuadTreeInstance.IsPointOnEdge(mousePos, 0.02f);
+
+            Debug.Log(edge != null ? $"Point is on the edge: {edge.Start}->{edge.End}" : "Point is not on an edge.");
+        }
     }
 
     private void AddToLookup(Room r)
@@ -92,11 +137,42 @@ public class OuterMap : MonoBehaviour
     /// <param name="action">A function that takes a vertex and returns a route.</param>
     /// <returns>The route with the shorter distance between the agent's origin and heading.</returns>
     
+    public Route Travel(Agent a, Agent t)
+    {
+        a.Navigation.UpdatePathSegment(QuadTreeInstance.IsPointOnEdge(a));
+        t.Navigation.UpdatePathSegment(QuadTreeInstance.IsPointOnEdge(t));
+
+        Route route = new Route();
+        foreach (Vertex v1 in a.Navigation.PathSegment)
+        {
+            if (v1 == null) continue;
+
+            foreach (Vertex v2 in t.Navigation.PathSegment)
+            {
+                if (v2 == null) continue;
+
+                Route p_route = Map.Routes[v1.g_ID][v2.g_ID];
+                Route b_route = p_route.Join(new Route(v2, a.Navigation.Pointer));
+                route = route.CompareRoutes(b_route);
+            }
+        }
+
+        return route;
+    }
+
+    /// <summary>
+    /// Determines the best route for an agent to travel based on the provided action.
+    /// </summary>
+    /// <param name="a">The agent for which the travel route is being determined.</param>
+    /// <param name="action">A function that takes a vertex and returns a route.</param>
+    /// <returns>The route with the shorter distance between the agent's origin and heading.</returns>
+    
     public Route Travel(Agent a, StationType T, Station u_st = null)
     {
-        Vertex[] between = a.Navigation.PathSegment == null || a.Navigation.PathSegment[0] == null ? new Vertex[1] { a.Navigation.Origin } : a.Navigation.PathSegment; 
+        a.Navigation.UpdatePathSegment(QuadTreeInstance.IsPointOnEdge(a));
+
         Route route = new Route();
-        foreach (Vertex v in between)
+        foreach (Vertex v in a.Navigation.PathSegment)
         {
             route = route.CompareRoutes(TravelToStation(v, T, u_st));
         }
@@ -104,13 +180,21 @@ public class OuterMap : MonoBehaviour
         return route;
     }
 
+    /// <summary>
+    /// Determines the best route for an agent to travel based on the provided action.
+    /// </summary>
+    /// <param name="a">The agent for which the travel route is being determined.</param>
+    /// <param name="action">A function that takes a vertex and returns a route.</param>
+    /// <returns>The route with the shorter distance between the agent's origin and heading.</returns>
     public Route Travel(Agent a, RoomType T, Room u_room = null)
     {
-        Vertex[] between = a.Navigation.PathSegment == null || a.Navigation.PathSegment[0] == null ? new Vertex[1] { a.Navigation.Origin } : a.Navigation.PathSegment; 
+        a.Navigation.UpdatePathSegment(QuadTreeInstance.IsPointOnEdge(a));
+        
         Route route = new Route();
-        foreach (Vertex v in between)
+        foreach (Vertex v in a.Navigation.PathSegment)
         {
-            route = route.CompareRoutes(TravelToRoom(v, T, u_room));
+            Route p_route = TravelToRoom(v, T, u_room);
+            route = route.CompareRoutes(p_route);
         }
 
         return route;
@@ -305,6 +389,8 @@ public class OuterMap : MonoBehaviour
 
     void OnDrawGizmos()
     {
+        //QuadTreeInstance?.DebugDraw(Color.green);
+
         Gizmos.color = Color.red;
 
         foreach (Vertex vertex in _roomVertices)
