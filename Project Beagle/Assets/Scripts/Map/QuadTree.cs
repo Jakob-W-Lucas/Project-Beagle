@@ -17,11 +17,13 @@ public class QuadTree
     }
 
     private Node root;
+    private Vertex[] Vertices;
     private int maxEdgesPerNode = 8;
 
-    public QuadTree(Rect bounds, int maxEdges = 8)
+    public QuadTree(Rect bounds, Vertex[] vertices, int maxEdges = 8)
     {
         root = new Node(bounds);
+        Vertices = vertices;
         maxEdgesPerNode = maxEdges;
     }
 
@@ -95,17 +97,46 @@ public class QuadTree
         return new Rect(min, max - min);
     }
 
-    public Edge IsPointOnEdge(Vector2 point, float tolerance)
+    public Edge IsPointOnEdge(Vector2 point, float tolerance = 0.02f) => GetEdgeAtPoint(point, tolerance);
+
+    public Edge IsPointOnEdge(Agent agent, float tolerance = 0.02f)
+    {
+        Edge edge = GetEdgeAtPoint(agent.transform.position, tolerance);
+        
+        if (edge != null && edge.Start.g_ID == edge.End.g_ID)
+            edge = agent.Navigation.CurrentEdge;
+
+        return edge;
+    }
+
+    public Edge GetEdgeAtPoint(Vector2 point, float tolerance = 0.02f)
     {
         Rect searchArea = new Rect(point.x - tolerance, point.y - tolerance, tolerance * 2, tolerance * 2);
         var candidates = Query(searchArea);
 
+        int[] vertexEdgeArray = new int[Vertices.Length];
+        Edge detectedEdge = null;
+
         foreach (var edge in candidates)
         {
             if (PointOnSegment(point, edge.StartPos, edge.EndPos, tolerance))
-                return edge;
+            {
+                vertexEdgeArray[edge.Start.g_ID] += 1;
+                vertexEdgeArray[edge.End.g_ID] += 1;
+                
+                detectedEdge = edge;
+            }
         }
-        return null;
+
+        for (int i = 0; i < Vertices.Length; i++)
+        {
+            if (vertexEdgeArray[i] > 2 && Vector2.Distance(point, Vertices[i].Position) <= tolerance)
+            {
+                return new Edge(Vertices[i], Vertices[i]); // Return the vertex if multiple edges are detected near it
+            }
+        }
+
+        return detectedEdge; // Return single edge if only one was found, otherwise return a vertex
     }
 
     private bool PointOnSegment(Vector2 p, Vector2 a, Vector2 b, float tolerance)
@@ -120,5 +151,28 @@ public class QuadTree
         float distance = Vector2.Distance(p, closest);
 
         return distance <= tolerance;
+    }
+
+    public void DebugDraw(Color color)
+    {
+        DebugDrawNode(root, color);
+    }
+
+    private void DebugDrawNode(Node node, Color color)
+    {
+        if (node == null) return;
+
+        Debug.DrawLine(new Vector3(node.Bounds.xMin, node.Bounds.yMin), new Vector3(node.Bounds.xMax, node.Bounds.yMin), color);
+        Debug.DrawLine(new Vector3(node.Bounds.xMax, node.Bounds.yMin), new Vector3(node.Bounds.xMax, node.Bounds.yMax), color);
+        Debug.DrawLine(new Vector3(node.Bounds.xMax, node.Bounds.yMax), new Vector3(node.Bounds.xMin, node.Bounds.yMax), color);
+        Debug.DrawLine(new Vector3(node.Bounds.xMin, node.Bounds.yMax), new Vector3(node.Bounds.xMin, node.Bounds.yMin), color);
+
+        if (node.Children != null)
+        {
+            foreach (var child in node.Children)
+            {
+                DebugDrawNode(child, color);
+            }
+        }
     }
 }
