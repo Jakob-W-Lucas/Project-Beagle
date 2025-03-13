@@ -23,6 +23,14 @@ public class Agent : MonoBehaviour
     public Room CurrentRoom => Navigation.CurrentRoom;
     public FollowAgent FollowConfig => _followAgentConfig;
 
+    public ActionState GetState()
+    {
+        if (_behaviorAgent == null) return ActionState.None;
+
+        ActionState state; 
+        _behaviorAgent.Graph.BlackboardReference.GetVariableValue("State", out state);
+        return state;
+    }
     public void SetState(ActionState actionState) => _behaviorAgent.Graph.BlackboardReference.SetVariableValue("State", actionState);
 
     private void Awake() 
@@ -38,15 +46,17 @@ public class Agent : MonoBehaviour
 public class NavigationState
 {
     private Agent _a;
-    public Queue<Vertex> Route { get; } = new Queue<Vertex>();
+    public Queue<Vertex> PathQueue { get; } = new Queue<Vertex>();
     public Vertex Origin { get; private set; }
     public Vertex Heading { get; private set; }
     public Vertex Pointer { get; private set; }
     public Station CurrentStation { get; private set; }
     public Room CurrentRoom { get; private set; }
-    public Vertex[] PathSegment;
     private readonly float _movementSpeed;
     public float MovementSpeed => _movementSpeed;
+    public Edge CurrentEdge { get; private set; }
+    public Vertex[] PathSegment { get; private set; }
+    public Vertex[] LastPathSegment;
 
     public NavigationState(Agent a, float speed)
     {
@@ -68,13 +78,35 @@ public class NavigationState
         if (Heading == u) return;
 
         Heading = u;
-
-        if (u) PathSegment = CalculateIntermediateVertices(u);
     }
 
     public void SetPointer(Room room, Vector2 position)
     {
         Pointer.ConfigureVertex(room, position);
+    }
+
+    public void UpdatePathSegment(Edge e)
+    {   
+        if (e == null || e.Start == null || e.End == null) 
+        {
+            PathSegment = new Vertex[2] { Origin, Origin };
+            return;
+        }
+
+        Vertex[] vertices = e.Vertices;
+
+        if (vertices[1].Position.x < vertices[0].Position.x)
+        {
+            vertices.Reverse();
+        }
+        else if (vertices[1].Position.x == vertices[0].Position.x &&
+            vertices[1].Position.y < vertices[0].Position.y)
+        {
+            vertices.Reverse();
+        }
+        
+        CurrentEdge = e;
+        PathSegment = vertices;
     }
 
     private void UpdateStationOccupation(Station newStation)
@@ -90,18 +122,18 @@ public class NavigationState
     public void FollowPath(Route route)
     {
         if (route?.Vertices.Count == 0) return;
-        
-        Route.Clear();
+
+        PathQueue.Clear();
         Heading = null;
 
         // Queue all of the vertices to travel 
         foreach (Vertex v in route.Vertices)
         {
-            Route.Enqueue(v);
+            PathQueue.Enqueue(v);
         }
 
         // Begin the pathfinding
-        Heading = Route.Dequeue();
+        Heading = PathQueue.Dequeue();
         UpdateStationOccupation(route.Vertices.Last().Station);
     }
 
@@ -109,36 +141,28 @@ public class NavigationState
     {
         if (Heading != Origin || (Vector2)_a.transform.position != Heading.Position) return;
 
-        UpdateHeading(Route.Count > 0 ? Route.Dequeue() : null);
+        UpdateHeading(PathQueue.Count > 0 ? PathQueue.Dequeue() : null);
     }
 
-    public Vertex[] CalculateIntermediateVertices(Vertex u)
+    public void DebugPathSegment()
     {
-        Vector2 pos = (Vector2)_a.transform.position;
-        LayerMask layerMask = LayerMask.GetMask("Room");
-        Vector2 direction = (u.Position - pos).normalized;
+        if (LastPathSegment != null && PathSegment != null && LastPathSegment.SequenceEqual(PathSegment)) return;
 
-        // Cast forward ray (in direction away from u)
-        RaycastHit2D f_hit = Physics2D.Raycast(pos, -direction, 20f, layerMask);
-        Vertex forward = f_hit.collider?.GetComponent<Vertex>();
-
-        // Cast backward ray (towards u) with improved origin offset
-        Vertex backward = null;
-        if (f_hit.collider != null)
+        if (LastPathSegment != null)
         {
-            RaycastHit2D[] b_hits = Physics2D.RaycastAll(pos, direction, 20f, layerMask);
-            
-            foreach (var hit in b_hits)
+            foreach (Vertex v in LastPathSegment)
             {
-                // Compare colliders instead of hit objects
-                if (hit.collider != null && hit.collider != f_hit.collider)
-                {
-                    backward = hit.collider.GetComponent<Vertex>();
-                    break;
-                }
+                if (v == null) continue;
+                v.GetComponent<SpriteRenderer>().color = Color.gray;
             }
         }
+        
+        foreach (Vertex v in PathSegment)
+        {
+            if (v == null) continue;
+            v.GetComponent<SpriteRenderer>().color = Color.blue;
+        }
 
-        return new Vertex[2] { forward, backward };
+        LastPathSegment = PathSegment;
     }
 }

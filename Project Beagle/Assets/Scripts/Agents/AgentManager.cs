@@ -71,6 +71,8 @@ public class AgentManager : MonoBehaviour
         // Continue to move towards the heading vertex if distance is greater than 0.01 in either cardinal direction
         if (NaiveDistanceCheck(a.transform.position, nav.Heading.Position)) {
             a.transform.position = Vector2.MoveTowards(a.transform.position, nav.Heading.Position, nav.MovementSpeed * Time.fixedDeltaTime);
+
+            //nav.DebugPathSegment();
             return; 
         }
 
@@ -87,6 +89,17 @@ public class AgentManager : MonoBehaviour
     bool OptimalDistanceCheck(Vector2 a, Vector2 b) {
         // Better check for distance, slower computation
         return Vector2.SqrMagnitude(a - b) > 0.001f;
+    }
+
+    void OnDrawGizmos()
+    {
+        foreach (Agent a in _agents)
+        {
+            if (a.GetState() == ActionState.Idle || a.Navigation?.Pointer == null) continue;
+
+            Gizmos.color = Color.green;
+            Gizmos.DrawSphere(a.Navigation.Pointer.Position, 0.1f);
+        }
     }
 
     # endregion
