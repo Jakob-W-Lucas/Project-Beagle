@@ -147,7 +147,7 @@ Transform:
   m_GameObject: {fileID: 12785079}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.99, y: 0, z: 0}
+  m_LocalPosition: {x: 0.255, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -716,10 +716,8 @@ MonoBehaviour:
   m_Graph: {fileID: 4342619363467918153, guid: 2c9b63dd3da5112408bc88e5038a526c, type: 2}
   m_BlackboardVariableOverridesList:
   - rid: 3284953070623785220
-  - rid: 3284953070623785524
-  - rid: 3284953070623785540
-  - rid: 3284953145737740671
-  - rid: 6119213312020316625
+  - rid: 6287206799475212368
+  - rid: 6287206799475212632
   m_IsInitialised: 0
   m_IsStarted: 0
   references:
@@ -733,7 +731,7 @@ MonoBehaviour:
           m_Value1: 0
         Name: Self
         m_Value: {fileID: 62230959}
-    - rid: 3284953070623785524
+    - rid: 6287206799475212368
       type: {class: 'BlackboardVariable`1[[OuterMap, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
         GUID:
@@ -741,30 +739,14 @@ MonoBehaviour:
           m_Value1: 2538851355633432576
         Name: Map
         m_Value: {fileID: 2115744118}
-    - rid: 3284953070623785540
-      type: {class: 'BlackboardVariable`1[[RoomDatabase, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
-      data:
-        GUID:
-          m_Value0: 12657728705760878381
-          m_Value1: 7608506640987574116
-        Name: Rooms
-        m_Value: {fileID: 11400000, guid: 208efd689baf938458ee6a4acec2cc75, type: 2}
-    - rid: 3284953145737740671
+    - rid: 6287206799475212632
       type: {class: 'BlackboardVariable`1[[ActionState, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
         GUID:
           m_Value0: 16886864235039362290
           m_Value1: 14818642356139347783
         Name: State
-        m_Value: 0
-    - rid: 6119213312020316625
-      type: {class: 'BlackboardVariable`1[[Agent, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
-      data:
-        GUID:
-          m_Value0: 4369050710446065266
-          m_Value1: 5613661496081385598
-        Name: Target
-        m_Value: {fileID: 62230967}
+        m_Value: 3
 --- !u!1 &77901532
 GameObject:
   m_ObjectHideFlags: 0
@@ -799,7 +781,7 @@ Transform:
   m_GameObject: {fileID: 77901532}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 8.25, y: 2.01, z: -0.09164972}
+  m_LocalPosition: {x: 4.05, y: -3.62, z: -0.09164972}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1025,10 +1007,8 @@ MonoBehaviour:
   m_Graph: {fileID: 4342619363467918153, guid: 2c9b63dd3da5112408bc88e5038a526c, type: 2}
   m_BlackboardVariableOverridesList:
   - rid: 3284953070623785220
-  - rid: 3284953070623785524
-  - rid: 3284953070623785540
-  - rid: 3284953145737740671
-  - rid: 6119213312020316626
+  - rid: 6287206799475212369
+  - rid: 6287206799475212633
   m_IsInitialised: 0
   m_IsStarted: 0
   references:
@@ -1042,7 +1022,7 @@ MonoBehaviour:
           m_Value1: 0
         Name: Self
         m_Value: {fileID: 77901532}
-    - rid: 3284953070623785524
+    - rid: 6287206799475212369
       type: {class: 'BlackboardVariable`1[[OuterMap, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
         GUID:
@@ -1050,30 +1030,14 @@ MonoBehaviour:
           m_Value1: 2538851355633432576
         Name: Map
         m_Value: {fileID: 2115744118}
-    - rid: 3284953070623785540
-      type: {class: 'BlackboardVariable`1[[RoomDatabase, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
-      data:
-        GUID:
-          m_Value0: 12657728705760878381
-          m_Value1: 7608506640987574116
-        Name: Rooms
-        m_Value: {fileID: 11400000, guid: 208efd689baf938458ee6a4acec2cc75, type: 2}
-    - rid: 3284953145737740671
+    - rid: 6287206799475212633
       type: {class: 'BlackboardVariable`1[[ActionState, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
         GUID:
           m_Value0: 16886864235039362290
           m_Value1: 14818642356139347783
         Name: State
-        m_Value: 0
-    - rid: 6119213312020316626
-      type: {class: 'BlackboardVariable`1[[Agent, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
-      data:
-        GUID:
-          m_Value0: 4369050710446065266
-          m_Value1: 5613661496081385598
-        Name: Target
-        m_Value: {fileID: 77901540}
+        m_Value: 3
 --- !u!1 &90267849
 GameObject:
   m_ObjectHideFlags: 0
@@ -1641,10 +1605,8 @@ MonoBehaviour:
   m_Graph: {fileID: 4342619363467918153, guid: 2c9b63dd3da5112408bc88e5038a526c, type: 2}
   m_BlackboardVariableOverridesList:
   - rid: 3284953070623785220
-  - rid: 3284953070623785524
-  - rid: 3284953070623785540
-  - rid: 3284953145737740671
-  - rid: 6119213312020316627
+  - rid: 6287206799475212370
+  - rid: 6287206799475212634
   m_IsInitialised: 0
   m_IsStarted: 0
   references:
@@ -1658,7 +1620,7 @@ MonoBehaviour:
           m_Value1: 0
         Name: Self
         m_Value: {fileID: 220228917}
-    - rid: 3284953070623785524
+    - rid: 6287206799475212370
       type: {class: 'BlackboardVariable`1[[OuterMap, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
         GUID:
@@ -1666,30 +1628,14 @@ MonoBehaviour:
           m_Value1: 2538851355633432576
         Name: Map
         m_Value: {fileID: 2115744118}
-    - rid: 3284953070623785540
-      type: {class: 'BlackboardVariable`1[[RoomDatabase, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
-      data:
-        GUID:
-          m_Value0: 12657728705760878381
-          m_Value1: 7608506640987574116
-        Name: Rooms
-        m_Value: {fileID: 11400000, guid: 208efd689baf938458ee6a4acec2cc75, type: 2}
-    - rid: 3284953145737740671
+    - rid: 6287206799475212634
       type: {class: 'BlackboardVariable`1[[ActionState, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
         GUID:
           m_Value0: 16886864235039362290
           m_Value1: 14818642356139347783
         Name: State
-        m_Value: 0
-    - rid: 6119213312020316627
-      type: {class: 'BlackboardVariable`1[[Agent, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
-      data:
-        GUID:
-          m_Value0: 4369050710446065266
-          m_Value1: 5613661496081385598
-        Name: Target
-        m_Value: {fileID: 220228918}
+        m_Value: 3
 --- !u!4 &220228927
 Transform:
   m_ObjectHideFlags: 0
@@ -2094,10 +2040,8 @@ MonoBehaviour:
   m_Graph: {fileID: 4342619363467918153, guid: 2c9b63dd3da5112408bc88e5038a526c, type: 2}
   m_BlackboardVariableOverridesList:
   - rid: 3284953070623785220
-  - rid: 3284953070623785524
-  - rid: 3284953070623785540
-  - rid: 3284953145737740671
-  - rid: 6119213312020316628
+  - rid: 6287206799475212371
+  - rid: 6287206799475212635
   m_IsInitialised: 0
   m_IsStarted: 0
   references:
@@ -2111,7 +2055,7 @@ MonoBehaviour:
           m_Value1: 0
         Name: Self
         m_Value: {fileID: 295193928}
-    - rid: 3284953070623785524
+    - rid: 6287206799475212371
       type: {class: 'BlackboardVariable`1[[OuterMap, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
         GUID:
@@ -2119,30 +2063,14 @@ MonoBehaviour:
           m_Value1: 2538851355633432576
         Name: Map
         m_Value: {fileID: 2115744118}
-    - rid: 3284953070623785540
-      type: {class: 'BlackboardVariable`1[[RoomDatabase, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
-      data:
-        GUID:
-          m_Value0: 12657728705760878381
-          m_Value1: 7608506640987574116
-        Name: Rooms
-        m_Value: {fileID: 11400000, guid: 208efd689baf938458ee6a4acec2cc75, type: 2}
-    - rid: 3284953145737740671
+    - rid: 6287206799475212635
       type: {class: 'BlackboardVariable`1[[ActionState, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
         GUID:
           m_Value0: 16886864235039362290
           m_Value1: 14818642356139347783
         Name: State
-        m_Value: 0
-    - rid: 6119213312020316628
-      type: {class: 'BlackboardVariable`1[[Agent, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
-      data:
-        GUID:
-          m_Value0: 4369050710446065266
-          m_Value1: 5613661496081385598
-        Name: Target
-        m_Value: {fileID: 295193936}
+        m_Value: 3
 --- !u!1 &327407052
 GameObject:
   m_ObjectHideFlags: 0
@@ -2346,7 +2274,7 @@ Transform:
   m_GameObject: {fileID: 342785464}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.88, y: 1.55, z: -0.09164972}
+  m_LocalPosition: {x: -2.3199997, y: -4.08, z: -0.09164972}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2572,10 +2500,8 @@ MonoBehaviour:
   m_Graph: {fileID: 4342619363467918153, guid: 2c9b63dd3da5112408bc88e5038a526c, type: 2}
   m_BlackboardVariableOverridesList:
   - rid: 3284953070623785220
-  - rid: 3284953070623785524
-  - rid: 3284953070623785540
-  - rid: 3284953145737740671
-  - rid: 6119213312020316629
+  - rid: 6287206799475212372
+  - rid: 6287206799475212636
   m_IsInitialised: 0
   m_IsStarted: 0
   references:
@@ -2589,7 +2515,7 @@ MonoBehaviour:
           m_Value1: 0
         Name: Self
         m_Value: {fileID: 342785464}
-    - rid: 3284953070623785524
+    - rid: 6287206799475212372
       type: {class: 'BlackboardVariable`1[[OuterMap, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
         GUID:
@@ -2597,30 +2523,14 @@ MonoBehaviour:
           m_Value1: 2538851355633432576
         Name: Map
         m_Value: {fileID: 2115744118}
-    - rid: 3284953070623785540
-      type: {class: 'BlackboardVariable`1[[RoomDatabase, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
-      data:
-        GUID:
-          m_Value0: 12657728705760878381
-          m_Value1: 7608506640987574116
-        Name: Rooms
-        m_Value: {fileID: 11400000, guid: 208efd689baf938458ee6a4acec2cc75, type: 2}
-    - rid: 3284953145737740671
+    - rid: 6287206799475212636
       type: {class: 'BlackboardVariable`1[[ActionState, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
         GUID:
           m_Value0: 16886864235039362290
           m_Value1: 14818642356139347783
         Name: State
-        m_Value: 0
-    - rid: 6119213312020316629
-      type: {class: 'BlackboardVariable`1[[Agent, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
-      data:
-        GUID:
-          m_Value0: 4369050710446065266
-          m_Value1: 5613661496081385598
-        Name: Target
-        m_Value: {fileID: 342785472}
+        m_Value: 3
 --- !u!1 &345956099
 GameObject:
   m_ObjectHideFlags: 0
@@ -3484,7 +3394,7 @@ Transform:
   m_GameObject: {fileID: 495380279}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.29, y: 3.52, z: -0.09164972}
+  m_LocalPosition: {x: -5.49, y: -2.1100001, z: -0.09164972}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3710,10 +3620,8 @@ MonoBehaviour:
   m_Graph: {fileID: 4342619363467918153, guid: 2c9b63dd3da5112408bc88e5038a526c, type: 2}
   m_BlackboardVariableOverridesList:
   - rid: 3284953070623785220
-  - rid: 3284953070623785524
-  - rid: 3284953070623785540
-  - rid: 3284953145737740671
-  - rid: 6119213312020316630
+  - rid: 6287206799475212373
+  - rid: 6287206799475212637
   m_IsInitialised: 0
   m_IsStarted: 0
   references:
@@ -3727,7 +3635,7 @@ MonoBehaviour:
           m_Value1: 0
         Name: Self
         m_Value: {fileID: 495380279}
-    - rid: 3284953070623785524
+    - rid: 6287206799475212373
       type: {class: 'BlackboardVariable`1[[OuterMap, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
         GUID:
@@ -3735,30 +3643,14 @@ MonoBehaviour:
           m_Value1: 2538851355633432576
         Name: Map
         m_Value: {fileID: 2115744118}
-    - rid: 3284953070623785540
-      type: {class: 'BlackboardVariable`1[[RoomDatabase, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
-      data:
-        GUID:
-          m_Value0: 12657728705760878381
-          m_Value1: 7608506640987574116
-        Name: Rooms
-        m_Value: {fileID: 11400000, guid: 208efd689baf938458ee6a4acec2cc75, type: 2}
-    - rid: 3284953145737740671
+    - rid: 6287206799475212637
       type: {class: 'BlackboardVariable`1[[ActionState, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
         GUID:
           m_Value0: 16886864235039362290
           m_Value1: 14818642356139347783
         Name: State
-        m_Value: 0
-    - rid: 6119213312020316630
-      type: {class: 'BlackboardVariable`1[[Agent, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
-      data:
-        GUID:
-          m_Value0: 4369050710446065266
-          m_Value1: 5613661496081385598
-        Name: Target
-        m_Value: {fileID: 495380287}
+        m_Value: 3
 --- !u!1 &508927027
 GameObject:
   m_ObjectHideFlags: 0
@@ -4504,10 +4396,8 @@ MonoBehaviour:
   m_Graph: {fileID: 4342619363467918153, guid: 2c9b63dd3da5112408bc88e5038a526c, type: 2}
   m_BlackboardVariableOverridesList:
   - rid: 3284953070623785220
-  - rid: 3284953070623785524
-  - rid: 3284953070623785540
-  - rid: 3284953145737740671
-  - rid: 6119213312020316631
+  - rid: 6287206799475212374
+  - rid: 6287206799475212638
   m_IsInitialised: 0
   m_IsStarted: 0
   references:
@@ -4521,7 +4411,7 @@ MonoBehaviour:
           m_Value1: 0
         Name: Self
         m_Value: {fileID: 559308337}
-    - rid: 3284953070623785524
+    - rid: 6287206799475212374
       type: {class: 'BlackboardVariable`1[[OuterMap, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
         GUID:
@@ -4529,30 +4419,14 @@ MonoBehaviour:
           m_Value1: 2538851355633432576
         Name: Map
         m_Value: {fileID: 2115744118}
-    - rid: 3284953070623785540
-      type: {class: 'BlackboardVariable`1[[RoomDatabase, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
-      data:
-        GUID:
-          m_Value0: 12657728705760878381
-          m_Value1: 7608506640987574116
-        Name: Rooms
-        m_Value: {fileID: 11400000, guid: 208efd689baf938458ee6a4acec2cc75, type: 2}
-    - rid: 3284953145737740671
+    - rid: 6287206799475212638
       type: {class: 'BlackboardVariable`1[[ActionState, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
         GUID:
           m_Value0: 16886864235039362290
           m_Value1: 14818642356139347783
         Name: State
-        m_Value: 0
-    - rid: 6119213312020316631
-      type: {class: 'BlackboardVariable`1[[Agent, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
-      data:
-        GUID:
-          m_Value0: 4369050710446065266
-          m_Value1: 5613661496081385598
-        Name: Target
-        m_Value: {fileID: 559308345}
+        m_Value: 3
 --- !u!1 &559821514
 GameObject:
   m_ObjectHideFlags: 0
@@ -4587,7 +4461,7 @@ Transform:
   m_GameObject: {fileID: 559821514}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4.81, y: 1.66, z: -0.09164972}
+  m_LocalPosition: {x: 0.61000013, y: -3.9700003, z: -0.09164972}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4813,10 +4687,8 @@ MonoBehaviour:
   m_Graph: {fileID: 4342619363467918153, guid: 2c9b63dd3da5112408bc88e5038a526c, type: 2}
   m_BlackboardVariableOverridesList:
   - rid: 3284953070623785220
-  - rid: 3284953070623785524
-  - rid: 3284953070623785540
-  - rid: 3284953145737740671
-  - rid: 6119213312020316632
+  - rid: 6287206799475212375
+  - rid: 6287206799475212639
   m_IsInitialised: 0
   m_IsStarted: 0
   references:
@@ -4830,7 +4702,7 @@ MonoBehaviour:
           m_Value1: 0
         Name: Self
         m_Value: {fileID: 559821514}
-    - rid: 3284953070623785524
+    - rid: 6287206799475212375
       type: {class: 'BlackboardVariable`1[[OuterMap, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
         GUID:
@@ -4838,30 +4710,14 @@ MonoBehaviour:
           m_Value1: 2538851355633432576
         Name: Map
         m_Value: {fileID: 2115744118}
-    - rid: 3284953070623785540
-      type: {class: 'BlackboardVariable`1[[RoomDatabase, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
-      data:
-        GUID:
-          m_Value0: 12657728705760878381
-          m_Value1: 7608506640987574116
-        Name: Rooms
-        m_Value: {fileID: 11400000, guid: 208efd689baf938458ee6a4acec2cc75, type: 2}
-    - rid: 3284953145737740671
+    - rid: 6287206799475212639
       type: {class: 'BlackboardVariable`1[[ActionState, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
         GUID:
           m_Value0: 16886864235039362290
           m_Value1: 14818642356139347783
         Name: State
-        m_Value: 0
-    - rid: 6119213312020316632
-      type: {class: 'BlackboardVariable`1[[Agent, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
-      data:
-        GUID:
-          m_Value0: 4369050710446065266
-          m_Value1: 5613661496081385598
-        Name: Target
-        m_Value: {fileID: 559821522}
+        m_Value: 3
 --- !u!1 &572227411
 GameObject:
   m_ObjectHideFlags: 0
@@ -5629,10 +5485,8 @@ MonoBehaviour:
   m_Graph: {fileID: 4342619363467918153, guid: 2c9b63dd3da5112408bc88e5038a526c, type: 2}
   m_BlackboardVariableOverridesList:
   - rid: 3284953070623785220
-  - rid: 3284953070623785524
-  - rid: 3284953070623785540
-  - rid: 3284953145737740671
-  - rid: 6119213312020316633
+  - rid: 6287206799475212376
+  - rid: 6287206799475212640
   m_IsInitialised: 0
   m_IsStarted: 0
   references:
@@ -5646,7 +5500,7 @@ MonoBehaviour:
           m_Value1: 0
         Name: Self
         m_Value: {fileID: 609705761}
-    - rid: 3284953070623785524
+    - rid: 6287206799475212376
       type: {class: 'BlackboardVariable`1[[OuterMap, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
         GUID:
@@ -5654,30 +5508,14 @@ MonoBehaviour:
           m_Value1: 2538851355633432576
         Name: Map
         m_Value: {fileID: 2115744118}
-    - rid: 3284953070623785540
-      type: {class: 'BlackboardVariable`1[[RoomDatabase, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
-      data:
-        GUID:
-          m_Value0: 12657728705760878381
-          m_Value1: 7608506640987574116
-        Name: Rooms
-        m_Value: {fileID: 11400000, guid: 208efd689baf938458ee6a4acec2cc75, type: 2}
-    - rid: 3284953145737740671
+    - rid: 6287206799475212640
       type: {class: 'BlackboardVariable`1[[ActionState, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
         GUID:
           m_Value0: 16886864235039362290
           m_Value1: 14818642356139347783
         Name: State
-        m_Value: 0
-    - rid: 6119213312020316633
-      type: {class: 'BlackboardVariable`1[[Agent, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
-      data:
-        GUID:
-          m_Value0: 4369050710446065266
-          m_Value1: 5613661496081385598
-        Name: Target
-        m_Value: {fileID: 609705769}
+        m_Value: 3
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0
@@ -5776,7 +5614,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4464029914512775807, guid: 69ed1ee8a15fd1741955696b7a3aec2e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1
+      value: -2.005
       objectReference: {fileID: 0}
     - target: {fileID: 4464029914512775807, guid: 69ed1ee8a15fd1741955696b7a3aec2e, type: 3}
       propertyPath: m_LocalPosition.y
@@ -5873,7 +5711,7 @@ Transform:
   m_GameObject: {fileID: 662450821}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5.66, y: -0.66, z: -0.09164972}
+  m_LocalPosition: {x: 3.64, y: 0.06, z: -0.09164972}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -6099,10 +5937,8 @@ MonoBehaviour:
   m_Graph: {fileID: 4342619363467918153, guid: 2c9b63dd3da5112408bc88e5038a526c, type: 2}
   m_BlackboardVariableOverridesList:
   - rid: 3284953070623785220
-  - rid: 3284953070623785524
-  - rid: 3284953070623785540
-  - rid: 3284953145737740671
-  - rid: 6119213312020316634
+  - rid: 6287206799475212377
+  - rid: 6287206799475212641
   m_IsInitialised: 0
   m_IsStarted: 0
   references:
@@ -6116,7 +5952,7 @@ MonoBehaviour:
           m_Value1: 0
         Name: Self
         m_Value: {fileID: 662450821}
-    - rid: 3284953070623785524
+    - rid: 6287206799475212377
       type: {class: 'BlackboardVariable`1[[OuterMap, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
         GUID:
@@ -6124,30 +5960,14 @@ MonoBehaviour:
           m_Value1: 2538851355633432576
         Name: Map
         m_Value: {fileID: 2115744118}
-    - rid: 3284953070623785540
-      type: {class: 'BlackboardVariable`1[[RoomDatabase, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
-      data:
-        GUID:
-          m_Value0: 12657728705760878381
-          m_Value1: 7608506640987574116
-        Name: Rooms
-        m_Value: {fileID: 11400000, guid: 208efd689baf938458ee6a4acec2cc75, type: 2}
-    - rid: 3284953145737740671
+    - rid: 6287206799475212641
       type: {class: 'BlackboardVariable`1[[ActionState, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
         GUID:
           m_Value0: 16886864235039362290
           m_Value1: 14818642356139347783
         Name: State
-        m_Value: 0
-    - rid: 6119213312020316634
-      type: {class: 'BlackboardVariable`1[[Agent, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
-      data:
-        GUID:
-          m_Value0: 4369050710446065266
-          m_Value1: 5613661496081385598
-        Name: Target
-        m_Value: {fileID: 662450829}
+        m_Value: 3
 --- !u!1 &663585538
 GameObject:
   m_ObjectHideFlags: 0
@@ -6264,7 +6084,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4464029914512775807, guid: 69ed1ee8a15fd1741955696b7a3aec2e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.79
+      value: 1.264
       objectReference: {fileID: 0}
     - target: {fileID: 4464029914512775807, guid: 69ed1ee8a15fd1741955696b7a3aec2e, type: 3}
       propertyPath: m_LocalPosition.y
@@ -6526,7 +6346,7 @@ Transform:
   m_GameObject: {fileID: 682071249}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 7.17, y: 0.75, z: -0.09164972}
+  m_LocalPosition: {x: 3.11, y: 1.49, z: -0.09164972}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -6752,10 +6572,8 @@ MonoBehaviour:
   m_Graph: {fileID: 4342619363467918153, guid: 2c9b63dd3da5112408bc88e5038a526c, type: 2}
   m_BlackboardVariableOverridesList:
   - rid: 3284953070623785220
-  - rid: 3284953070623785524
-  - rid: 3284953070623785540
-  - rid: 3284953145737740671
-  - rid: 6119213312020316635
+  - rid: 6287206799475212378
+  - rid: 6287206799475212642
   m_IsInitialised: 0
   m_IsStarted: 0
   references:
@@ -6769,7 +6587,7 @@ MonoBehaviour:
           m_Value1: 0
         Name: Self
         m_Value: {fileID: 682071249}
-    - rid: 3284953070623785524
+    - rid: 6287206799475212378
       type: {class: 'BlackboardVariable`1[[OuterMap, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
         GUID:
@@ -6777,30 +6595,14 @@ MonoBehaviour:
           m_Value1: 2538851355633432576
         Name: Map
         m_Value: {fileID: 2115744118}
-    - rid: 3284953070623785540
-      type: {class: 'BlackboardVariable`1[[RoomDatabase, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
-      data:
-        GUID:
-          m_Value0: 12657728705760878381
-          m_Value1: 7608506640987574116
-        Name: Rooms
-        m_Value: {fileID: 11400000, guid: 208efd689baf938458ee6a4acec2cc75, type: 2}
-    - rid: 3284953145737740671
+    - rid: 6287206799475212642
       type: {class: 'BlackboardVariable`1[[ActionState, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
         GUID:
           m_Value0: 16886864235039362290
           m_Value1: 14818642356139347783
         Name: State
-        m_Value: 0
-    - rid: 6119213312020316635
-      type: {class: 'BlackboardVariable`1[[Agent, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
-      data:
-        GUID:
-          m_Value0: 4369050710446065266
-          m_Value1: 5613661496081385598
-        Name: Target
-        m_Value: {fileID: 682071257}
+        m_Value: 3
 --- !u!1 &695815932
 GameObject:
   m_ObjectHideFlags: 0
@@ -7012,7 +6814,7 @@ Transform:
   m_GameObject: {fileID: 721168452}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.581, y: -1.96, z: -0.09164972}
+  m_LocalPosition: {x: 4.54, y: 2.54, z: -0.09164972}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7062,7 +6864,6 @@ GameObject:
   - component: {fileID: 729592849}
   - component: {fileID: 729592848}
   - component: {fileID: 729592850}
-  - component: {fileID: 729592851}
   m_Layer: 0
   m_Name: Galley
   m_TagString: Untagged
@@ -7158,25 +6959,83 @@ MonoBehaviour:
   - {fileID: 408992497}
   - {fileID: 1957758001}
   - {fileID: 945963698}
---- !u!114 &729592851
-MonoBehaviour:
+--- !u!1001 &730300185
+PrefabInstance:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 946983209}
+    m_Modifications:
+    - target: {fileID: 4438092009638876201, guid: 69ed1ee8a15fd1741955696b7a3aec2e, type: 3}
+      propertyPath: m_Name
+      value: Vertex (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4464029914512775807, guid: 69ed1ee8a15fd1741955696b7a3aec2e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -2.509
+      objectReference: {fileID: 0}
+    - target: {fileID: 4464029914512775807, guid: 69ed1ee8a15fd1741955696b7a3aec2e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4464029914512775807, guid: 69ed1ee8a15fd1741955696b7a3aec2e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4464029914512775807, guid: 69ed1ee8a15fd1741955696b7a3aec2e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4464029914512775807, guid: 69ed1ee8a15fd1741955696b7a3aec2e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4464029914512775807, guid: 69ed1ee8a15fd1741955696b7a3aec2e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4464029914512775807, guid: 69ed1ee8a15fd1741955696b7a3aec2e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4464029914512775807, guid: 69ed1ee8a15fd1741955696b7a3aec2e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4464029914512775807, guid: 69ed1ee8a15fd1741955696b7a3aec2e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4464029914512775807, guid: 69ed1ee8a15fd1741955696b7a3aec2e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7590535652438889218, guid: 69ed1ee8a15fd1741955696b7a3aec2e, type: 3}
+      propertyPath: _vertexReach
+      value: 3
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 69ed1ee8a15fd1741955696b7a3aec2e, type: 3}
+--- !u!4 &730300186 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4464029914512775807, guid: 69ed1ee8a15fd1741955696b7a3aec2e, type: 3}
+  m_PrefabInstance: {fileID: 730300185}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 729592846}
+--- !u!114 &730300187 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8887604098018754847, guid: 69ed1ee8a15fd1741955696b7a3aec2e, type: 3}
+  m_PrefabInstance: {fileID: 730300185}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9b2adc64a32e8fa48bf7e04f3e36cb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Position: {x: 0, y: 0}
-  g_ID: -1
-  r_ID: -1
-  p_ID: -1
-  Room: {fileID: 0}
-  Station: {fileID: 0}
-  _vertexReach: 5
 --- !u!1 &746372664
 GameObject:
   m_ObjectHideFlags: 0
@@ -7775,10 +7634,8 @@ MonoBehaviour:
   m_Graph: {fileID: 4342619363467918153, guid: 2c9b63dd3da5112408bc88e5038a526c, type: 2}
   m_BlackboardVariableOverridesList:
   - rid: 3284953070623785220
-  - rid: 3284953070623785524
-  - rid: 3284953070623785540
-  - rid: 3284953145737740671
-  - rid: 6119213312020316636
+  - rid: 6287206799475212379
+  - rid: 6287206799475212643
   m_IsInitialised: 0
   m_IsStarted: 0
   references:
@@ -7792,7 +7649,7 @@ MonoBehaviour:
           m_Value1: 0
         Name: Self
         m_Value: {fileID: 819757362}
-    - rid: 3284953070623785524
+    - rid: 6287206799475212379
       type: {class: 'BlackboardVariable`1[[OuterMap, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
         GUID:
@@ -7800,30 +7657,14 @@ MonoBehaviour:
           m_Value1: 2538851355633432576
         Name: Map
         m_Value: {fileID: 2115744118}
-    - rid: 3284953070623785540
-      type: {class: 'BlackboardVariable`1[[RoomDatabase, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
-      data:
-        GUID:
-          m_Value0: 12657728705760878381
-          m_Value1: 7608506640987574116
-        Name: Rooms
-        m_Value: {fileID: 11400000, guid: 208efd689baf938458ee6a4acec2cc75, type: 2}
-    - rid: 3284953145737740671
+    - rid: 6287206799475212643
       type: {class: 'BlackboardVariable`1[[ActionState, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
         GUID:
           m_Value0: 16886864235039362290
           m_Value1: 14818642356139347783
         Name: State
-        m_Value: 0
-    - rid: 6119213312020316636
-      type: {class: 'BlackboardVariable`1[[Agent, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
-      data:
-        GUID:
-          m_Value0: 4369050710446065266
-          m_Value1: 5613661496081385598
-        Name: Target
-        m_Value: {fileID: 819757370}
+        m_Value: 3
 --- !u!1 &845829472
 GameObject:
   m_ObjectHideFlags: 0
@@ -7889,7 +7730,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4464029914512775807, guid: 69ed1ee8a15fd1741955696b7a3aec2e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.5
+      value: -1.454
       objectReference: {fileID: 0}
     - target: {fileID: 4464029914512775807, guid: 69ed1ee8a15fd1741955696b7a3aec2e, type: 3}
       propertyPath: m_LocalPosition.y
@@ -7966,7 +7807,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4464029914512775807, guid: 69ed1ee8a15fd1741955696b7a3aec2e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.5
+      value: 2.88
       objectReference: {fileID: 0}
     - target: {fileID: 4464029914512775807, guid: 69ed1ee8a15fd1741955696b7a3aec2e, type: 3}
       propertyPath: m_LocalPosition.y
@@ -8442,10 +8283,8 @@ MonoBehaviour:
   m_Graph: {fileID: 4342619363467918153, guid: 2c9b63dd3da5112408bc88e5038a526c, type: 2}
   m_BlackboardVariableOverridesList:
   - rid: 3284953070623785220
-  - rid: 3284953070623785524
-  - rid: 3284953070623785540
-  - rid: 3284953145737740671
-  - rid: 6119213312020316637
+  - rid: 6287206799475212380
+  - rid: 6287206799475212644
   m_IsInitialised: 0
   m_IsStarted: 0
   references:
@@ -8459,7 +8298,7 @@ MonoBehaviour:
           m_Value1: 0
         Name: Self
         m_Value: {fileID: 885982035}
-    - rid: 3284953070623785524
+    - rid: 6287206799475212380
       type: {class: 'BlackboardVariable`1[[OuterMap, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
         GUID:
@@ -8467,30 +8306,14 @@ MonoBehaviour:
           m_Value1: 2538851355633432576
         Name: Map
         m_Value: {fileID: 2115744118}
-    - rid: 3284953070623785540
-      type: {class: 'BlackboardVariable`1[[RoomDatabase, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
-      data:
-        GUID:
-          m_Value0: 12657728705760878381
-          m_Value1: 7608506640987574116
-        Name: Rooms
-        m_Value: {fileID: 11400000, guid: 208efd689baf938458ee6a4acec2cc75, type: 2}
-    - rid: 3284953145737740671
+    - rid: 6287206799475212644
       type: {class: 'BlackboardVariable`1[[ActionState, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
         GUID:
           m_Value0: 16886864235039362290
           m_Value1: 14818642356139347783
         Name: State
-        m_Value: 0
-    - rid: 6119213312020316637
-      type: {class: 'BlackboardVariable`1[[Agent, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
-      data:
-        GUID:
-          m_Value0: 4369050710446065266
-          m_Value1: 5613661496081385598
-        Name: Target
-        m_Value: {fileID: 885982036}
+        m_Value: 3
 --- !u!4 &885982045
 Transform:
   m_ObjectHideFlags: 0
@@ -8706,6 +8529,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1053657561}
+  - {fileID: 730300186}
   m_Father: {fileID: 1406592038}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &962865295
@@ -8742,7 +8566,7 @@ Transform:
   m_GameObject: {fileID: 962865295}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.17, y: 1.6, z: -0.09164972}
+  m_LocalPosition: {x: -4.0299997, y: -4.03, z: -0.09164972}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -8968,10 +8792,8 @@ MonoBehaviour:
   m_Graph: {fileID: 4342619363467918153, guid: 2c9b63dd3da5112408bc88e5038a526c, type: 2}
   m_BlackboardVariableOverridesList:
   - rid: 3284953070623785220
-  - rid: 3284953070623785524
-  - rid: 3284953070623785540
-  - rid: 3284953145737740671
-  - rid: 6119213312020316638
+  - rid: 6287206799475212381
+  - rid: 6287206799475212645
   m_IsInitialised: 0
   m_IsStarted: 0
   references:
@@ -8985,7 +8807,7 @@ MonoBehaviour:
           m_Value1: 0
         Name: Self
         m_Value: {fileID: 962865295}
-    - rid: 3284953070623785524
+    - rid: 6287206799475212381
       type: {class: 'BlackboardVariable`1[[OuterMap, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
         GUID:
@@ -8993,30 +8815,14 @@ MonoBehaviour:
           m_Value1: 2538851355633432576
         Name: Map
         m_Value: {fileID: 2115744118}
-    - rid: 3284953070623785540
-      type: {class: 'BlackboardVariable`1[[RoomDatabase, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
-      data:
-        GUID:
-          m_Value0: 12657728705760878381
-          m_Value1: 7608506640987574116
-        Name: Rooms
-        m_Value: {fileID: 11400000, guid: 208efd689baf938458ee6a4acec2cc75, type: 2}
-    - rid: 3284953145737740671
+    - rid: 6287206799475212645
       type: {class: 'BlackboardVariable`1[[ActionState, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
         GUID:
           m_Value0: 16886864235039362290
           m_Value1: 14818642356139347783
         Name: State
-        m_Value: 0
-    - rid: 6119213312020316638
-      type: {class: 'BlackboardVariable`1[[Agent, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
-      data:
-        GUID:
-          m_Value0: 4369050710446065266
-          m_Value1: 5613661496081385598
-        Name: Target
-        m_Value: {fileID: 962865303}
+        m_Value: 3
 --- !u!1 &1016863737
 GameObject:
   m_ObjectHideFlags: 0
@@ -9366,7 +9172,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.9125209, y: 0.23688343}
+  m_Offset: {x: -0.00832653, y: 0.23688343}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -9376,7 +9182,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 7.8413963, y: 0.52623314}
+  m_Size: {x: 5.9209967, y: 0.52623314}
   m_EdgeRadius: 0
 --- !u!4 &1066831194
 Transform:
@@ -9843,10 +9649,8 @@ MonoBehaviour:
   m_Graph: {fileID: 4342619363467918153, guid: 2c9b63dd3da5112408bc88e5038a526c, type: 2}
   m_BlackboardVariableOverridesList:
   - rid: 3284953070623785220
-  - rid: 3284953070623785524
-  - rid: 3284953070623785540
-  - rid: 3284953145737740671
-  - rid: 6119213312020316639
+  - rid: 6287206799475212382
+  - rid: 6287206799475212646
   m_IsInitialised: 0
   m_IsStarted: 0
   references:
@@ -9860,7 +9664,7 @@ MonoBehaviour:
           m_Value1: 0
         Name: Self
         m_Value: {fileID: 1112151120}
-    - rid: 3284953070623785524
+    - rid: 6287206799475212382
       type: {class: 'BlackboardVariable`1[[OuterMap, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
         GUID:
@@ -9868,30 +9672,14 @@ MonoBehaviour:
           m_Value1: 2538851355633432576
         Name: Map
         m_Value: {fileID: 2115744118}
-    - rid: 3284953070623785540
-      type: {class: 'BlackboardVariable`1[[RoomDatabase, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
-      data:
-        GUID:
-          m_Value0: 12657728705760878381
-          m_Value1: 7608506640987574116
-        Name: Rooms
-        m_Value: {fileID: 11400000, guid: 208efd689baf938458ee6a4acec2cc75, type: 2}
-    - rid: 3284953145737740671
+    - rid: 6287206799475212646
       type: {class: 'BlackboardVariable`1[[ActionState, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
         GUID:
           m_Value0: 16886864235039362290
           m_Value1: 14818642356139347783
         Name: State
-        m_Value: 0
-    - rid: 6119213312020316639
-      type: {class: 'BlackboardVariable`1[[Agent, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
-      data:
-        GUID:
-          m_Value0: 4369050710446065266
-          m_Value1: 5613661496081385598
-        Name: Target
-        m_Value: {fileID: 1112151128}
+        m_Value: 3
 --- !u!1 &1141939549
 GameObject:
   m_ObjectHideFlags: 0
@@ -10378,10 +10166,8 @@ MonoBehaviour:
   m_Graph: {fileID: 4342619363467918153, guid: 2c9b63dd3da5112408bc88e5038a526c, type: 2}
   m_BlackboardVariableOverridesList:
   - rid: 3284953070623785220
-  - rid: 3284953070623785524
-  - rid: 3284953070623785540
-  - rid: 3284953145737740671
-  - rid: 6119213312020316640
+  - rid: 6287206799475212383
+  - rid: 6287206799475212647
   m_IsInitialised: 0
   m_IsStarted: 0
   references:
@@ -10395,7 +10181,7 @@ MonoBehaviour:
           m_Value1: 0
         Name: Self
         m_Value: {fileID: 1199132862}
-    - rid: 3284953070623785524
+    - rid: 6287206799475212383
       type: {class: 'BlackboardVariable`1[[OuterMap, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
         GUID:
@@ -10403,30 +10189,14 @@ MonoBehaviour:
           m_Value1: 2538851355633432576
         Name: Map
         m_Value: {fileID: 2115744118}
-    - rid: 3284953070623785540
-      type: {class: 'BlackboardVariable`1[[RoomDatabase, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
-      data:
-        GUID:
-          m_Value0: 12657728705760878381
-          m_Value1: 7608506640987574116
-        Name: Rooms
-        m_Value: {fileID: 11400000, guid: 208efd689baf938458ee6a4acec2cc75, type: 2}
-    - rid: 3284953145737740671
+    - rid: 6287206799475212647
       type: {class: 'BlackboardVariable`1[[ActionState, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
         GUID:
           m_Value0: 16886864235039362290
           m_Value1: 14818642356139347783
         Name: State
-        m_Value: 0
-    - rid: 6119213312020316640
-      type: {class: 'BlackboardVariable`1[[Agent, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
-      data:
-        GUID:
-          m_Value0: 4369050710446065266
-          m_Value1: 5613661496081385598
-        Name: Target
-        m_Value: {fileID: 1199132863}
+        m_Value: 3
 --- !u!4 &1199132872
 Transform:
   m_ObjectHideFlags: 0
@@ -11262,7 +11032,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_Sprite: {fileID: 728722395, guid: 794318f2e37e9ab47816b54cf464025d, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.08552865, g: 0.107968025, b: 0.5849056, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -11287,9 +11057,8 @@ MonoBehaviour:
   m_Graph: {fileID: 4342619363467918153, guid: 2c9b63dd3da5112408bc88e5038a526c, type: 2}
   m_BlackboardVariableOverridesList:
   - rid: 3284953070623785220
-  - rid: 3284953070623785524
-  - rid: 3284953070623785540
-  - rid: 6119213312020316624
+  - rid: 6287206799475212384
+  - rid: 6287206799475212631
   m_IsInitialised: 0
   m_IsStarted: 0
   references:
@@ -11303,7 +11072,7 @@ MonoBehaviour:
           m_Value1: 0
         Name: Self
         m_Value: {fileID: 1315457577}
-    - rid: 3284953070623785524
+    - rid: 6287206799475212384
       type: {class: 'BlackboardVariable`1[[OuterMap, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
         GUID:
@@ -11311,22 +11080,14 @@ MonoBehaviour:
           m_Value1: 2538851355633432576
         Name: Map
         m_Value: {fileID: 2115744118}
-    - rid: 3284953070623785540
-      type: {class: 'BlackboardVariable`1[[RoomDatabase, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
+    - rid: 6287206799475212631
+      type: {class: 'BlackboardVariable`1[[ActionState, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
         GUID:
-          m_Value0: 12657728705760878381
-          m_Value1: 7608506640987574116
-        Name: Rooms
-        m_Value: {fileID: 11400000, guid: 208efd689baf938458ee6a4acec2cc75, type: 2}
-    - rid: 6119213312020316624
-      type: {class: 'BlackboardVariable`1[[Agent, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
-      data:
-        GUID:
-          m_Value0: 4369050710446065266
-          m_Value1: 5613661496081385598
-        Name: Target
-        m_Value: {fileID: 1315457578}
+          m_Value0: 16886864235039362290
+          m_Value1: 14818642356139347783
+        Name: State
+        m_Value: 1
 --- !u!4 &1315457587
 Transform:
   m_ObjectHideFlags: 0
@@ -11336,7 +11097,7 @@ Transform:
   m_GameObject: {fileID: 1315457577}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.249, y: 1.529, z: -0.09164972}
+  m_LocalPosition: {x: -3.001, y: 0.917, z: -0.09164972}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -11602,10 +11363,8 @@ MonoBehaviour:
   m_Graph: {fileID: 4342619363467918153, guid: 2c9b63dd3da5112408bc88e5038a526c, type: 2}
   m_BlackboardVariableOverridesList:
   - rid: 3284953070623785220
-  - rid: 3284953070623785524
-  - rid: 3284953070623785540
-  - rid: 3284953145737740671
-  - rid: 6119213312020316641
+  - rid: 6287206799475212385
+  - rid: 6287206799475212648
   m_IsInitialised: 0
   m_IsStarted: 0
   references:
@@ -11619,7 +11378,7 @@ MonoBehaviour:
           m_Value1: 0
         Name: Self
         m_Value: {fileID: 1323612052}
-    - rid: 3284953070623785524
+    - rid: 6287206799475212385
       type: {class: 'BlackboardVariable`1[[OuterMap, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
         GUID:
@@ -11627,30 +11386,14 @@ MonoBehaviour:
           m_Value1: 2538851355633432576
         Name: Map
         m_Value: {fileID: 2115744118}
-    - rid: 3284953070623785540
-      type: {class: 'BlackboardVariable`1[[RoomDatabase, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
-      data:
-        GUID:
-          m_Value0: 12657728705760878381
-          m_Value1: 7608506640987574116
-        Name: Rooms
-        m_Value: {fileID: 11400000, guid: 208efd689baf938458ee6a4acec2cc75, type: 2}
-    - rid: 3284953145737740671
+    - rid: 6287206799475212648
       type: {class: 'BlackboardVariable`1[[ActionState, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
         GUID:
           m_Value0: 16886864235039362290
           m_Value1: 14818642356139347783
         Name: State
-        m_Value: 0
-    - rid: 6119213312020316641
-      type: {class: 'BlackboardVariable`1[[Agent, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
-      data:
-        GUID:
-          m_Value0: 4369050710446065266
-          m_Value1: 5613661496081385598
-        Name: Target
-        m_Value: {fileID: 1323612060}
+        m_Value: 3
 --- !u!1 &1324555010
 GameObject:
   m_ObjectHideFlags: 0
@@ -11989,7 +11732,7 @@ Transform:
   m_GameObject: {fileID: 1384313809}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.5, y: 0, z: 0}
+  m_LocalPosition: {x: 0.031, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -12394,6 +12137,7 @@ MonoBehaviour:
   Type: {fileID: 11400000, guid: 621588b7e2a549e4d90e838d393bb43a, type: 2}
   _vertices:
   - {fileID: 1053657560}
+  - {fileID: 730300187}
   _stations:
   - {fileID: 6783732557816956395}
   - {fileID: 883554967}
@@ -12660,10 +12404,8 @@ MonoBehaviour:
   m_Graph: {fileID: 4342619363467918153, guid: 2c9b63dd3da5112408bc88e5038a526c, type: 2}
   m_BlackboardVariableOverridesList:
   - rid: 3284953070623785220
-  - rid: 3284953070623785524
-  - rid: 3284953070623785540
-  - rid: 3284953145737740671
-  - rid: 6119213312020316642
+  - rid: 6287206799475212386
+  - rid: 6287206799475212649
   m_IsInitialised: 0
   m_IsStarted: 0
   references:
@@ -12677,7 +12419,7 @@ MonoBehaviour:
           m_Value1: 0
         Name: Self
         m_Value: {fileID: 1415015112}
-    - rid: 3284953070623785524
+    - rid: 6287206799475212386
       type: {class: 'BlackboardVariable`1[[OuterMap, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
         GUID:
@@ -12685,30 +12427,14 @@ MonoBehaviour:
           m_Value1: 2538851355633432576
         Name: Map
         m_Value: {fileID: 2115744118}
-    - rid: 3284953070623785540
-      type: {class: 'BlackboardVariable`1[[RoomDatabase, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
-      data:
-        GUID:
-          m_Value0: 12657728705760878381
-          m_Value1: 7608506640987574116
-        Name: Rooms
-        m_Value: {fileID: 11400000, guid: 208efd689baf938458ee6a4acec2cc75, type: 2}
-    - rid: 3284953145737740671
+    - rid: 6287206799475212649
       type: {class: 'BlackboardVariable`1[[ActionState, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
         GUID:
           m_Value0: 16886864235039362290
           m_Value1: 14818642356139347783
         Name: State
-        m_Value: 0
-    - rid: 6119213312020316642
-      type: {class: 'BlackboardVariable`1[[Agent, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
-      data:
-        GUID:
-          m_Value0: 4369050710446065266
-          m_Value1: 5613661496081385598
-        Name: Target
-        m_Value: {fileID: 1415015120}
+        m_Value: 3
 --- !u!1001 &1421403827
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13849,10 +13575,8 @@ MonoBehaviour:
   m_Graph: {fileID: 4342619363467918153, guid: 2c9b63dd3da5112408bc88e5038a526c, type: 2}
   m_BlackboardVariableOverridesList:
   - rid: 3284953070623785220
-  - rid: 3284953070623785524
-  - rid: 3284953070623785540
-  - rid: 3284953145737740671
-  - rid: 6119213312020316643
+  - rid: 6287206799475212387
+  - rid: 6287206799475212650
   m_IsInitialised: 0
   m_IsStarted: 0
   references:
@@ -13866,7 +13590,7 @@ MonoBehaviour:
           m_Value1: 0
         Name: Self
         m_Value: {fileID: 1542992495}
-    - rid: 3284953070623785524
+    - rid: 6287206799475212387
       type: {class: 'BlackboardVariable`1[[OuterMap, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
         GUID:
@@ -13874,30 +13598,14 @@ MonoBehaviour:
           m_Value1: 2538851355633432576
         Name: Map
         m_Value: {fileID: 2115744118}
-    - rid: 3284953070623785540
-      type: {class: 'BlackboardVariable`1[[RoomDatabase, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
-      data:
-        GUID:
-          m_Value0: 12657728705760878381
-          m_Value1: 7608506640987574116
-        Name: Rooms
-        m_Value: {fileID: 11400000, guid: 208efd689baf938458ee6a4acec2cc75, type: 2}
-    - rid: 3284953145737740671
+    - rid: 6287206799475212650
       type: {class: 'BlackboardVariable`1[[ActionState, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
         GUID:
           m_Value0: 16886864235039362290
           m_Value1: 14818642356139347783
         Name: State
-        m_Value: 0
-    - rid: 6119213312020316643
-      type: {class: 'BlackboardVariable`1[[Agent, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
-      data:
-        GUID:
-          m_Value0: 4369050710446065266
-          m_Value1: 5613661496081385598
-        Name: Target
-        m_Value: {fileID: 1542992503}
+        m_Value: 3
 --- !u!1001 &1553181701
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14596,7 +14304,7 @@ Transform:
   m_GameObject: {fileID: 1650430626}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.798, y: 1.125, z: -0.09164972}
+  m_LocalPosition: {x: 1.592, y: -1.448, z: -0.09164972}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -14862,10 +14570,8 @@ MonoBehaviour:
   m_Graph: {fileID: 4342619363467918153, guid: 2c9b63dd3da5112408bc88e5038a526c, type: 2}
   m_BlackboardVariableOverridesList:
   - rid: 3284953070623785220
-  - rid: 3284953070623785524
-  - rid: 3284953070623785540
-  - rid: 3284953145737740671
-  - rid: 6119213312020316644
+  - rid: 6287206799475212388
+  - rid: 6287206799475212651
   m_IsInitialised: 0
   m_IsStarted: 0
   references:
@@ -14879,7 +14585,7 @@ MonoBehaviour:
           m_Value1: 0
         Name: Self
         m_Value: {fileID: 1661278010}
-    - rid: 3284953070623785524
+    - rid: 6287206799475212388
       type: {class: 'BlackboardVariable`1[[OuterMap, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
         GUID:
@@ -14887,30 +14593,14 @@ MonoBehaviour:
           m_Value1: 2538851355633432576
         Name: Map
         m_Value: {fileID: 2115744118}
-    - rid: 3284953070623785540
-      type: {class: 'BlackboardVariable`1[[RoomDatabase, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
-      data:
-        GUID:
-          m_Value0: 12657728705760878381
-          m_Value1: 7608506640987574116
-        Name: Rooms
-        m_Value: {fileID: 11400000, guid: 208efd689baf938458ee6a4acec2cc75, type: 2}
-    - rid: 3284953145737740671
+    - rid: 6287206799475212651
       type: {class: 'BlackboardVariable`1[[ActionState, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
         GUID:
           m_Value0: 16886864235039362290
           m_Value1: 14818642356139347783
         Name: State
-        m_Value: 0
-    - rid: 6119213312020316644
-      type: {class: 'BlackboardVariable`1[[Agent, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
-      data:
-        GUID:
-          m_Value0: 4369050710446065266
-          m_Value1: 5613661496081385598
-        Name: Target
-        m_Value: {fileID: 1661278018}
+        m_Value: 3
 --- !u!1 &1674634070
 GameObject:
   m_ObjectHideFlags: 0
@@ -15254,10 +14944,8 @@ MonoBehaviour:
   m_Graph: {fileID: 4342619363467918153, guid: 2c9b63dd3da5112408bc88e5038a526c, type: 2}
   m_BlackboardVariableOverridesList:
   - rid: 3284953070623785220
-  - rid: 3284953070623785524
-  - rid: 3284953070623785540
-  - rid: 3284953145737740671
-  - rid: 6119213312020316645
+  - rid: 6287206799475212389
+  - rid: 6287206799475212652
   m_IsInitialised: 0
   m_IsStarted: 0
   references:
@@ -15271,7 +14959,7 @@ MonoBehaviour:
           m_Value1: 0
         Name: Self
         m_Value: {fileID: 1699166570}
-    - rid: 3284953070623785524
+    - rid: 6287206799475212389
       type: {class: 'BlackboardVariable`1[[OuterMap, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
         GUID:
@@ -15279,30 +14967,14 @@ MonoBehaviour:
           m_Value1: 2538851355633432576
         Name: Map
         m_Value: {fileID: 2115744118}
-    - rid: 3284953070623785540
-      type: {class: 'BlackboardVariable`1[[RoomDatabase, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
-      data:
-        GUID:
-          m_Value0: 12657728705760878381
-          m_Value1: 7608506640987574116
-        Name: Rooms
-        m_Value: {fileID: 11400000, guid: 208efd689baf938458ee6a4acec2cc75, type: 2}
-    - rid: 3284953145737740671
+    - rid: 6287206799475212652
       type: {class: 'BlackboardVariable`1[[ActionState, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
         GUID:
           m_Value0: 16886864235039362290
           m_Value1: 14818642356139347783
         Name: State
-        m_Value: 0
-    - rid: 6119213312020316645
-      type: {class: 'BlackboardVariable`1[[Agent, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
-      data:
-        GUID:
-          m_Value0: 4369050710446065266
-          m_Value1: 5613661496081385598
-        Name: Target
-        m_Value: {fileID: 1699166574}
+        m_Value: 3
 --- !u!114 &1699166580
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15633,10 +15305,8 @@ MonoBehaviour:
   m_Graph: {fileID: 4342619363467918153, guid: 2c9b63dd3da5112408bc88e5038a526c, type: 2}
   m_BlackboardVariableOverridesList:
   - rid: 3284953070623785220
-  - rid: 3284953070623785524
-  - rid: 3284953070623785540
-  - rid: 3284953145737740671
-  - rid: 6119213312020316646
+  - rid: 6287206799475212390
+  - rid: 6287206799475212653
   m_IsInitialised: 0
   m_IsStarted: 0
   references:
@@ -15650,7 +15320,7 @@ MonoBehaviour:
           m_Value1: 0
         Name: Self
         m_Value: {fileID: 1724273874}
-    - rid: 3284953070623785524
+    - rid: 6287206799475212390
       type: {class: 'BlackboardVariable`1[[OuterMap, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
         GUID:
@@ -15658,30 +15328,14 @@ MonoBehaviour:
           m_Value1: 2538851355633432576
         Name: Map
         m_Value: {fileID: 2115744118}
-    - rid: 3284953070623785540
-      type: {class: 'BlackboardVariable`1[[RoomDatabase, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
-      data:
-        GUID:
-          m_Value0: 12657728705760878381
-          m_Value1: 7608506640987574116
-        Name: Rooms
-        m_Value: {fileID: 11400000, guid: 208efd689baf938458ee6a4acec2cc75, type: 2}
-    - rid: 3284953145737740671
+    - rid: 6287206799475212653
       type: {class: 'BlackboardVariable`1[[ActionState, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
         GUID:
           m_Value0: 16886864235039362290
           m_Value1: 14818642356139347783
         Name: State
-        m_Value: 0
-    - rid: 6119213312020316646
-      type: {class: 'BlackboardVariable`1[[Agent, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
-      data:
-        GUID:
-          m_Value0: 4369050710446065266
-          m_Value1: 5613661496081385598
-        Name: Target
-        m_Value: {fileID: 1724273882}
+        m_Value: 3
 --- !u!1 &1735322255
 GameObject:
   m_ObjectHideFlags: 0
@@ -16822,10 +16476,8 @@ MonoBehaviour:
   m_Graph: {fileID: 4342619363467918153, guid: 2c9b63dd3da5112408bc88e5038a526c, type: 2}
   m_BlackboardVariableOverridesList:
   - rid: 3284953070623785220
-  - rid: 3284953070623785524
-  - rid: 3284953070623785540
-  - rid: 3284953145737740671
-  - rid: 6119213312020316647
+  - rid: 6287206799475212391
+  - rid: 6287206799475212654
   m_IsInitialised: 0
   m_IsStarted: 0
   references:
@@ -16839,7 +16491,7 @@ MonoBehaviour:
           m_Value1: 0
         Name: Self
         m_Value: {fileID: 1930299874}
-    - rid: 3284953070623785524
+    - rid: 6287206799475212391
       type: {class: 'BlackboardVariable`1[[OuterMap, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
         GUID:
@@ -16847,30 +16499,14 @@ MonoBehaviour:
           m_Value1: 2538851355633432576
         Name: Map
         m_Value: {fileID: 2115744118}
-    - rid: 3284953070623785540
-      type: {class: 'BlackboardVariable`1[[RoomDatabase, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
-      data:
-        GUID:
-          m_Value0: 12657728705760878381
-          m_Value1: 7608506640987574116
-        Name: Rooms
-        m_Value: {fileID: 11400000, guid: 208efd689baf938458ee6a4acec2cc75, type: 2}
-    - rid: 3284953145737740671
+    - rid: 6287206799475212654
       type: {class: 'BlackboardVariable`1[[ActionState, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
         GUID:
           m_Value0: 16886864235039362290
           m_Value1: 14818642356139347783
         Name: State
-        m_Value: 0
-    - rid: 6119213312020316647
-      type: {class: 'BlackboardVariable`1[[Agent, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
-      data:
-        GUID:
-          m_Value0: 4369050710446065266
-          m_Value1: 5613661496081385598
-        Name: Target
-        m_Value: {fileID: 1930299882}
+        m_Value: 3
 --- !u!1 &1953391685
 GameObject:
   m_ObjectHideFlags: 0
@@ -17504,10 +17140,8 @@ MonoBehaviour:
   m_Graph: {fileID: 4342619363467918153, guid: 2c9b63dd3da5112408bc88e5038a526c, type: 2}
   m_BlackboardVariableOverridesList:
   - rid: 3284953070623785220
-  - rid: 3284953070623785524
-  - rid: 3284953070623785540
-  - rid: 3284953145737740671
-  - rid: 6119213312020316648
+  - rid: 6287206799475212392
+  - rid: 6287206799475212655
   m_IsInitialised: 0
   m_IsStarted: 0
   references:
@@ -17521,7 +17155,7 @@ MonoBehaviour:
           m_Value1: 0
         Name: Self
         m_Value: {fileID: 1974697511}
-    - rid: 3284953070623785524
+    - rid: 6287206799475212392
       type: {class: 'BlackboardVariable`1[[OuterMap, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
         GUID:
@@ -17529,30 +17163,14 @@ MonoBehaviour:
           m_Value1: 2538851355633432576
         Name: Map
         m_Value: {fileID: 2115744118}
-    - rid: 3284953070623785540
-      type: {class: 'BlackboardVariable`1[[RoomDatabase, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
-      data:
-        GUID:
-          m_Value0: 12657728705760878381
-          m_Value1: 7608506640987574116
-        Name: Rooms
-        m_Value: {fileID: 11400000, guid: 208efd689baf938458ee6a4acec2cc75, type: 2}
-    - rid: 3284953145737740671
+    - rid: 6287206799475212655
       type: {class: 'BlackboardVariable`1[[ActionState, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
         GUID:
           m_Value0: 16886864235039362290
           m_Value1: 14818642356139347783
         Name: State
-        m_Value: 0
-    - rid: 6119213312020316648
-      type: {class: 'BlackboardVariable`1[[Agent, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
-      data:
-        GUID:
-          m_Value0: 4369050710446065266
-          m_Value1: 5613661496081385598
-        Name: Target
-        m_Value: {fileID: 1974697519}
+        m_Value: 3
 --- !u!1 &1979972822
 GameObject:
   m_ObjectHideFlags: 0
@@ -17855,10 +17473,8 @@ MonoBehaviour:
   m_Graph: {fileID: 4342619363467918153, guid: 2c9b63dd3da5112408bc88e5038a526c, type: 2}
   m_BlackboardVariableOverridesList:
   - rid: 3284953070623785220
-  - rid: 3284953070623785524
-  - rid: 3284953070623785540
-  - rid: 3284953145737740671
-  - rid: 6119213312020316649
+  - rid: 6287206799475212393
+  - rid: 6287206799475212656
   m_IsInitialised: 0
   m_IsStarted: 0
   references:
@@ -17872,7 +17488,7 @@ MonoBehaviour:
           m_Value1: 0
         Name: Self
         m_Value: {fileID: 1980324787}
-    - rid: 3284953070623785524
+    - rid: 6287206799475212393
       type: {class: 'BlackboardVariable`1[[OuterMap, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
         GUID:
@@ -17880,30 +17496,14 @@ MonoBehaviour:
           m_Value1: 2538851355633432576
         Name: Map
         m_Value: {fileID: 2115744118}
-    - rid: 3284953070623785540
-      type: {class: 'BlackboardVariable`1[[RoomDatabase, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
-      data:
-        GUID:
-          m_Value0: 12657728705760878381
-          m_Value1: 7608506640987574116
-        Name: Rooms
-        m_Value: {fileID: 11400000, guid: 208efd689baf938458ee6a4acec2cc75, type: 2}
-    - rid: 3284953145737740671
+    - rid: 6287206799475212656
       type: {class: 'BlackboardVariable`1[[ActionState, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
         GUID:
           m_Value0: 16886864235039362290
           m_Value1: 14818642356139347783
         Name: State
-        m_Value: 0
-    - rid: 6119213312020316649
-      type: {class: 'BlackboardVariable`1[[Agent, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
-      data:
-        GUID:
-          m_Value0: 4369050710446065266
-          m_Value1: 5613661496081385598
-        Name: Target
-        m_Value: {fileID: 1980324795}
+        m_Value: 3
 --- !u!1 &2020261367
 GameObject:
   m_ObjectHideFlags: 0
@@ -18151,7 +17751,7 @@ Transform:
   m_GameObject: {fileID: 2091904618}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.99, y: 0, z: 0}
+  m_LocalPosition: {x: -0.006, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -18741,7 +18341,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4464029914512775807, guid: 69ed1ee8a15fd1741955696b7a3aec2e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.7
+      value: -3.121
       objectReference: {fileID: 0}
     - target: {fileID: 4464029914512775807, guid: 69ed1ee8a15fd1741955696b7a3aec2e, type: 3}
       propertyPath: m_LocalPosition.y
@@ -19510,7 +19110,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.773298, y: 0}
+  m_Offset: {x: -0.9285, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -19520,7 +19120,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 4.86649, y: 1}
+  m_Size: {x: 4.385, y: 1}
   m_EdgeRadius: 0
 --- !u!114 &8828077833047885503
 MonoBehaviour:

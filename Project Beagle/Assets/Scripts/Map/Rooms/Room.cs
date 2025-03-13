@@ -18,6 +18,7 @@ public class Room : MonoBehaviour
     [SerializeField] private Station[] _stations;
     private List<Vertex> _stationVertices = new List<Vertex>();
     private Dictionary<StationType, List<Station>> _lookupStations = new Dictionary<StationType, List<Station>>();
+    public List<Edge> Edges { get; private set; } = new List<Edge>();
     public Bounds Bounds { get; private set; }
 
     # region Initialization
@@ -67,6 +68,14 @@ public class Room : MonoBehaviour
         {
             _vertices[i].AddEdge(_vertices[i + 1]);
             _vertices[i + 1].AddEdge(_vertices[i]);
+        }
+
+        foreach (Vertex v in _vertices)
+        {
+            foreach (Edge e in v.Edges)
+            {
+                if (!Edges.Contains(e) || !e.Start.IsRoom || !e.End.IsRoom) Edges.Add(e);
+            }
         }
 
         ConfigureStations();

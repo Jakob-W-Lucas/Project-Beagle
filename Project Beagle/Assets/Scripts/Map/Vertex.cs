@@ -54,7 +54,7 @@ public class Vertex : MonoBehaviour
 
         foreach (Collider2D c in surrounding_edges)
         {
-            if (c == s_coll || c.GetComponentInParent<Agent>()) continue;
+            if (c == s_coll || c.GetComponentInParent<Station>() || c.GetComponentInParent<Agent>()) continue;
 
             if (c.TryGetComponent<Vertex>(out Vertex vertex)) 
             {
@@ -73,6 +73,17 @@ public class Vertex : MonoBehaviour
             Edges.Add(edge);
         }
     }
+
+    public override bool Equals(object obj)
+    {
+        return obj is Vertex other && 
+            this.Position == other.Position;
+    }
+
+    public override int GetHashCode()
+    {
+        return HashCode.Combine(g_ID, r_ID);
+    }
 }
 
 [System.Serializable]
@@ -81,7 +92,11 @@ public class Edge
     [SerializeField] private bool _enabled;
     [SerializeField] private Vertex _start;
     [SerializeField] private Vertex _end;
+    public Vertex[] Vertices => new Vertex[2] { _start, _end };
     private float _weight;
+    public Vector2 StartPos => _start.Position;
+    public Vector2 EndPos => _end.Position;
+    public Vector2 EdgeVector => _end.Position - _start.Position;
 
     public Edge(Vertex start, Vertex end, bool enabled = true)
     {
@@ -100,19 +115,19 @@ public class Edge
 
     public override bool Equals(object obj)
     {
-        if (obj is Edge other)
-        {
-            return (_start == other._start && _end == other._end) ||
-                   (_start == other._end && _end == other._start);
-        }
-        return false;
+        if (obj is not Edge other) return false;
+        //if (ReferenceEquals(this, other)) return true; // Quick check
+        return (_start.Equals(other._start) && _end.Equals(other._end)) ||
+            (_start.Equals(other._end) && _end.Equals(other._start));
     }
     
     public override int GetHashCode()
     {
-        // Ensure the hash code is the same for both directions of the edge
-        int hash1 = _start.GetHashCode() ^ _end.GetHashCode();
-        int hash2 = _end.GetHashCode() ^ _start.GetHashCode();
-        return hash1 ^ hash2;
+        int h1 = _start.GetHashCode();
+        int h2 = _end.GetHashCode();
+        // Order-independent hash combination
+        return h1 < h2 ? 
+            HashCode.Combine(h1, h2) : 
+            HashCode.Combine(h2, h1);
     }
 }
